@@ -53,6 +53,10 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
         return this.patient;
     }
 
+    public ArrayList<HealthMeasurementModel> getHealthMeasurements() {
+        return this.healthMeasurements;
+    }
+
     public void update() {
         MeasurementEventModel me = this.healthMeasurementListener.getDataReceived();
 

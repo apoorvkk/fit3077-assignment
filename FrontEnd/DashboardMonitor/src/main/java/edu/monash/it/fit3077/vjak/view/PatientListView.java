@@ -9,8 +9,8 @@ import edu.monash.it.fit3077.vjak.observer.Observer;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -84,7 +84,7 @@ public class PatientListView implements JavaFXView, Observer {
                     }
 
                 });
-
+                cellNode.setPrefHeight(20d);
                 this.patientListVBox.getChildren().add(cellNode);
             });
         }

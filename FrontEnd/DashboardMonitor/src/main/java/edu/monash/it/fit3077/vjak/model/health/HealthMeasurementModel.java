@@ -17,12 +17,11 @@ public abstract class HealthMeasurementModel extends Subject {
         measurementTracker.deregister();
     }
 
-    public String getHealthMeasurementValue() {
-        return this.value;
-    }
-
-    public String getHealthMeasurementUnit() {
-        return this.unit;
+    public String getHealthMeasurementResult() {
+        if (this.value != null && this.unit != null){
+            return this.value + " " + this.unit;
+        }
+        return "N/A";
     }
 
     public void setHealthMeasurementValue(String value, String unit) {

@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>351</y>
+      <x>333</x>
+      <y>324</y>
       <w>225</w>
       <h>27</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>207</x>
-      <y>243</y>
+      <x>252</x>
+      <y>216</y>
       <w>153</w>
       <h>45</h>
     </coordinates>
@@ -27,8 +27,8 @@ PatientLoaderInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>252</x>
-      <y>279</y>
+      <x>297</x>
+      <y>252</y>
       <w>54</w>
       <h>108</h>
     </coordinates>
@@ -38,8 +38,8 @@ PatientLoaderInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>486</y>
+      <x>675</x>
+      <y>459</y>
       <w>198</w>
       <h>36</h>
     </coordinates>
@@ -50,8 +50,8 @@ HealthMeasurementModel</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>684</x>
-      <y>585</y>
+      <x>729</x>
+      <y>558</y>
       <w>117</w>
       <h>27</h>
     </coordinates>
@@ -61,8 +61,8 @@ HealthMeasurementModel</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>513</y>
+      <x>765</x>
+      <y>486</y>
       <w>27</w>
       <h>90</h>
     </coordinates>
@@ -72,8 +72,8 @@ HealthMeasurementModel</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>729</x>
-      <y>675</y>
+      <x>774</x>
+      <y>648</y>
       <w>144</w>
       <h>27</h>
     </coordinates>
@@ -84,8 +84,8 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>621</x>
-      <y>351</y>
+      <x>666</x>
+      <y>324</y>
       <w>189</w>
       <h>27</h>
     </coordinates>
@@ -96,8 +96,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>351</y>
+      <x>549</x>
+      <y>324</y>
       <w>135</w>
       <h>27</h>
     </coordinates>
@@ -107,8 +107,8 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>846</x>
-      <y>342</y>
+      <x>891</x>
+      <y>315</y>
       <w>108</w>
       <h>45</h>
     </coordinates>
@@ -119,8 +119,8 @@ Subject</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>837</x>
-      <y>414</y>
+      <x>882</x>
+      <y>387</y>
       <w>135</w>
       <h>63</h>
     </coordinates>
@@ -131,8 +131,8 @@ Observer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>891</x>
-      <y>378</y>
+      <x>936</x>
+      <y>351</y>
       <w>27</w>
       <h>54</h>
     </coordinates>
@@ -142,8 +142,8 @@ Observer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>801</x>
-      <y>351</y>
+      <x>846</x>
+      <y>324</y>
       <w>63</w>
       <h>27</h>
     </coordinates>
@@ -153,19 +153,19 @@ Observer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>126</y>
+      <x>729</x>
+      <y>90</y>
       <w>324</w>
-      <h>342</h>
+      <h>351</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>320.0;360.0;340.0;360.0;340.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>320.0;370.0;340.0;370.0;340.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>639</x>
-      <y>369</y>
+      <x>684</x>
+      <y>342</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -175,8 +175,8 @@ Observer</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
-      <y>432</y>
+      <x>549</x>
+      <y>405</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -186,8 +186,8 @@ Observer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>144</y>
+      <x>513</x>
+      <y>117</y>
       <w>27</w>
       <h>225</h>
     </coordinates>
@@ -197,8 +197,8 @@ Observer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>459</y>
+      <x>603</x>
+      <y>432</y>
       <w>90</w>
       <h>63</h>
     </coordinates>
@@ -208,19 +208,19 @@ Observer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>819</x>
-      <y>351</y>
+      <x>864</x>
+      <y>324</y>
       <w>207</w>
-      <h>171</h>
+      <h>162</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>150.0;10.0;210.0;10.0;210.0;170.0;10.0;170.0</additional_attributes>
+    <additional_attributes>150.0;10.0;210.0;10.0;210.0;160.0;10.0;160.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
-      <y>504</y>
+      <x>360</x>
+      <y>477</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -231,8 +231,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>441</y>
+      <x>405</x>
+      <y>414</y>
       <w>162</w>
       <h>81</h>
     </coordinates>
@@ -242,8 +242,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>243</y>
+      <x>45</x>
+      <y>216</y>
       <w>126</w>
       <h>36</h>
     </coordinates>
@@ -253,8 +253,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>117</x>
-      <y>252</y>
+      <x>162</x>
+      <y>225</y>
       <w>108</w>
       <h>27</h>
     </coordinates>
@@ -264,8 +264,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>135</x>
-      <y>405</y>
+      <x>180</x>
+      <y>378</y>
       <w>126</w>
       <h>27</h>
     </coordinates>
@@ -275,8 +275,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
-      <y>270</y>
+      <x>135</x>
+      <y>243</y>
       <w>63</w>
       <h>162</h>
     </coordinates>
@@ -286,8 +286,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>171</x>
-      <y>423</y>
+      <x>216</x>
+      <y>396</y>
       <w>162</w>
       <h>117</h>
     </coordinates>
@@ -297,8 +297,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>99</x>
-      <y>144</y>
+      <x>144</x>
+      <y>117</y>
       <w>198</w>
       <h>27</h>
     </coordinates>
@@ -308,8 +308,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>45</x>
-      <y>144</y>
+      <x>90</x>
+      <y>117</y>
       <w>72</w>
       <h>117</h>
     </coordinates>
@@ -319,8 +319,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>144</y>
+      <x>333</x>
+      <y>117</y>
       <w>117</w>
       <h>225</h>
     </coordinates>
@@ -330,8 +330,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>801</x>
-      <y>513</y>
+      <x>846</x>
+      <y>486</y>
       <w>27</w>
       <h>180</h>
     </coordinates>
@@ -341,8 +341,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>585</x>
-      <y>162</y>
+      <x>630</x>
+      <y>135</y>
       <w>279</w>
       <h>54</h>
     </coordinates>
@@ -352,8 +352,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>693</x>
-      <y>207</y>
+      <x>738</x>
+      <y>180</y>
       <w>27</w>
       <h>162</h>
     </coordinates>
@@ -363,8 +363,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>747</x>
-      <y>207</y>
+      <x>792</x>
+      <y>180</y>
       <w>27</w>
       <h>162</h>
     </coordinates>
@@ -374,8 +374,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>531</x>
-      <y>261</y>
+      <x>576</x>
+      <y>234</y>
       <w>162</w>
       <h>36</h>
     </coordinates>
@@ -385,8 +385,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>549</x>
-      <y>171</y>
+      <x>594</x>
+      <y>144</y>
       <w>54</w>
       <h>108</h>
     </coordinates>
@@ -396,8 +396,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>288</y>
+      <x>675</x>
+      <y>261</y>
       <w>27</w>
       <h>81</h>
     </coordinates>
@@ -407,8 +407,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>288</y>
+      <x>621</x>
+      <y>261</y>
       <w>27</w>
       <h>162</h>
     </coordinates>
@@ -418,52 +418,54 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>324</x>
-      <y>72</y>
+      <x>369</x>
+      <y>18</y>
       <w>261</w>
-      <h>27</h>
+      <h>45</h>
     </coordinates>
-    <panel_attributes>AbstractPatientMonitorCollectionModel</panel_attributes>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+AbstractPatientMonitorCollectionModel</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>72</y>
+      <x>621</x>
+      <y>36</y>
       <w>342</w>
-      <h>288</h>
+      <h>297</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>360.0;300.0;360.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>360.0;310.0;360.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>405</x>
-      <y>90</y>
+      <x>450</x>
+      <y>54</y>
       <w>27</w>
-      <h>279</h>
+      <h>288</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;300.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>441</x>
-      <y>126</y>
+      <x>486</x>
+      <y>90</y>
       <w>252</w>
-      <h>27</h>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>AbstractPatientMonitorModel</panel_attributes>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+PatientMonitorModelInterface</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>486</x>
-      <y>90</y>
+      <x>531</x>
+      <y>54</y>
       <w>27</w>
       <h>54</h>
     </coordinates>
@@ -473,19 +475,19 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>513</x>
-      <y>144</y>
+      <x>558</x>
+      <y>117</y>
       <w>27</w>
       <h>306</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;320.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>387</x>
-      <y>369</y>
+      <x>432</x>
+      <y>342</y>
       <w>135</w>
       <h>90</h>
     </coordinates>
@@ -495,8 +497,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
-      <y>459</y>
+      <x>567</x>
+      <y>432</y>
       <w>27</w>
       <h>144</h>
     </coordinates>
@@ -506,8 +508,8 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>594</y>
+      <x>675</x>
+      <y>567</y>
       <w>72</w>
       <h>27</h>
     </coordinates>
@@ -517,12 +519,34 @@ PatientModelInterface</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>441</x>
-      <y>585</y>
+      <x>486</x>
+      <y>558</y>
       <w>198</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>HealthMeasurementCreator</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>90</y>
+      <w>504</w>
+      <h>477</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>450.0;470.0;450.0;510.0;10.0;510.0;20.0;10.0;540.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>729</x>
+      <y>108</y>
+      <w>405</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>160.0;420.0;430.0;420.0;430.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
