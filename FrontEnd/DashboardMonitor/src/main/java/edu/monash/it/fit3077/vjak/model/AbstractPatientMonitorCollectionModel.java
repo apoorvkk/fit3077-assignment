@@ -9,4 +9,5 @@ public abstract class AbstractPatientMonitorCollectionModel extends Subject {
     public abstract ArrayList<PatientMonitorModelInterface> getPatientMonitors();
     public abstract void startMonitoring(PatientMonitorModelInterface p);
     public abstract void stopMonitoring(PatientMonitorModelInterface p);
+    public abstract ArrayList<PatientMonitorModelInterface> getSelectedPatientMonitors();
 }

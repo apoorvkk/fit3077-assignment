@@ -52,7 +52,7 @@ public class HapiPatientLoader implements PatientLoaderInterface {
 
                                             String patientId = r.getReference().replaceAll("\\D+","");
 
-                                            // Check if new patient id (note: new patient ids are cached once the patient resouce has been downloaded.
+                                            // Check if new patient id (note: new patient ids are cached once the patient resouce has been downloaded.)
                                             if (!this.patientIdsCache.contains(patientId) && !patientIds.contains(patientId)) {
                                                 patientIds.add(patientId);
                                             }

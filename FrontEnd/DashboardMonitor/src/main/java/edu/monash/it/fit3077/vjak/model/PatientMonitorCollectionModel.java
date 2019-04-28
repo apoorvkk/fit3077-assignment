@@ -49,4 +49,14 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
         p.removeMeasurements();
         this.notifyObservers();
     }
+
+    public ArrayList<PatientMonitorModelInterface> getSelectedPatientMonitors() {
+        ArrayList<PatientMonitorModelInterface> selectedPatientMonitors = new ArrayList<PatientMonitorModelInterface>();
+        this.patientMonitors.forEach(p -> {
+            if (p.isBeingMonitored()) {
+                selectedPatientMonitors.add(p);
+            }
+        });
+        return selectedPatientMonitors;
+    }
 }
