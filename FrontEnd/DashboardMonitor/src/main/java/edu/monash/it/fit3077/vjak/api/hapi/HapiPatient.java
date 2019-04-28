@@ -11,4 +11,8 @@ public class HapiPatient implements Patient {
     public void constructor(org.hl7.fhir.dstu3.model.Patient p) {
         this.patient = p;
     }
+
+    public String getId() {
+        return this.patient.getId();
+    }
 }
