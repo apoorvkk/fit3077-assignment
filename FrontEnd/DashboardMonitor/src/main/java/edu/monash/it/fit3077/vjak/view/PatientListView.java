@@ -10,11 +10,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
-public class PatientList implements JavaFXView, Observer {
+public class PatientListView implements JavaFXView, Observer {
     private VBox rootNode;
     private AbstractPatientMonitorCollectionModel model;
 
-    public PatientList(AbstractPatientMonitorCollectionModel model) {
+    public PatientListView(AbstractPatientMonitorCollectionModel model) {
         this.model = model;
         this.model.attach(this);
         VBox patientsVBox = new VBox();
@@ -44,7 +44,7 @@ public class PatientList implements JavaFXView, Observer {
         } else {
             this.model.getPatientMonitors()
                 .forEach(patientMonitor -> {
-                    PatientListItem listItem = new PatientListItem(patientMonitor.getPatient());
+                    PatientListItemView listItem = new PatientListItemView(patientMonitor.getPatient());
 
                     patientVBox.getChildren().add(listItem.getRootNode());
                 });
@@ -60,6 +60,6 @@ public class PatientList implements JavaFXView, Observer {
 
 
     public void update() {
-        Platform.runLater(() -> PatientList.this.rootNode.getChildren().set(0, PatientList.this.renderPatientList(false)));
+        Platform.runLater(() -> PatientListView.this.rootNode.getChildren().set(0, PatientListView.this.renderPatientList(false)));
     }
 }

@@ -5,10 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
 
-public class PatientListItem implements JavaFXView {
+public class PatientListItemView implements JavaFXView {
     private Node rootNode;
 
-    public PatientListItem(PatientModelInterface model) {
+    public PatientListItemView(PatientModelInterface model) {
         HBox cellNode = new HBox();
 
         CheckBox cb2 = new CheckBox(model.getName());

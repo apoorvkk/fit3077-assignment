@@ -9,9 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class DashboardScreen {
-    public DashboardScreen(Stage primaryStage, AbstractPatientMonitorCollectionModel model) {
-        PatientList plv = new PatientList(model);
+public class DashboardScreenView {
+    public DashboardScreenView(Stage primaryStage, AbstractPatientMonitorCollectionModel model) {
+        PatientListView plv = new PatientListView(model);
         Group group = new Group(plv.getRootNode()); // root node
         Scene scene = new Scene(group, Constant.guiWindowWidth, Constant.guiWindowHeight);
         scene.setFill(Color.BROWN);
