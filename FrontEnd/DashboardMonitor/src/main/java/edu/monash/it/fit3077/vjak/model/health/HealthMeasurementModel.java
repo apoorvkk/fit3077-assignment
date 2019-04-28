@@ -3,12 +3,12 @@ package edu.monash.it.fit3077.vjak.model.health;
 import edu.monash.it.fit3077.vjak.model.health.tracker.MeasurementTracker;
 import edu.monash.it.fit3077.vjak.observer.Subject;
 
-public abstract class HealthMeasurement extends Subject {
+public abstract class HealthMeasurementModel extends Subject {
     private MeasurementTracker measurementTracker;
     private String value;
     private String unit;
 
-    public HealthMeasurement(String patientId) {
+    public HealthMeasurementModel(String patientId) {
         this.measurementTracker = new MeasurementTracker(patientId, this.toString());
         this.measurementTracker.register();
     }

@@ -1,19 +1,19 @@
 package edu.monash.it.fit3077.vjak.model;
 
 import edu.monash.it.fit3077.vjak.backendmonitor.HealthMeasurementListener;
-import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEvent;
-import edu.monash.it.fit3077.vjak.model.health.HealthMeasurement;
+import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEventModel;
+import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
 import edu.monash.it.fit3077.vjak.observer.Observer;
 
 import java.util.ArrayList;
 
-public class MonitorPatient extends Observer {
-    private Patient patient;
-    private ArrayList<HealthMeasurement> healthMeasurements;
+public class PatientMonitorModel extends AbstractPatientMonitorModel {
+    private PatientModelInterface patient;
+    private ArrayList<HealthMeasurementModel> healthMeasurements;
     private HealthMeasurementCreator healtMeasurementCreator;
     private HealthMeasurementListener healthMeasurementListener;
 
-    public MonitorPatient(Patient p, HealthMeasurementListener hl) {
+    public PatientMonitorModel(PatientModelInterface p, HealthMeasurementListener hl) {
         this.observeHealthMeasurements(hl);
 
         this.patient = p;
@@ -32,7 +32,7 @@ public class MonitorPatient extends Observer {
     }
 
     public void update() {
-        MeasurementEvent me = this.healthMeasurementListener.getDataReceived();
+        MeasurementEventModel me = this.healthMeasurementListener.getDataReceived();
 
         if (me.getPatient().equals(this.patient.getId())) {
             this.healthMeasurements
@@ -49,7 +49,7 @@ public class MonitorPatient extends Observer {
     }
 
     public void trackCholesterol() {
-        HealthMeasurement hm = this.healtMeasurementCreator.trackCholesterol(this.patient.getId());
+        HealthMeasurementModel hm = this.healtMeasurementCreator.trackCholesterol(this.patient.getId());
         this.healthMeasurements.add(hm);
     }
 

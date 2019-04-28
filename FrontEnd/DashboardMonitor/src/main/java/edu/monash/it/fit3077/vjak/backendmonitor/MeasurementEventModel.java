@@ -1,6 +1,6 @@
 package edu.monash.it.fit3077.vjak.backendmonitor;
 
-public class MeasurementEvent {
+public class MeasurementEventModel {
     private String patient;
     private String type;
     private String unit;

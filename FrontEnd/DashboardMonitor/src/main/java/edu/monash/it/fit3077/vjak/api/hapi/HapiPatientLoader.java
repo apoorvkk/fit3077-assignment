@@ -2,14 +2,15 @@ package edu.monash.it.fit3077.vjak.api.hapi;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
-import edu.monash.it.fit3077.vjak.model.PatientLoader;
+import edu.monash.it.fit3077.vjak.model.PatientLoaderInterface;
+import edu.monash.it.fit3077.vjak.model.PatientModelInterface;
 import org.hl7.fhir.dstu3.model.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-public class HapiPatientLoader implements PatientLoader {
+public class HapiPatientLoader implements PatientLoaderInterface {
     private IGenericClient client;
     private Bundle currentEncounterPage;
     private HashSet<String> patientIdsCache;
@@ -80,13 +81,13 @@ public class HapiPatientLoader implements PatientLoader {
                     .forEach(patientId -> this.patientIdsCache.add(patientId));
     }
 
-    public ArrayList<edu.monash.it.fit3077.vjak.model.Patient> loadPatients() {
+    public ArrayList<PatientModelInterface> loadPatients() {
         ArrayList<String> patientIds = this.fetchNewPatientIds();
         ArrayList<org.hl7.fhir.dstu3.model.Patient> rawHapiPatients = this.downloadNewPatients(patientIds);
         this.cachePatientIds(patientIds);
 
-        ArrayList<edu.monash.it.fit3077.vjak.model.Patient> hapiPatients = rawHapiPatients.stream()
-                                                .map(p -> new HapiPatient(p))
+        ArrayList<PatientModelInterface> hapiPatients = rawHapiPatients.stream()
+                                                .map(p -> new HapiPatientModel(p))
                                                 .collect(Collectors.toCollection(ArrayList::new));
 
         return hapiPatients;

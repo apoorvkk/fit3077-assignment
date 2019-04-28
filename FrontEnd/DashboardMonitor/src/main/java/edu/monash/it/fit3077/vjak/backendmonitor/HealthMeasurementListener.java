@@ -10,7 +10,7 @@ import org.springframework.web.socket.messaging.WebSocketStompClient;
 import java.util.concurrent.CountDownLatch;
 
 public class HealthMeasurementListener extends Subject {
-    private MeasurementEvent currentEvent;
+    private MeasurementEventModel currentEvent;
 
     public HealthMeasurementListener() {
         WebSocketClient client = new StandardWebSocketClient();
@@ -32,11 +32,11 @@ public class HealthMeasurementListener extends Subject {
         }
     }
 
-    public MeasurementEvent getDataReceived() {
+    public MeasurementEventModel getDataReceived() {
         return this.currentEvent;
     }
 
-    public void dataReceived(MeasurementEvent payload) {
+    public void dataReceived(MeasurementEventModel payload) {
         this.currentEvent = payload;
         this.notifyObservers();
     }

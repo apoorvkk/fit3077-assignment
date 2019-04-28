@@ -43,12 +43,12 @@ public class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAd
     @Override
     public void handleFrame(StompHeaders headers, Object payload) {
         logger.info("Received message");
-        MeasurementEvent me = (MeasurementEvent) payload;
+        MeasurementEventModel me = (MeasurementEventModel) payload;
         this.healthMeasurementListener.dataReceived(me);
     }
 
     @Override
     public Type getPayloadType(StompHeaders headers) {
-        return MeasurementEvent.class;
+        return MeasurementEventModel.class;
     }
 }

@@ -21,11 +21,11 @@ public class MeasurementTracker {
 
     public void register() {
         RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<MeasurementRegistration> request = new HttpEntity<>(new MeasurementRegistration(this.patientId, this.healthMeasurement));
-        ResponseEntity<MeasurementRegistration> response = restTemplate
-                .exchange("http://localhost:8080/Monitor", HttpMethod.POST, request, MeasurementRegistration.class);
+        HttpEntity<MeasurementRegistrationModel> request = new HttpEntity<>(new MeasurementRegistrationModel(this.patientId, this.healthMeasurement));
+        ResponseEntity<MeasurementRegistrationModel> response = restTemplate
+                .exchange("http://localhost:8080/Monitor", HttpMethod.POST, request, MeasurementRegistrationModel.class);
 
-        MeasurementRegistration mr = response.getBody();
+        MeasurementRegistrationModel mr = response.getBody();
 
         this.registrationId = mr.getRegistrationId();
     }

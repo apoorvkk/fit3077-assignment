@@ -2,13 +2,13 @@ package edu.monash.it.fit3077.vjak.model.health.tracker;
 
 import edu.monash.it.fit3077.vjak.Constant;
 
-public class MeasurementRegistration {
+public class MeasurementRegistrationModel {
     private String patientId;
     private String clientId;
     private String measurementType;
     private String registrationId;
 
-    public MeasurementRegistration(String patientId, String measurementType) {
+    public MeasurementRegistrationModel(String patientId, String measurementType) {
         this.patientId = patientId;
         this.clientId = Constant.clientId;
         this.measurementType = measurementType;
