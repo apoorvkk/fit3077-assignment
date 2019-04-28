@@ -12,9 +12,9 @@ import javafx.stage.WindowEvent;
 public class DashboardScreenView {
     public DashboardScreenView(Stage primaryStage, AbstractPatientMonitorCollectionModel model) {
         PatientListView plv = new PatientListView(model);
-        Group group = new Group(plv.getRootNode()); // root node
+        Group group = new Group(plv.getRootNode());
         Scene scene = new Scene(group, Constant.guiWindowWidth, Constant.guiWindowHeight);
-        scene.setFill(Color.BROWN);
+        scene.setFill(Color.LIGHTSKYBLUE);
 
         primaryStage.setTitle("Dashboard Monitor");
         primaryStage.setMaxHeight(Constant.guiWindowHeight);

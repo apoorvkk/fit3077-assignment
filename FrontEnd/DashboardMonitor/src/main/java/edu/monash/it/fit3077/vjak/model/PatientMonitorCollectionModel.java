@@ -25,10 +25,10 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
                     .map(patient -> new PatientMonitorModel(patient, PatientMonitorCollectionModel.this.healthMeasurementListener))
                     .collect(Collectors.toCollection(ArrayList::new));
             PatientMonitorCollectionModel.this.patientMonitors.addAll(newPatientMonitors);
-            System.out.println(Thread.currentThread().getName());
             PatientMonitorCollectionModel.this.notifyObservers();
         }
     }
+
     public void loadMorePatients() {
         Thread patientLoaderThread = new Thread(new PatientLoaderRunnable());
         patientLoaderThread.start();

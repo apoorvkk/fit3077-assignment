@@ -13,8 +13,6 @@ public class DashboardMonitorApplication extends Application {
         HapiPatientLoader h = new HapiPatientLoader("3252");
         PatientMonitorCollectionModel mps = new PatientMonitorCollectionModel(h);
         DashboardScreenView dv = new DashboardScreenView(primaryStage, mps);
-        // initialize collection with first set of patients.
-        mps.loadMorePatients();
     }
 
     public static void main(String[] args) {
