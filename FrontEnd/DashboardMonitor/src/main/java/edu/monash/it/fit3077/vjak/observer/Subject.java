@@ -10,7 +10,9 @@ public abstract class Subject {
     }
 
     public void attach(Observer o) {
-        this.observers.add(o);
+        if (!this.observers.contains(o)) {
+            this.observers.add(o);
+        }
     };
 
     public void detach(Observer o) {

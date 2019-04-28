@@ -7,6 +7,6 @@ public class CholesterolModel extends HealthMeasurementModel {
 
     @Override
     public String toString() {
-        return "CholesterolModel";
+        return "Cholesterol";
     }
 }

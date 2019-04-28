@@ -4,13 +4,12 @@ import edu.monash.it.fit3077.vjak.Constant;
 import edu.monash.it.fit3077.vjak.controller.PatientMonitorCollectionController;
 import edu.monash.it.fit3077.vjak.controller.PatientMonitorCollectionInterface;
 import edu.monash.it.fit3077.vjak.model.AbstractPatientMonitorCollectionModel;
-import edu.monash.it.fit3077.vjak.model.AbstractPatientMonitorModel;
+import edu.monash.it.fit3077.vjak.model.PatientMonitorModelInterface;
 import edu.monash.it.fit3077.vjak.observer.Observer;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -39,12 +38,7 @@ public class PatientListView implements JavaFXView, Observer {
     private void initializeLoadMoreButton() {
         Button button = new Button();
         button.setPrefWidth(0.25 * Constant.guiWindowWidth);
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                PatientListView.this.controller.loadMorePatients();
-            }
-        });
+        button.setOnAction(event -> this.controller.loadMorePatients());
 
         this.loadMoreButton = button;
         this.rootNode.getChildren().add(this.loadMoreButton);
@@ -70,22 +64,41 @@ public class PatientListView implements JavaFXView, Observer {
         return this.rootNode;
     }
 
+    private void updatePatientList(ArrayList<PatientMonitorModelInterface> patientMonitors) {
+        this.patientListVBox.getChildren().clear();
+        if (patientMonitors.size() == 0) {
+            this.patientListVBox.getChildren().add(new Text("Unable to find patients."));
+        } else {
+            patientMonitors.forEach(patientMonitor -> {
+                HBox cellNode = new HBox();
+                CheckBox cb = new CheckBox(patientMonitor.getPatient().getName());
+                if (patientMonitor.isBeingMonitored()) {
+                    cb.setSelected(true);
+                }
+                cellNode.getChildren().add(cb);
+                cb.setOnAction(event -> {
+                    if (cb.isSelected()) {
+                        this.controller.startMonitoring(patientMonitor);
+                    } else {
+                        this.controller.stopMonitoring(patientMonitor);
+                    }
+
+                });
+
+                this.patientListVBox.getChildren().add(cellNode);
+            });
+        }
+    }
+
+    private void updateLoadMoreButton() {
+        this.loadMoreButton.setText(this.loadMoreButtonText);
+        this.loadMoreButton.setDisable(false);
+    }
+
     public void update() {
         Platform.runLater(() -> {
-            ArrayList<AbstractPatientMonitorModel> patientMonitors = this.model.getPatientMonitors();
-
-            this.patientListVBox.getChildren().clear();
-            if (patientMonitors.size() == 0) {
-                this.patientListVBox.getChildren().add(new Text("Unable to find patients."));
-            } else {
-                patientMonitors.forEach(patientMonitor -> {
-                    PatientListItemView listItem = new PatientListItemView(patientMonitor.getPatient());
-                    this.patientListVBox.getChildren().add(listItem.getRootNode());
-                });
-            }
-
-            this.loadMoreButton.setText(this.loadMoreButtonText);
-            this.loadMoreButton.setDisable(false);
+            this.updatePatientList(this.model.getPatientMonitors());
+            this.updateLoadMoreButton();
         });
     }
 }

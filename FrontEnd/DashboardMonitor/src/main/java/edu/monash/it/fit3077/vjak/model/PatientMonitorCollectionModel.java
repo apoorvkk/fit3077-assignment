@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollectionModel {
     private PatientLoaderInterface patientLoader;
-    private ArrayList<AbstractPatientMonitorModel> patientMonitors;
+    private ArrayList<PatientMonitorModelInterface> patientMonitors;
     private HealthMeasurementListener healthMeasurementListener;
 
     public PatientMonitorCollectionModel(PatientLoaderInterface pl) {
@@ -20,7 +20,7 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
 
         @Override
         public void run() {
-            ArrayList<AbstractPatientMonitorModel> newPatientMonitors = PatientMonitorCollectionModel.this.patientLoader.loadPatients()
+            ArrayList<PatientMonitorModelInterface> newPatientMonitors = PatientMonitorCollectionModel.this.patientLoader.loadPatients()
                     .stream()
                     .map(patient -> new PatientMonitorModel(patient, PatientMonitorCollectionModel.this.healthMeasurementListener))
                     .collect(Collectors.toCollection(ArrayList::new));
@@ -34,7 +34,19 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
         patientLoaderThread.start();
     }
 
-    public ArrayList<AbstractPatientMonitorModel> getPatientMonitors() {
+    public ArrayList<PatientMonitorModelInterface> getPatientMonitors() {
         return this.patientMonitors;
+    }
+
+    public void startMonitoring(PatientMonitorModelInterface p) {
+        if (this.patientMonitors.contains(p)) {
+            p.trackMeasurements();
+            this.notifyObservers();
+        }
+    }
+
+    public void stopMonitoring(PatientMonitorModelInterface p) {
+        p.removeMeasurements();
+        this.notifyObservers();
     }
 }

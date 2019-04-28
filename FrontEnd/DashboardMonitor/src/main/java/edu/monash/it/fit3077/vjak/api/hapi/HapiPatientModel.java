@@ -10,7 +10,7 @@ public class HapiPatientModel implements PatientModelInterface {
     }
 
     public String getId() {
-        return this.patient.getId();
+        return this.patient.getIdElement().getIdPart();
     }
 
     public String getName() {

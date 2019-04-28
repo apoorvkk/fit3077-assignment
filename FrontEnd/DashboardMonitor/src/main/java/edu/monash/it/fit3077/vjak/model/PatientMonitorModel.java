@@ -3,11 +3,10 @@ package edu.monash.it.fit3077.vjak.model;
 import edu.monash.it.fit3077.vjak.backendmonitor.HealthMeasurementListener;
 import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEventModel;
 import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
-import edu.monash.it.fit3077.vjak.observer.Observer;
 
 import java.util.ArrayList;
 
-public class PatientMonitorModel extends AbstractPatientMonitorModel {
+public class PatientMonitorModel implements PatientMonitorModelInterface {
     private PatientModelInterface patient;
     private ArrayList<HealthMeasurementModel> healthMeasurements;
     private HealthMeasurementCreator healtMeasurementCreator;
@@ -23,12 +22,31 @@ public class PatientMonitorModel extends AbstractPatientMonitorModel {
 
     private void observeHealthMeasurements(HealthMeasurementListener hl) {
         this.healthMeasurementListener = hl;
-        this.healthMeasurementListener.attach(this);
     }
 
-    public void cleanUp() {
+    private void trackCholesterol() {
+        HealthMeasurementModel hm = this.healtMeasurementCreator.trackCholesterol(this.patient.getId());
+        this.healthMeasurements.add(hm);
+    }
+
+    private void cleanUp() {
         this.healthMeasurementListener.detach(this);
-        this.healthMeasurements.forEach(healthMeasurement -> healthMeasurement.cleanUp());
+        this.healthMeasurements.forEach(HealthMeasurementModel::cleanUp);
+        this.healthMeasurements.clear();
+    }
+
+    public void trackMeasurements() {
+        this.healthMeasurementListener.attach(this);
+
+        this.trackCholesterol();
+    }
+
+    public void removeMeasurements() {
+        this.cleanUp();
+    }
+
+    public boolean isBeingMonitored() {
+        return this.healthMeasurements.size() > 0;
     }
 
     public PatientModelInterface getPatient() {
@@ -50,10 +68,4 @@ public class PatientMonitorModel extends AbstractPatientMonitorModel {
                     });
         }
     }
-
-    public void trackCholesterol() {
-        HealthMeasurementModel hm = this.healtMeasurementCreator.trackCholesterol(this.patient.getId());
-        this.healthMeasurements.add(hm);
-    }
-
 }
