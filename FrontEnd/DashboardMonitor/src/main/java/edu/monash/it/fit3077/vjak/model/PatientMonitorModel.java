@@ -31,12 +31,15 @@ public class PatientMonitorModel extends AbstractPatientMonitorModel {
         this.healthMeasurements.forEach(healthMeasurement -> healthMeasurement.cleanUp());
     }
 
+    public PatientModelInterface getPatient() {
+        return this.patient;
+    }
+
     public void update() {
         MeasurementEventModel me = this.healthMeasurementListener.getDataReceived();
 
         if (me.getPatient().equals(this.patient.getId())) {
             this.healthMeasurements
-                    .stream()
                     .forEach(healthMeasurement -> {
                         String measurementType = me.getType();
                         if (measurementType.equals(healthMeasurement.toString())) {

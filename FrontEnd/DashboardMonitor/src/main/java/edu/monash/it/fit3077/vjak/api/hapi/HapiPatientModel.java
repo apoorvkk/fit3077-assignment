@@ -6,13 +6,14 @@ public class HapiPatientModel implements PatientModelInterface {
     private org.hl7.fhir.dstu3.model.Patient patient;
 
     public HapiPatientModel(org.hl7.fhir.dstu3.model.Patient p) {
-    }
-
-    public void constructor(org.hl7.fhir.dstu3.model.Patient p) {
         this.patient = p;
     }
 
     public String getId() {
         return this.patient.getId();
+    }
+
+    public String getName() {
+        return this.patient.getName().get(0).getFamily();
     }
 }

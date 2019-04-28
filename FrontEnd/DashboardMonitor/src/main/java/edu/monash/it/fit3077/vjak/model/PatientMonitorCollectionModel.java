@@ -14,18 +14,24 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
         this.patientLoader = pl;
         this.patientMonitors = new ArrayList<>();
         this.healthMeasurementListener = new HealthMeasurementListener();
-
-        // initialize collection with first set of patients.
-        this.loadMorePatients();
     }
 
+    public class PatientLoaderRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            ArrayList<AbstractPatientMonitorModel> newPatientMonitors = PatientMonitorCollectionModel.this.patientLoader.loadPatients()
+                    .stream()
+                    .map(patient -> new PatientMonitorModel(patient, PatientMonitorCollectionModel.this.healthMeasurementListener))
+                    .collect(Collectors.toCollection(ArrayList::new));
+            PatientMonitorCollectionModel.this.patientMonitors.addAll(newPatientMonitors);
+            System.out.println(Thread.currentThread().getName());
+            PatientMonitorCollectionModel.this.notifyObservers();
+        }
+    }
     public void loadMorePatients() {
-        ArrayList<AbstractPatientMonitorModel> newPatientMonitors = this.patientLoader.loadPatients()
-                                                            .stream()
-                                                            .map(patient -> new PatientMonitorModel(patient, this.healthMeasurementListener))
-                                                            .collect(Collectors.toCollection(ArrayList::new));
-        this.patientMonitors.addAll(newPatientMonitors);
-        this.notifyObservers();
+        Thread patientLoaderThread = new Thread(new PatientLoaderRunnable());
+        patientLoaderThread.start();
     }
 
     public ArrayList<AbstractPatientMonitorModel> getPatientMonitors() {
