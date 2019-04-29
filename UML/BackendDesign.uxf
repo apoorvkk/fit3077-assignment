@@ -88,7 +88,7 @@ value, unit
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 PatientMonitorSubject
-- notifyObservers</panel_attributes>
+- notifyObservers(clientId)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -101,7 +101,7 @@ PatientMonitorSubject
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 MonitorControllerObserver
-- update</panel_attributes>
+- update(clientId)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -314,5 +314,16 @@ ObservationModelInterface</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>120.0;10.0;120.0;50.0;10.0;50.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>320</y>
+      <w>100</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;100.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

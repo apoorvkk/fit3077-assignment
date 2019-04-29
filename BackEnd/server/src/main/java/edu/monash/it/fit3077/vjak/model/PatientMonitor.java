@@ -1,6 +1,7 @@
 package edu.monash.it.fit3077.vjak.model;
 
 import edu.monash.it.fit3077.vjak.api.hapi.HapiObservationLoader;
+import edu.monash.it.fit3077.vjak.observer.MonitorControllerObserver;
 import edu.monash.it.fit3077.vjak.observer.PatientMonitorSubject;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
         this.clientIds = new ArrayList<String>();
         this.clientIds.add(firstClientId);
         this.observationLoader = new HapiObservationLoader();
-
         this.poll();
     }
 
@@ -50,6 +50,12 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
         pollThread.start();
     }
 
+    public void notifyObservers(String clientId) {
+        for (MonitorControllerObserver o: this.observers) {
+            o.update(this, clientId);
+        }
+    }
+
     public void registerNewClient(String clientId) {
         if (!this.clientIds.contains(clientId)) {
             this.clientIds.add(clientId);
@@ -70,6 +76,18 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
 
     public boolean hasNoRegisteredClients() {
         return this.clientIds.size() == 0;
+    }
+
+    public String getMeasurementUnit() {
+        return this.measurementUnit;
+    }
+
+    public String getMeasurementValue() {
+        return this.measurementValue;
+    }
+
+    public String getPatientId() {
+        return this.patientId;
     }
 
     protected abstract String getMeasurementCode();

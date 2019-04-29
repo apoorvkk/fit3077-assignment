@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class PatientMonitorCollection {
     private final ArrayList<PatientMonitor> patientMonitors;
 
-    public PatientMonitorCollection(ArrayList<PatientMonitor> patientMonitors) {
-        this.patientMonitors = patientMonitors;
+    public PatientMonitorCollection() {
+        this.patientMonitors = new ArrayList<>();
     }
 
     private PatientMonitor getPatientMonitor(String patientId, String measurementType) {
@@ -18,22 +18,23 @@ public class PatientMonitorCollection {
         return null;
     }
 
-    public PatientMonitor addMonitor(String patientId, String clientId, String measurementType){
-        PatientMonitor monitor = this.getPatientMonitor(patientId, measurementType);
-        monitor.registerNewClient(clientId);
+    public PatientMonitor addMonitor(RequestMonitorInfo requestMonitorInfo){
+        PatientMonitor monitor = this.getPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getMeasurementType());
 
         if (monitor == null) {
-            monitor = PatientMonitorCreator.createMonitor(measurementType, patientId, clientId);
+            monitor = PatientMonitorCreator.createMonitor(requestMonitorInfo);
             this.patientMonitors.add(monitor);
+        } else {
+            monitor.registerNewClient(requestMonitorInfo.getClientId());
         }
 
         return monitor;
     }
 
-    public void deleteMonitor(String patientId, String clientId, String measurementType) {
-        PatientMonitor existingMonitor = this.getPatientMonitor(patientId, measurementType);
+    public void deleteMonitor(RequestMonitorInfo requestMonitorInfo) {
+        PatientMonitor existingMonitor = this.getPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getMeasurementType());
         if (existingMonitor != null) {
-            existingMonitor.removeClient(clientId);
+            existingMonitor.removeClient(requestMonitorInfo.getClientId());
             if (existingMonitor.hasNoRegisteredClients()) {
                 existingMonitor.cleanUp();
                 this.patientMonitors.remove(existingMonitor);
