@@ -1,10 +1,11 @@
 package edu.monash.it.fit3077.vjak.model;
 
 import edu.monash.it.fit3077.vjak.api.hapi.HapiObservationLoader;
+import edu.monash.it.fit3077.vjak.observer.PatientMonitorSubject;
 
 import java.util.ArrayList;
 
-public abstract class PatientMonitor {
+public abstract class PatientMonitor extends PatientMonitorSubject {
     private final ArrayList<String> clientIds;
     private final String patientId;
     private final ObservationLoaderInterface observationLoader;
@@ -29,7 +30,11 @@ public abstract class PatientMonitor {
                 PatientMonitor.this.measurementValue = latestObservation.getValue();
                 PatientMonitor.this.measurementUnit = latestObservation.getUnit();
 
-                // notify observer.
+
+                for (String clientId: PatientMonitor.this.clientIds) {
+                    PatientMonitor.this.notifyObservers(clientId);
+                }
+
                 try {
                     Thread.sleep(2000); // change to 1hr.
                 } catch (InterruptedException e) {
@@ -43,6 +48,13 @@ public abstract class PatientMonitor {
         this.shouldTerminateThread = false;
         Thread pollThread = new Thread(new PollingRunnable());
         pollThread.start();
+    }
+
+    public void registerNewClient(String clientId) {
+        if (!this.clientIds.contains(clientId)) {
+            this.clientIds.add(clientId);
+            this.notifyObservers(clientId);
+        }
     }
 
     public void cleanUp() {

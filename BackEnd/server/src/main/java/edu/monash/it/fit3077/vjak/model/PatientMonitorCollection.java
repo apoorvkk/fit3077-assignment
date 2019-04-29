@@ -20,6 +20,7 @@ public class PatientMonitorCollection {
 
     public PatientMonitor addMonitor(String patientId, String clientId, String measurementType){
         PatientMonitor monitor = this.getPatientMonitor(patientId, measurementType);
+        monitor.registerNewClient(clientId);
 
         if (monitor == null) {
             monitor = PatientMonitorCreator.createMonitor(measurementType, patientId, clientId);

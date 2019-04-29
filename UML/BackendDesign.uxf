@@ -87,7 +87,7 @@ value, unit
       <h>80</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
-PatientMonitorCollectionSubject
+PatientMonitorSubject
 - notifyObservers</panel_attributes>
     <additional_attributes/>
   </element>
