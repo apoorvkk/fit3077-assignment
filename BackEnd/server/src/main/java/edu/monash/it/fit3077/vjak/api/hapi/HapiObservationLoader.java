@@ -24,18 +24,30 @@ public class HapiObservationLoader implements ObservationLoaderInterface {
 
     public ArrayList<ObservationModelInterface> loadNewObservations() {
         if (this.currentObservationPage == null) {
-            this.currentObservationPage = client.search()
-                .forResource(org.hl7.fhir.dstu3.model.Observation.class)
+            this.currentObservationPage = this.client.search()
+                .forResource(Observation.class)
                 .sort().descending(Observation.DATE)
                 .returnBundle(Bundle.class)
                 .execute();
         } else {
-            this.currentObservationPage = client.loadPage().next(this.currentObservationPage).execute();
+            this.currentObservationPage = this.client.loadPage().next(this.currentObservationPage).execute();
         }
 
         return this.currentObservationPage.getEntry()
             .stream()
-            .map(entry -> new HapiObservationModel((org.hl7.fhir.dstu3.model.Observation) entry.getResource()))
+            .map(entry -> new HapiObservationModel((Observation) entry.getResource()))
             .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ObservationModelInterface getLatestObservation(String patientId, String measurementCode) {
+        Bundle response = this.client.search()
+            .forResource(Observation.class)
+            .where(Observation.PATIENT.hasId(patientId))
+            .and(Observation.CODE.exactly().code(measurementCode))
+            .sort().descending(Observation.DATE)
+            .returnBundle(Bundle.class)
+            .execute();
+
+        return new HapiObservationModel((Observation) response.getEntry().get(0).getResource());
     }
 }

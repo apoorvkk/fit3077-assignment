@@ -11,4 +11,12 @@ public class HapiObservationModel implements ObservationModelInterface {
     public HapiObservationModel(Observation resource) {
         this.observation = resource;
     }
+
+    public String getUnit() {
+        return this.observation.getValueQuantity().getUnit();
+    }
+
+    public String getValue() {
+        return this.observation.getValueQuantity().getValue().toString();
+    }
 }
