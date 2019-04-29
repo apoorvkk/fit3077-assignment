@@ -6,7 +6,6 @@ import edu.monash.it.fit3077.vjak.model.PatientMonitorModelInterface;
 import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
 import edu.monash.it.fit3077.vjak.observer.Observer;
 import javafx.application.Platform;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
@@ -67,6 +66,7 @@ public class MonitorsView implements JavaFXView, Observer {
 
                 int nextRow = 2;
                 for (HealthMeasurementModel healthMeasurement: patientMonitor.getHealthMeasurements()) {
+                    healthMeasurement.attach(MonitorsView.this);
                     patientDetailsPane.add(new Text(healthMeasurement.toString() + ": "), 0, nextRow);
                     patientDetailsPane.add(new Text(healthMeasurement.getHealthMeasurementResult()), 1, nextRow);
                     nextRow++;

@@ -45,7 +45,6 @@ public class HapiPatientLoader implements PatientLoaderInterface {
             }
 
             this.currentEncounterPage.getEntry()
-                                        .stream()
                                         .forEach(entry -> {
                                             Encounter e = (Encounter) entry.getResource();
                                             Reference r = e.getSubject();

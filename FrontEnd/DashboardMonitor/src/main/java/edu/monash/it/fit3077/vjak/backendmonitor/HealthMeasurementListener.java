@@ -20,7 +20,7 @@ public class HealthMeasurementListener extends Subject {
 
         CountDownLatch latch = new CountDownLatch(1);
         StompSessionHandler sh = new HealthMeasurementSocketSessionHandler(this, latch);
-        stompClient.connect("ws://localhost:8080/", sh); // Insert proper url
+        stompClient.connect("ws://localhost:8080/polling-socket", sh);
         stompClient.setAutoStartup(true);
         stompClient.start();
 
