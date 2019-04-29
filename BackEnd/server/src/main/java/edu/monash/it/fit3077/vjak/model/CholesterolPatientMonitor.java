@@ -1,8 +1,8 @@
 package edu.monash.it.fit3077.vjak.model;
 
 public class CholesterolPatientMonitor extends PatientMonitor {
-    public CholesterolPatientMonitor(String patientId, String firstClientId, ObservationLoaderInterface observationLoader){
-        super(patientId, firstClientId, observationLoader);
+    public CholesterolPatientMonitor(String patientId, String firstClientId){
+        super(patientId, firstClientId);
     }
 
     public String getMeasurementType() {

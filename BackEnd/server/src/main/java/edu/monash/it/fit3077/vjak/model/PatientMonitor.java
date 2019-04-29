@@ -1,23 +1,53 @@
 package edu.monash.it.fit3077.vjak.model;
 
+import edu.monash.it.fit3077.vjak.api.hapi.HapiObservationLoader;
+
 import java.util.ArrayList;
 
 public abstract class PatientMonitor {
     private final ArrayList<String> clientIds;
     private final String patientId;
-    private final String measurementUnit;
-    private final String measurementValue;
+    private final ObservationLoaderInterface observationLoader;
+    private String measurementUnit;
+    private String measurementValue;
+    private boolean shouldTerminateThread;
 
-    public PatientMonitor(String patientId, String firstClientId, ObservationLoaderInterface observationLoader) {
+    public PatientMonitor(String patientId, String firstClientId) {
         this.patientId = patientId;
         this.clientIds = new ArrayList<String>();
         this.clientIds.add(firstClientId);
+        this.observationLoader = new HapiObservationLoader();
 
-        ObservationModelInterface latestObservation = observationLoader.getLatestObservation(patientId, this.getMeasurementCode());
-        this.measurementValue = latestObservation.getValue();
-        this.measurementUnit = latestObservation.getUnit();
+        this.poll();
     }
 
+    public class PollingRunnable implements Runnable {
+        @Override
+        public void run() {
+            while (!PatientMonitor.this.shouldTerminateThread) {
+                ObservationModelInterface latestObservation = PatientMonitor.this.observationLoader.getLatestObservation(patientId, PatientMonitor.this.getMeasurementCode());
+                PatientMonitor.this.measurementValue = latestObservation.getValue();
+                PatientMonitor.this.measurementUnit = latestObservation.getUnit();
+
+                // notify observer.
+                try {
+                    Thread.sleep(2000); // change to 1hr.
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void poll() {
+        this.shouldTerminateThread = false;
+        Thread pollThread = new Thread(new PollingRunnable());
+        pollThread.start();
+    }
+
+    public void cleanUp() {
+        this.shouldTerminateThread = true;
+    }
     public boolean matches(String patientId, String measurementType){
         return this.patientId.equals(patientId) && this.getMeasurementType().equals(measurementType);
     }
@@ -28,14 +58,6 @@ public abstract class PatientMonitor {
 
     public boolean hasNoRegisteredClients() {
         return this.clientIds.size() == 0;
-    }
-
-    public String getMeasurementValue() {
-        return this.measurementValue;
-    };
-
-    public String getMeasurementUnit() {
-        return this.measurementUnit;
     }
 
     protected abstract String getMeasurementCode();

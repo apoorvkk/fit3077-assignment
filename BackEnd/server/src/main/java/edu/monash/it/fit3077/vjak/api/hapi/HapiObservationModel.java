@@ -19,4 +19,12 @@ public class HapiObservationModel implements ObservationModelInterface {
     public String getValue() {
         return this.observation.getValueQuantity().getValue().toString();
     }
+
+    public String getPatientId() {
+        return this.observation.getSubject().getId();
+    }
+
+    public String getMeasurementCode() {
+        return this.observation.getCode().getText();
+    }
 }

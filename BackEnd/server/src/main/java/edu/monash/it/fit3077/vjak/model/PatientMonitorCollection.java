@@ -1,16 +1,12 @@
 package edu.monash.it.fit3077.vjak.model;
 
-import edu.monash.it.fit3077.vjak.api.hapi.HapiObservationLoader;
-
 import java.util.ArrayList;
 
 public class PatientMonitorCollection {
     private final ArrayList<PatientMonitor> patientMonitors;
-    private final ObservationLoaderInterface observationLoader;
 
     public PatientMonitorCollection(ArrayList<PatientMonitor> patientMonitors) {
         this.patientMonitors = patientMonitors;
-        this.observationLoader = new HapiObservationLoader();
     }
 
     private PatientMonitor getPatientMonitor(String patientId, String measurementType) {
@@ -22,14 +18,15 @@ public class PatientMonitorCollection {
         return null;
     }
 
-    public void addMonitor(String patientId, String clientId, String measurementType){
-        PatientMonitor existingMonitor = this.getPatientMonitor(patientId, measurementType);
+    public PatientMonitor addMonitor(String patientId, String clientId, String measurementType){
+        PatientMonitor monitor = this.getPatientMonitor(patientId, measurementType);
 
-        if(existingMonitor == null) {
-            existingMonitor = PatientMonitorCreator.createMonitor(measurementType, patientId, clientId, observationLoader);
+        if (monitor == null) {
+            monitor = PatientMonitorCreator.createMonitor(measurementType, patientId, clientId);
+            this.patientMonitors.add(monitor);
         }
 
-        // notify client of the value + unit (observer pattern).
+        return monitor;
     }
 
     public void deleteMonitor(String patientId, String clientId, String measurementType) {
@@ -37,6 +34,7 @@ public class PatientMonitorCollection {
         if (existingMonitor != null) {
             existingMonitor.removeClient(clientId);
             if (existingMonitor.hasNoRegisteredClients()) {
+                existingMonitor.cleanUp();
                 this.patientMonitors.remove(existingMonitor);
             }
         }
