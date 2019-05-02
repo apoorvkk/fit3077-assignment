@@ -88,6 +88,7 @@ mvn exec:java -Dexec.mainClass=edu.monash.it.fit3077.vjak.DashboardMonitorApplic
 - The `Patient` resource allows patients to have multiple names. I have selected the first one to show as the official name.
 - When searching for the patient's latest measurement value (eg. cholesterol level), I am searching the `Observation` resource on patient id and the measurement code and then sorted by date in descending order. Based on this search criteria, I simply take the first observation as the latest measurement recorded for that patient. Note that sorting by date uses the `issued` property inside the `Observation` resource.
 - The cholesterol property is defined as "Total Cholesterol" and has the measurement code "2093-3".
+- Error handling (especially fail gracefully steps) is out of scope for this project. The majority of cases will simply log the error and shut the application down. However, the design can easily cater for error handling in future.
 
 ## Contributions
 
