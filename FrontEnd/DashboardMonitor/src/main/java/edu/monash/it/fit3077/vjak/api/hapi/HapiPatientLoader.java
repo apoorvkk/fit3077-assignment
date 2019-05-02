@@ -33,7 +33,7 @@ public class HapiPatientLoader implements PatientLoaderInterface {
     private ArrayList<String> fetchNewPatientIds() {
         ArrayList<String> patientIds = new ArrayList<String>();
 
-        while (patientIds.size() < 5 && (this.currentEncounterPage == null || this.currentEncounterPage.getLink(Bundle.LINK_NEXT) != null)) {
+        while (patientIds.size() < 15 && (this.currentEncounterPage == null || this.currentEncounterPage.getLink(Bundle.LINK_NEXT) != null)) {
             if (this.currentEncounterPage == null) {
                 this.currentEncounterPage = client.search()
                         .forResource(org.hl7.fhir.dstu3.model.Encounter.class)

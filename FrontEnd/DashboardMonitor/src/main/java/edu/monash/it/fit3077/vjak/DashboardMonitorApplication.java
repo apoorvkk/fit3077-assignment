@@ -10,7 +10,7 @@ public class DashboardMonitorApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        HapiPatientLoader h = new HapiPatientLoader("3252");
+        HapiPatientLoader h = new HapiPatientLoader("30");
         PatientMonitorCollectionModel mps = new PatientMonitorCollectionModel(h);
         DashboardScreenView dv = new DashboardScreenView(primaryStage, mps);
     }

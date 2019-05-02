@@ -42,8 +42,9 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
                     System.out.println("No data returned from FHIR." + this.printThreadId());
                 }
 
+
                 try {
-                    Thread.sleep(2000); // change to 1hr.
+                    Thread.sleep(3600000); // Polls every hour.
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
