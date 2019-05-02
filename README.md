@@ -17,6 +17,10 @@ Practitioners will use a frontend GUI application (see image above) to monitor t
 
 Having a backend service poll instead all clients minimizes the number of requests made to the FHIR service. For example, if 1 million clients wanted to observe patient A's cholesterol level, instead of making 1 million requests to get the same data per hour, there is backend service that will make just 1 request every hour to FHIR to get the cholesterol level and then send events back to all clients via web sockets. Furthermore, the backend service will only poll for patients that are being monitored on specific measurements (eg. cholesterol). This also minimizes the requests to FHIR.
 
+## UML
+
+Please see the `UML` folder for class diagrams and sequence diagrams.
+
 ## Tools and Frameworks
 
 The frontend is written in Java using [JavaFx](https://openjfx.io/).
