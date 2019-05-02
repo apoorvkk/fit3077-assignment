@@ -61,18 +61,30 @@ public class HapiPatientLoader implements PatientLoaderInterface {
     }
 
     private ArrayList<org.hl7.fhir.dstu3.model.Patient> downloadNewPatients(ArrayList<String> patientIds) {
-        if (patientIds.size() == 0) return new ArrayList<org.hl7.fhir.dstu3.model.Patient>();
+        if (patientIds.size() == 0) return new ArrayList<>();
 
-        Bundle response = client.search()
-                    .forResource(org.hl7.fhir.dstu3.model.Patient.class)
-                    .where(Patient.RES_ID.exactly().systemAndValues("", patientIds))
-                    .returnBundle(Bundle.class)
-                    .execute();
-        ArrayList<org.hl7.fhir.dstu3.model.Patient> rawHapiPatients = response.getEntry()
-                                                                        .stream()
-                                                                        .map(entry -> (Patient) entry.getResource())
-                                                                        .collect(Collectors.toCollection(ArrayList::new));
-        return rawHapiPatients;
+        ArrayList<org.hl7.fhir.dstu3.model.Patient> patients = new ArrayList<>();
+        Bundle response = null;
+
+        while (response == null || response.getLink(Bundle.LINK_NEXT) != null) {
+            if (response == null) {
+                response = client.search()
+                        .forResource(org.hl7.fhir.dstu3.model.Patient.class)
+                        .where(Patient.RES_ID.exactly().systemAndValues("", patientIds))
+                        .returnBundle(Bundle.class)
+                        .execute();
+            } else {
+                response = client.loadPage().next(response).execute();
+            }
+
+            ArrayList<org.hl7.fhir.dstu3.model.Patient> patientsBatch = response.getEntry()
+                .stream()
+                .map(entry -> (Patient) entry.getResource())
+                .collect(Collectors.toCollection(ArrayList::new));
+            patients.addAll(patientsBatch);
+        }
+
+        return patients;
     }
 
     private void cachePatientIds(ArrayList<String> patientIds) {
