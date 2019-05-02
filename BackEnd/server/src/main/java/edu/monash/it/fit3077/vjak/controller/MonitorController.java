@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+This class is responsible for registering/deregistering clients in order to listen to socket events that hold
+patient monitor data. It also observes monitor data and sends it down to the relevant connected client.
+ */
 @RestController
 public class MonitorController implements MonitorControllerObserver {
     private final PatientMonitorCollection patientMonitorCollection;
@@ -23,19 +27,20 @@ public class MonitorController implements MonitorControllerObserver {
         this.patientMonitorCollection = new PatientMonitorCollection();
     }
 
-    @RequestMapping(value = "/MonitorRegister", method = RequestMethod.POST)
+    @RequestMapping(value = "/MonitorRegister", method = RequestMethod.POST) // clients must make a POST request to /MonitorRegister.
     public void register(@RequestBody RequestMonitorInfo requestMonitorInfo) {
         PatientMonitor pm = this.patientMonitorCollection.addMonitor(requestMonitorInfo);
-        pm.attach(this);
+        pm.attach(this); // Make sure to observe any updated data for this particular patient monitor.
     }
 
-    @RequestMapping(value = "/MonitorDeregister", method = RequestMethod.POST)
+    @RequestMapping(value = "/MonitorDeregister", method = RequestMethod.POST) // clients must make a POST request to /MonitorDeregister.
     public void deregister(@RequestBody RequestMonitorInfo requestMonitorInfo) {
         this.patientMonitorCollection.deleteMonitor(requestMonitorInfo);
 
     }
 
     public void update(PatientMonitor monitor, String clientId) {
-        this.template.convertAndSend("/topic/" + clientId, new MonitorEventModel(monitor));
+        // Send monitor event only to the specified client.
+        this.template.convertAndSend("/topic/" + clientId, new MonitorEventModel(monitor)); // a client should listen into /topic/{their client id}
     }
 }

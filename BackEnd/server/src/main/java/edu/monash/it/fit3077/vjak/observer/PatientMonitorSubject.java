@@ -2,6 +2,10 @@ package edu.monash.it.fit3077.vjak.observer;
 
 import java.util.ArrayList;
 
+/*
+This class is responsible for tracking all observers (MonitorControllerObserver) and notifying them whenever needed.
+Apart of the observer design pattern.
+ */
 public abstract class PatientMonitorSubject {
     protected final ArrayList<MonitorControllerObserver> observers;
 

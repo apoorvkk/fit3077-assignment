@@ -6,6 +6,14 @@ import edu.monash.it.fit3077.vjak.observer.PatientMonitorSubject;
 
 import java.util.ArrayList;
 
+/*
+This class represents a generic patient monitor. Essentially, it will hold all clients (i.e frontend client) who
+wish to monitor a selected patient on a particular measurement (eg. cholesterol). The class will poll and fetch the latest
+observation every hour and then notify all observers about the new observation. If there are no clients watching this
+monitor, then it will terminate and stop polling.
+This class also caches the observation data so that if a new registered client joins, they can easily fetch this cached value
+and leave polling to every hour rather than to every new client registered.
+ */
 public abstract class PatientMonitor extends PatientMonitorSubject {
     private final ArrayList<String> clientIds;
     private final String patientId;
@@ -22,6 +30,9 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
         this.poll();
     }
 
+    /*
+    This inner class is used to start a new thread to poll every hour and not hog up the main thread.
+     */
     class PollingRunnable implements Runnable {
         @Override
         public void run() {
@@ -38,7 +49,6 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
                         PatientMonitor.this.notifyObservers(clientId);
                     }
                 }
-
 
                 try {
                     Thread.sleep(3600000); // Polls every hour.
@@ -61,40 +71,47 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
         }
     }
 
-    public void registerNewClient(String clientId) {
+    void registerNewClient(String clientId) { // A new client would like to observe the monitor.
         if (!this.clientIds.contains(clientId)) {
             this.clientIds.add(clientId);
+            /*
+            Notify observers of new client registered and hence fetch the cached observation.
+            This ensures that registered clients immediately receive the cached observation and not wait until the next polled
+            observation.
+             */
             this.notifyObservers(clientId);
         }
     }
 
-    public void cleanUp() {
+    void cleanUp() {
         this.shouldTerminateThread = true;
     }
-    public boolean matches(String patientId, String measurementType){
+
+    boolean matches(String patientId, String measurementType){
         return this.patientId.equals(patientId) && this.getMeasurementType().equals(measurementType);
     }
 
-    public void removeClient(String clientId) {
+    void removeClient(String clientId) {
         this.clientIds.remove(clientId);
     }
 
-    public boolean hasNoRegisteredClients() {
+    boolean hasNoRegisteredClients() {
         return this.clientIds.size() == 0;
     }
 
-    public String getMeasurementUnit() {
+    String getMeasurementUnit() {
         return this.measurementUnit;
     }
 
-    public String getMeasurementValue() {
+    String getMeasurementValue() {
         return this.measurementValue;
     }
 
-    public String getPatientId() {
+    String getPatientId() {
         return this.patientId;
     }
 
+    // These methods are specific to actual patient monitors (eg. cholesterol patient monitor).
     protected abstract String getMeasurementCode();
     public abstract String getMeasurementType();
 }

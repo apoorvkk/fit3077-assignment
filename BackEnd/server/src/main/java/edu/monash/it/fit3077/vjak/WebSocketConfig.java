@@ -6,18 +6,22 @@ import org.springframework.web.socket.config.annotation.AbstractWebSocketMessage
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
+/*
+This class is responsible for defining the web socket configuration. It defines the necessary endpoints that clients
+must connect to establish a connection and also topics to subscribe to listen for events.
+ */
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
+        config.enableSimpleBroker("/topic"); // clients will subscribe to this grouped topic.
         config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/polling-socket").setAllowedOrigins("*");
+        registry.addEndpoint("/polling-socket").setAllowedOrigins("*"); // clients will connect to this endpoint.
     }
 }

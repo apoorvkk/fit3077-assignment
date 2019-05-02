@@ -2,6 +2,9 @@ package edu.monash.it.fit3077.vjak.model;
 
 import java.util.ArrayList;
 
+/*
+This class is responsible for maintaining a collection of all patient monitors and adding/removing them.
+ */
 public class PatientMonitorCollection {
     private final ArrayList<PatientMonitor> patientMonitors;
 
@@ -21,10 +24,10 @@ public class PatientMonitorCollection {
     public PatientMonitor addMonitor(RequestMonitorInfo requestMonitorInfo){
         PatientMonitor monitor = this.getPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getMeasurementType());
 
-        if (monitor == null) {
+        if (monitor == null) { // No other clients are observing this patient and measurement type. Hence, create the monitor.
             monitor = PatientMonitorCreator.createMonitor(requestMonitorInfo);
             this.patientMonitors.add(monitor);
-        } else {
+        } else { // There is already one or more clients observing this patient and measurement type. Hence, add to existing monitor.
             monitor.registerNewClient(requestMonitorInfo.getClientId());
         }
 
@@ -35,7 +38,7 @@ public class PatientMonitorCollection {
         PatientMonitor existingMonitor = this.getPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getMeasurementType());
         if (existingMonitor != null) {
             existingMonitor.removeClient(requestMonitorInfo.getClientId());
-            if (existingMonitor.hasNoRegisteredClients()) {
+            if (existingMonitor.hasNoRegisteredClients()) { // If there are no more registered clients, terminate the monitor.
                 existingMonitor.cleanUp();
                 this.patientMonitors.remove(existingMonitor);
             }
