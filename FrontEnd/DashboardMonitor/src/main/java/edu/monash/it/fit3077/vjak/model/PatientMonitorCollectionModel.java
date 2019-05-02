@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollectionModel {
-    private PatientLoaderInterface patientLoader;
-    private ArrayList<PatientMonitorModelInterface> patientMonitors;
-    private HealthMeasurementListener healthMeasurementListener;
+    private final PatientLoaderInterface patientLoader;
+    private final ArrayList<PatientMonitorModelInterface> patientMonitors;
+    private final HealthMeasurementListener healthMeasurementListener;
 
     public PatientMonitorCollectionModel(PatientLoaderInterface pl) {
         this.patientLoader = pl;
@@ -16,7 +16,7 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
         this.healthMeasurementListener = new HealthMeasurementListener();
     }
 
-    public class PatientLoaderRunnable implements Runnable {
+    class PatientLoaderRunnable implements Runnable {
 
         @Override
         public void run() {
@@ -51,7 +51,7 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
     }
 
     public ArrayList<PatientMonitorModelInterface> getSelectedPatientMonitors() {
-        ArrayList<PatientMonitorModelInterface> selectedPatientMonitors = new ArrayList<PatientMonitorModelInterface>();
+        ArrayList<PatientMonitorModelInterface> selectedPatientMonitors = new ArrayList<>();
         this.patientMonitors.forEach(p -> {
             if (p.isBeingMonitored()) {
                 selectedPatientMonitors.add(p);

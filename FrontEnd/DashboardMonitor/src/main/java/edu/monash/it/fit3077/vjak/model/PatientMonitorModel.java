@@ -7,9 +7,9 @@ import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
 import java.util.ArrayList;
 
 public class PatientMonitorModel implements PatientMonitorModelInterface {
-    private PatientModelInterface patient;
-    private ArrayList<HealthMeasurementModel> healthMeasurements;
-    private HealthMeasurementCreator healtMeasurementCreator;
+    private final PatientModelInterface patient;
+    private final ArrayList<HealthMeasurementModel> healthMeasurements;
+    private final HealthMeasurementCreator healtMeasurementCreator;
     private HealthMeasurementListener healthMeasurementListener;
 
     public PatientMonitorModel(PatientModelInterface p, HealthMeasurementListener hl) {

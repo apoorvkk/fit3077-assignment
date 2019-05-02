@@ -2,34 +2,28 @@ package edu.monash.it.fit3077.vjak.model.health.tracker;
 
 
 import edu.monash.it.fit3077.vjak.Constant;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MeasurementTracker {
-    private String patientId;
-    private String healthMeasurement;
+    private final String patientId;
+    private final String healthMeasurement;
 
     public MeasurementTracker(String patientId, String healthMeasurement) {
         this.patientId = patientId;
         this.healthMeasurement = healthMeasurement;
     }
 
-    public class RegistrationRunnable implements Runnable {
-        private String url;
+    class RegistrationRunnable implements Runnable {
+        private final String url;
 
-        public RegistrationRunnable(boolean isRegistering) {
+        RegistrationRunnable(boolean isRegistering) {
             if (isRegistering) {
                 this.url = "http://localhost:8080/MonitorRegister";
             } else {

@@ -2,6 +2,7 @@ package edu.monash.it.fit3077.vjak.view;
 
 import edu.monash.it.fit3077.vjak.Constant;
 import edu.monash.it.fit3077.vjak.model.AbstractPatientMonitorCollectionModel;
+import edu.monash.it.fit3077.vjak.model.PatientMonitorModelInterface;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -24,9 +25,7 @@ public class DashboardScreenView {
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> {
             // Deregister from the server so it does not keep sending more events to a closed application.
-            model.getPatientMonitors().forEach(patientMonitor -> {
-                patientMonitor.removeMeasurements();
-            });
+            model.getPatientMonitors().forEach(PatientMonitorModelInterface::removeMeasurements);
         });
     }
 }

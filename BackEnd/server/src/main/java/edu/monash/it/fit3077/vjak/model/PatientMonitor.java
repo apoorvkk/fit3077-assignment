@@ -14,15 +14,15 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
     private String measurementValue;
     private boolean shouldTerminateThread;
 
-    public PatientMonitor(String patientId, String firstClientId) {
+    PatientMonitor(String patientId, String firstClientId) {
         this.patientId = patientId;
-        this.clientIds = new ArrayList<String>();
+        this.clientIds = new ArrayList<>();
         this.clientIds.add(firstClientId);
         this.observationLoader = new HapiObservationLoader();
         this.poll();
     }
 
-    public class PollingRunnable implements Runnable {
+    class PollingRunnable implements Runnable {
         @Override
         public void run() {
             while (!PatientMonitor.this.shouldTerminateThread) {
@@ -37,9 +37,6 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
                     for (String clientId: PatientMonitor.this.clientIds) {
                         PatientMonitor.this.notifyObservers(clientId);
                     }
-                } else {
-                    System.out.println();
-                    System.out.println("No data returned from FHIR." + this.printThreadId());
                 }
 
 

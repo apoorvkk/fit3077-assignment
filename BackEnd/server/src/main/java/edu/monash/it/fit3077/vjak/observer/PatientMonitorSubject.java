@@ -3,9 +3,9 @@ package edu.monash.it.fit3077.vjak.observer;
 import java.util.ArrayList;
 
 public abstract class PatientMonitorSubject {
-    protected ArrayList<MonitorControllerObserver> observers;
+    protected final ArrayList<MonitorControllerObserver> observers;
 
-    public PatientMonitorSubject() {
+    protected PatientMonitorSubject() {
         this.observers = new ArrayList<>();
     }
 
@@ -13,12 +13,10 @@ public abstract class PatientMonitorSubject {
         if (!this.observers.contains(o)) {
             this.observers.add(o);
         }
-    };
+    }
 
     public void detach(MonitorControllerObserver o) {
-        if (this.observers.contains(o)) {
-            this.observers.remove(o);
-        }
+        this.observers.remove(o);
     }
 
     public abstract void notifyObservers(String clientId);

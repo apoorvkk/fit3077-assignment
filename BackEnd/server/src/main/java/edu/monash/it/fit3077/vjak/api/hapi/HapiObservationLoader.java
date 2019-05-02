@@ -8,7 +8,7 @@ import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.Observation;
 
 public class HapiObservationLoader implements ObservationLoaderInterface {
-    private IGenericClient client;
+    private final IGenericClient client;
 
     public HapiObservationLoader() {
         FhirContext ctx = FhirContext.forDstu3();

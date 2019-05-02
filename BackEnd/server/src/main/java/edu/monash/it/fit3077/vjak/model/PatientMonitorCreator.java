@@ -1,6 +1,6 @@
 package edu.monash.it.fit3077.vjak.model;
 
-public class PatientMonitorCreator {
+class PatientMonitorCreator {
     public static PatientMonitor createMonitor(RequestMonitorInfo requestMonitorInfo) {
         if (requestMonitorInfo.getMeasurementType().equals("Cholesterol")) {
             return new CholesterolPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getClientId());

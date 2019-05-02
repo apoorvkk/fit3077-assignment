@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MonitorController implements MonitorControllerObserver {
-    private PatientMonitorCollection patientMonitorCollection;
+    private final PatientMonitorCollection patientMonitorCollection;
     @Autowired
     private SimpMessagingTemplate template;
 

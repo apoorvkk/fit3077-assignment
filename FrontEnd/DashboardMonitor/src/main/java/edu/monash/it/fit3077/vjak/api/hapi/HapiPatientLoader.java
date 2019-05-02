@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 public class HapiPatientLoader implements PatientLoaderInterface {
     private IGenericClient client;
     private Bundle currentEncounterPage;
-    private HashSet<String> patientIdsCache;
-    private String practionerId;
+    private final HashSet<String> patientIdsCache;
+    private final String practionerId;
 
     public HapiPatientLoader(String practitionerId) {
         this.practionerId = practitionerId;
-        this.patientIdsCache = new HashSet<String>();
+        this.patientIdsCache = new HashSet<>();
         this.initializeHapiClient();
     }
 
@@ -31,7 +31,7 @@ public class HapiPatientLoader implements PatientLoaderInterface {
     }
 
     private ArrayList<String> fetchNewPatientIds() {
-        ArrayList<String> patientIds = new ArrayList<String>();
+        ArrayList<String> patientIds = new ArrayList<>();
 
         while (patientIds.size() < 15 && (this.currentEncounterPage == null || this.currentEncounterPage.getLink(Bundle.LINK_NEXT) != null)) {
             if (this.currentEncounterPage == null) {
@@ -45,17 +45,17 @@ public class HapiPatientLoader implements PatientLoaderInterface {
             }
 
             this.currentEncounterPage.getEntry()
-                                        .forEach(entry -> {
-                                            Encounter e = (Encounter) entry.getResource();
-                                            Reference r = e.getSubject();
+                .forEach(entry -> {
+                    Encounter e = (Encounter) entry.getResource();
+                    Reference r = e.getSubject();
 
-                                            String patientId = r.getReference().replaceAll("\\D+","");
+                    String patientId = r.getReference().replaceAll("\\D+","");
 
-                                            // Check if new patient id (note: new patient ids are cached once the patient resouce has been downloaded.)
-                                            if (!this.patientIdsCache.contains(patientId) && !patientIds.contains(patientId)) {
-                                                patientIds.add(patientId);
-                                            }
-                                        });
+                    // Check if new patient id (note: new patient ids are cached once the patient resource has been downloaded.)
+                    if (!this.patientIdsCache.contains(patientId) && !patientIds.contains(patientId)) {
+                        patientIds.add(patientId);
+                    }
+                });
         }
         return patientIds;
     }
@@ -88,8 +88,7 @@ public class HapiPatientLoader implements PatientLoaderInterface {
     }
 
     private void cachePatientIds(ArrayList<String> patientIds) {
-        patientIds.stream()
-                    .forEach(patientId -> this.patientIdsCache.add(patientId));
+        this.patientIdsCache.addAll(patientIds);
     }
 
     public ArrayList<PatientModelInterface> loadPatients() {
@@ -97,10 +96,8 @@ public class HapiPatientLoader implements PatientLoaderInterface {
         ArrayList<org.hl7.fhir.dstu3.model.Patient> rawHapiPatients = this.downloadNewPatients(patientIds);
         this.cachePatientIds(patientIds);
 
-        ArrayList<PatientModelInterface> hapiPatients = rawHapiPatients.stream()
-                                                .map(p -> new HapiPatientModel(p))
-                                                .collect(Collectors.toCollection(ArrayList::new));
-
-        return hapiPatients;
+        return rawHapiPatients.stream()
+            .map(HapiPatientModel::new)
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 }

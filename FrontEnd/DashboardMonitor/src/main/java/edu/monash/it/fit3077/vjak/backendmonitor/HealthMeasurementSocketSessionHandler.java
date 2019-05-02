@@ -11,10 +11,10 @@ import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
 import java.lang.reflect.Type;
 import java.util.concurrent.CountDownLatch;
 
-public class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
-    private HealthMeasurementListener healthMeasurementListener;
-    private CountDownLatch latch;
-    private Logger logger;
+class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
+    private final HealthMeasurementListener healthMeasurementListener;
+    private final CountDownLatch latch;
+    private final Logger logger;
 
     public HealthMeasurementSocketSessionHandler(HealthMeasurementListener hl, CountDownLatch latch) {
         super();

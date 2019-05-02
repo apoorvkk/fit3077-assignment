@@ -18,9 +18,9 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class MonitorsView implements JavaFXView, Observer {
-    private Node rootNode;
-    private AbstractPatientMonitorCollectionModel model;
-    private VBox patientDetailListVBox;
+    private final Node rootNode;
+    private final AbstractPatientMonitorCollectionModel model;
+    private final VBox patientDetailListVBox;
 
     public MonitorsView(AbstractPatientMonitorCollectionModel model) {
         this.model = model;

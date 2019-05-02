@@ -1,7 +1,5 @@
 package edu.monash.it.fit3077.vjak.model;
 
-import org.hl7.fhir.dstu3.model.Patient;
-
 public class MonitorEventModel {
     private String patient;
     private String type;

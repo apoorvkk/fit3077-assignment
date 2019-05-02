@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 public class DashboardMonitorApplication extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         HapiPatientLoader h = new HapiPatientLoader("30");
         PatientMonitorCollectionModel mps = new PatientMonitorCollectionModel(h);
-        DashboardScreenView dv = new DashboardScreenView(primaryStage, mps);
+        new DashboardScreenView(primaryStage, mps);
     }
 
     public static void main(String[] args) {

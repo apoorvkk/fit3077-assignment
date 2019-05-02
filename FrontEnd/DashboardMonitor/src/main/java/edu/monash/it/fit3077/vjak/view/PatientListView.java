@@ -10,19 +10,17 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
 
 public class PatientListView implements JavaFXView, Observer {
-    private VBox rootNode;
+    private final VBox rootNode;
     private VBox patientListVBox;
-    private AbstractPatientMonitorCollectionModel model;
-    private PatientMonitorCollectionInterface controller;
+    private final AbstractPatientMonitorCollectionModel model;
+    private final PatientMonitorCollectionInterface controller;
     private Button loadMoreButton;
-    private final String loadMoreButtonText = "Load more patients";
 
     public PatientListView(AbstractPatientMonitorCollectionModel model) {
         this.model = model;
@@ -91,7 +89,8 @@ public class PatientListView implements JavaFXView, Observer {
     }
 
     private void updateLoadMoreButton() {
-        this.loadMoreButton.setText(this.loadMoreButtonText);
+        String loadMoreButtonText = "Load more patients";
+        this.loadMoreButton.setText(loadMoreButtonText);
         this.loadMoreButton.setDisable(false);
     }
 

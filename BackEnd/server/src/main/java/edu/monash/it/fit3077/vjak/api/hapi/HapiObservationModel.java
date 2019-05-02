@@ -3,12 +3,10 @@ package edu.monash.it.fit3077.vjak.api.hapi;
 import edu.monash.it.fit3077.vjak.model.ObservationModelInterface;
 import org.hl7.fhir.dstu3.model.Observation;
 
-import java.util.Date;
-
 public class HapiObservationModel implements ObservationModelInterface {
-    private Observation observation;
+    private final Observation observation;
 
-    public HapiObservationModel(Observation resource) {
+    HapiObservationModel(Observation resource) {
         this.observation = resource;
     }
 
@@ -20,11 +18,4 @@ public class HapiObservationModel implements ObservationModelInterface {
         return this.observation.getValueQuantity().getValue().toString();
     }
 
-    public String getPatientId() {
-        return this.observation.getSubject().getId();
-    }
-
-    public String getMeasurementCode() {
-        return this.observation.getCode().getText();
-    }
 }

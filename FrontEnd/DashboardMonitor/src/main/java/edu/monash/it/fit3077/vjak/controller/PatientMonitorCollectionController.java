@@ -5,8 +5,8 @@ import edu.monash.it.fit3077.vjak.model.PatientMonitorModelInterface;
 import edu.monash.it.fit3077.vjak.view.PatientListView;
 
 public class PatientMonitorCollectionController implements PatientMonitorCollectionInterface {
-    private AbstractPatientMonitorCollectionModel model;
-    private PatientListView view;
+    private final AbstractPatientMonitorCollectionModel model;
+    private final PatientListView view;
 
     public PatientMonitorCollectionController(AbstractPatientMonitorCollectionModel model, PatientListView view) {
         this.model = model;
