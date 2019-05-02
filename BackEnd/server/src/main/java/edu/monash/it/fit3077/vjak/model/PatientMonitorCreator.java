@@ -5,9 +5,9 @@ This class focuses on creating specific monitors (eg. Cholesterol). This class c
 many other monitors in future.
  */
 class PatientMonitorCreator {
-    public static PatientMonitor createMonitor(RequestMonitorInfo requestMonitorInfo) {
-        if (requestMonitorInfo.getMeasurementType().equals("Cholesterol")) {
-            return new CholesterolPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getClientId());
+    public static PatientMonitorModel createMonitor(RequestMonitorInfoModel requestMonitorInfoModel) {
+        if (requestMonitorInfoModel.getMeasurementType().equals("Cholesterol")) {
+            return new CholesterolPatientMonitorModel(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getClientId());
         }
         return null;
     }

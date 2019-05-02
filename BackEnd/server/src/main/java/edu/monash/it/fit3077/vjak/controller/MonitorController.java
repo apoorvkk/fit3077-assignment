@@ -1,9 +1,9 @@
 package edu.monash.it.fit3077.vjak.controller;
 
 import edu.monash.it.fit3077.vjak.model.MonitorEventModel;
-import edu.monash.it.fit3077.vjak.model.PatientMonitor;
-import edu.monash.it.fit3077.vjak.model.PatientMonitorCollection;
-import edu.monash.it.fit3077.vjak.model.RequestMonitorInfo;
+import edu.monash.it.fit3077.vjak.model.PatientMonitorModel;
+import edu.monash.it.fit3077.vjak.model.PatientMonitorCollectionModel;
+import edu.monash.it.fit3077.vjak.model.RequestMonitorInfoModel;
 import edu.monash.it.fit3077.vjak.observer.MonitorControllerObserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -18,28 +18,28 @@ patient monitor data. It also observes monitor data and sends it down to the rel
  */
 @RestController
 public class MonitorController implements MonitorControllerObserver {
-    private final PatientMonitorCollection patientMonitorCollection;
+    private final PatientMonitorCollectionModel patientMonitorCollectionModel;
     @Autowired
     private SimpMessagingTemplate template;
 
     public MonitorController() {
         super();
-        this.patientMonitorCollection = new PatientMonitorCollection();
+        this.patientMonitorCollectionModel = new PatientMonitorCollectionModel();
     }
 
     @RequestMapping(value = "/MonitorRegister", method = RequestMethod.POST) // clients must make a POST request to /MonitorRegister.
-    public void register(@RequestBody RequestMonitorInfo requestMonitorInfo) {
-        PatientMonitor pm = this.patientMonitorCollection.addMonitor(requestMonitorInfo);
+    public void register(@RequestBody RequestMonitorInfoModel requestMonitorInfoModel) {
+        PatientMonitorModel pm = this.patientMonitorCollectionModel.addMonitor(requestMonitorInfoModel);
         pm.attach(this); // Make sure to observe any updated data for this particular patient monitor.
     }
 
     @RequestMapping(value = "/MonitorDeregister", method = RequestMethod.POST) // clients must make a POST request to /MonitorDeregister.
-    public void deregister(@RequestBody RequestMonitorInfo requestMonitorInfo) {
-        this.patientMonitorCollection.deleteMonitor(requestMonitorInfo);
+    public void deregister(@RequestBody RequestMonitorInfoModel requestMonitorInfoModel) {
+        this.patientMonitorCollectionModel.deleteMonitor(requestMonitorInfoModel);
 
     }
 
-    public void update(PatientMonitor monitor, String clientId) {
+    public void update(PatientMonitorModel monitor, String clientId) {
         // Send monitor event only to the specified client.
         this.template.convertAndSend("/topic/" + clientId, new MonitorEventModel(monitor)); // a client should listen into /topic/{their client id}
     }

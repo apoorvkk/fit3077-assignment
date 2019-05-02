@@ -5,15 +5,15 @@ import java.util.ArrayList;
 /*
 This class is responsible for maintaining a collection of all patient monitors and adding/removing them.
  */
-public class PatientMonitorCollection {
-    private final ArrayList<PatientMonitor> patientMonitors;
+public class PatientMonitorCollectionModel {
+    private final ArrayList<PatientMonitorModel> patientMonitors;
 
-    public PatientMonitorCollection() {
+    public PatientMonitorCollectionModel() {
         this.patientMonitors = new ArrayList<>();
     }
 
-    private PatientMonitor getPatientMonitor(String patientId, String measurementType) {
-        for (PatientMonitor pm: this.patientMonitors) {
+    private PatientMonitorModel getPatientMonitor(String patientId, String measurementType) {
+        for (PatientMonitorModel pm: this.patientMonitors) {
             if (pm.matches(patientId, measurementType)){
                 return pm;
             }
@@ -21,23 +21,23 @@ public class PatientMonitorCollection {
         return null;
     }
 
-    public PatientMonitor addMonitor(RequestMonitorInfo requestMonitorInfo){
-        PatientMonitor monitor = this.getPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getMeasurementType());
+    public PatientMonitorModel addMonitor(RequestMonitorInfoModel requestMonitorInfoModel){
+        PatientMonitorModel monitor = this.getPatientMonitor(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getMeasurementType());
 
         if (monitor == null) { // No other clients are observing this patient and measurement type. Hence, create the monitor.
-            monitor = PatientMonitorCreator.createMonitor(requestMonitorInfo);
+            monitor = PatientMonitorCreator.createMonitor(requestMonitorInfoModel);
             this.patientMonitors.add(monitor);
         } else { // There is already one or more clients observing this patient and measurement type. Hence, add to existing monitor.
-            monitor.registerNewClient(requestMonitorInfo.getClientId());
+            monitor.registerNewClient(requestMonitorInfoModel.getClientId());
         }
 
         return monitor;
     }
 
-    public void deleteMonitor(RequestMonitorInfo requestMonitorInfo) {
-        PatientMonitor existingMonitor = this.getPatientMonitor(requestMonitorInfo.getPatientId(), requestMonitorInfo.getMeasurementType());
+    public void deleteMonitor(RequestMonitorInfoModel requestMonitorInfoModel) {
+        PatientMonitorModel existingMonitor = this.getPatientMonitor(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getMeasurementType());
         if (existingMonitor != null) {
-            existingMonitor.removeClient(requestMonitorInfo.getClientId());
+            existingMonitor.removeClient(requestMonitorInfoModel.getClientId());
             if (existingMonitor.hasNoRegisteredClients()) { // If there are no more registered clients, terminate the monitor.
                 existingMonitor.cleanUp();
                 this.patientMonitors.remove(existingMonitor);

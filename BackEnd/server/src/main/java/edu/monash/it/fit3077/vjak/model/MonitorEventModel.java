@@ -9,7 +9,7 @@ public class MonitorEventModel {
     private String unit;
     private String value;
 
-    public MonitorEventModel(PatientMonitor pm) {
+    public MonitorEventModel(PatientMonitorModel pm) {
         this.patient = pm.getPatientId();
         this.type = pm.getMeasurementType();
         this.unit = pm.getMeasurementUnit();

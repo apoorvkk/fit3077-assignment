@@ -14,7 +14,7 @@ monitor, then it will terminate and stop polling.
 This class also caches the observation data so that if a new registered client joins, they can easily fetch this cached value
 and leave polling to every hour rather than to every new client registered.
  */
-public abstract class PatientMonitor extends PatientMonitorSubject {
+public abstract class PatientMonitorModel extends PatientMonitorSubject {
     private final ArrayList<String> clientIds;
     private final String patientId;
     private final ObservationLoaderInterface observationLoader;
@@ -22,7 +22,7 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
     private String measurementValue;
     private boolean shouldTerminateThread;
 
-    PatientMonitor(String patientId, String firstClientId) {
+    PatientMonitorModel(String patientId, String firstClientId) {
         this.patientId = patientId;
         this.clientIds = new ArrayList<>();
         this.clientIds.add(firstClientId);
@@ -36,17 +36,17 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
     class PollingRunnable implements Runnable {
         @Override
         public void run() {
-            while (!PatientMonitor.this.shouldTerminateThread) {
+            while (!PatientMonitorModel.this.shouldTerminateThread) {
 
-                ObservationModelInterface latestObservation = PatientMonitor.this.observationLoader.getLatestObservation(PatientMonitor.this.patientId, PatientMonitor.this.getMeasurementCode());
+                ObservationModelInterface latestObservation = PatientMonitorModel.this.observationLoader.getLatestObservation(PatientMonitorModel.this.patientId, PatientMonitorModel.this.getMeasurementCode());
 
                 if (latestObservation != null) {
-                    PatientMonitor.this.measurementValue = latestObservation.getValue();
-                    PatientMonitor.this.measurementUnit = latestObservation.getUnit();
+                    PatientMonitorModel.this.measurementValue = latestObservation.getValue();
+                    PatientMonitorModel.this.measurementUnit = latestObservation.getUnit();
 
 
-                    for (String clientId: PatientMonitor.this.clientIds) {
-                        PatientMonitor.this.notifyObservers(clientId);
+                    for (String clientId: PatientMonitorModel.this.clientIds) {
+                        PatientMonitorModel.this.notifyObservers(clientId);
                     }
                 }
 
