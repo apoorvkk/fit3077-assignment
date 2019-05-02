@@ -26,13 +26,20 @@ public abstract class PatientMonitor extends PatientMonitorSubject {
         @Override
         public void run() {
             while (!PatientMonitor.this.shouldTerminateThread) {
-                ObservationModelInterface latestObservation = PatientMonitor.this.observationLoader.getLatestObservation(patientId, PatientMonitor.this.getMeasurementCode());
-                PatientMonitor.this.measurementValue = latestObservation.getValue();
-                PatientMonitor.this.measurementUnit = latestObservation.getUnit();
+
+                ObservationModelInterface latestObservation = PatientMonitor.this.observationLoader.getLatestObservation(PatientMonitor.this.patientId, PatientMonitor.this.getMeasurementCode());
+
+                if (latestObservation != null) {
+                    PatientMonitor.this.measurementValue = latestObservation.getValue();
+                    PatientMonitor.this.measurementUnit = latestObservation.getUnit();
 
 
-                for (String clientId: PatientMonitor.this.clientIds) {
-                    PatientMonitor.this.notifyObservers(clientId);
+                    for (String clientId: PatientMonitor.this.clientIds) {
+                        PatientMonitor.this.notifyObservers(clientId);
+                    }
+                } else {
+                    System.out.println();
+                    System.out.println("No data returned from FHIR." + this.printThreadId());
                 }
 
                 try {

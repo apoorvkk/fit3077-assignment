@@ -27,6 +27,10 @@ public class HapiObservationLoader implements ObservationLoaderInterface {
             .returnBundle(Bundle.class)
             .execute();
 
-        return new HapiObservationModel((Observation) response.getEntry().get(0).getResource());
+        try {
+            return new HapiObservationModel((Observation) response.getEntry().get(0).getResource());
+        } catch (IndexOutOfBoundsException err) {
+            return null;
+        }
     }
 }
