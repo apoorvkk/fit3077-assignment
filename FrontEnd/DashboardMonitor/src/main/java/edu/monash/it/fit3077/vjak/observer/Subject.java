@@ -2,6 +2,9 @@ package edu.monash.it.fit3077.vjak.observer;
 
 import java.util.ArrayList;
 
+/*
+Apart of the observer design pattern.
+ */
 public abstract class Subject {
     private final ArrayList<Observer> observers;
 

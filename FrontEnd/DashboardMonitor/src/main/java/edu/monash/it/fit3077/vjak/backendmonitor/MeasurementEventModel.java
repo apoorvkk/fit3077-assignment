@@ -1,5 +1,8 @@
 package edu.monash.it.fit3077.vjak.backendmonitor;
 
+/*
+This class models the data that will be received from the server via web sockets.
+ */
 public class MeasurementEventModel {
     private String patient;
     private String type;

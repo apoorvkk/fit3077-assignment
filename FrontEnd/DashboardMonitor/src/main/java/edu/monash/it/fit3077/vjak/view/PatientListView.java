@@ -2,7 +2,7 @@ package edu.monash.it.fit3077.vjak.view;
 
 import edu.monash.it.fit3077.vjak.Constant;
 import edu.monash.it.fit3077.vjak.controller.PatientMonitorCollectionController;
-import edu.monash.it.fit3077.vjak.controller.PatientMonitorCollectionInterface;
+import edu.monash.it.fit3077.vjak.controller.PatientMonitorCollectionControllerInterface;
 import edu.monash.it.fit3077.vjak.model.AbstractPatientMonitorCollectionModel;
 import edu.monash.it.fit3077.vjak.model.PatientMonitorModelInterface;
 import edu.monash.it.fit3077.vjak.observer.Observer;
@@ -14,26 +14,29 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
-
+/*
+This class is responsible for rendering the sidebar that has a list of available patients and to also let the
+patient load more patients.
+ */
 public class PatientListView implements JavaFXView, Observer {
     private final VBox rootNode;
     private VBox patientListVBox;
     private final AbstractPatientMonitorCollectionModel model;
-    private final PatientMonitorCollectionInterface controller;
+    private final PatientMonitorCollectionControllerInterface controller;
     private Button loadMoreButton;
 
-    public PatientListView(AbstractPatientMonitorCollectionModel model) {
+    PatientListView(AbstractPatientMonitorCollectionModel model) {
+        /*
+        Observe the model and initialize the controller.
+         */
         this.model = model;
         this.model.attach(this);
         this.rootNode = new VBox();
-
-        this.initializePatientList();
-        this.initializeLoadMoreButton();
         this.controller = new PatientMonitorCollectionController(model, this);
-        this.controller.loadMorePatients();
     }
 
-    private void initializeLoadMoreButton() {
+    public void initializeLoadMoreButton() {
+        // Setup the load more button and attach it to the host node.
         Button button = new Button();
         button.setPrefWidth(0.25 * Constant.guiWindowWidth);
         button.setOnAction(event -> this.controller.loadMorePatients());
@@ -42,7 +45,8 @@ public class PatientListView implements JavaFXView, Observer {
         this.rootNode.getChildren().add(this.loadMoreButton);
     }
 
-    private void initializePatientList() {
+    public void initializePatientList() {
+        // Setup the patient list sidebar and attach it to the host node.
         this.patientListVBox = new VBox();
 
         ScrollPane patientListScrollPane = new ScrollPane();
@@ -54,6 +58,7 @@ public class PatientListView implements JavaFXView, Observer {
     }
 
     public void setViewToFetchingState() {
+        // Ensure that load more button is disabled when patients are being loaded.
         this.loadMoreButton.setText("Loading patients ...");
         this.loadMoreButton.setDisable(true);
     }
@@ -63,6 +68,10 @@ public class PatientListView implements JavaFXView, Observer {
     }
 
     private void updatePatientList(ArrayList<PatientMonitorModelInterface> patientMonitors) {
+        /*
+        This method is responsible for fetching the latest version of the patient list and simply rendering
+        them into the side bar as selectable items.
+         */
         this.patientListVBox.getChildren().clear();
         if (patientMonitors.size() == 0) {
             this.patientListVBox.getChildren().add(new Text("Unable to find patients."));
@@ -74,7 +83,7 @@ public class PatientListView implements JavaFXView, Observer {
                     cb.setSelected(true);
                 }
                 cellNode.getChildren().add(cb);
-                cb.setOnAction(event -> {
+                cb.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
                     if (cb.isSelected()) {
                         this.controller.startMonitoring(patientMonitor);
                     } else {
@@ -89,13 +98,14 @@ public class PatientListView implements JavaFXView, Observer {
     }
 
     private void updateLoadMoreButton() {
+        // Reset the load more button.
         String loadMoreButtonText = "Load more patients";
         this.loadMoreButton.setText(loadMoreButtonText);
         this.loadMoreButton.setDisable(false);
     }
 
     public void update() {
-        Platform.runLater(() -> {
+        Platform.runLater(() -> { // run on main thread instead of the thread that received the event because that thread cannot update view due to Java FX restrictions.
             this.updatePatientList(this.model.getPatientMonitors());
             this.updateLoadMoreButton();
         });

@@ -11,6 +11,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+/*
+This class is responsible for registering and deregistering the current client to the backend server
+so it can receive monitor events via sockets. The registration/deregistration uses REST endpoint defined in the backend.
+ */
 public class MeasurementTracker {
     private final String patientId;
     private final String healthMeasurement;
@@ -20,6 +24,10 @@ public class MeasurementTracker {
         this.healthMeasurement = healthMeasurement;
     }
 
+    /*
+    This class is responsbile to make the necessary registration/deregistration requests. We use a separate thread
+    so we do not hog the main thread and freeze up the GUI application.
+     */
     class RegistrationRunnable implements Runnable {
         private final String url;
 

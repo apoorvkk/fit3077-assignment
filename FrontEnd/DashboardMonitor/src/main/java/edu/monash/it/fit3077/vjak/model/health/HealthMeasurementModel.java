@@ -3,6 +3,9 @@ package edu.monash.it.fit3077.vjak.model.health;
 import edu.monash.it.fit3077.vjak.model.health.tracker.MeasurementTracker;
 import edu.monash.it.fit3077.vjak.observer.Subject;
 
+/*
+This class represents a generic health measurement model that can register/deregister to receive its values.
+ */
 public abstract class HealthMeasurementModel extends Subject {
     private final MeasurementTracker measurementTracker;
     private String value;
@@ -28,7 +31,7 @@ public abstract class HealthMeasurementModel extends Subject {
         if (!value.equals(this.value) || !unit.equals(this.unit)) {
             this.value = value;
             this.unit = unit;
-            this.notifyObservers();
+            this.notifyObservers(); // Measurement update so make sure to notify all observers (should generally be the views).
         }
     }
 }

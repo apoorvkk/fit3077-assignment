@@ -9,10 +9,16 @@ import org.springframework.web.socket.messaging.WebSocketStompClient;
 
 import java.util.concurrent.CountDownLatch;
 
+/*
+This class is responsible for listening to socket events coming from the backend server that are related to patient monitors
+(eg. patient 20 has a cholesterol level of 194.955 mg/dl). Once it is receives an event, it will notify all connected
+observers using the Observer design pattern.
+ */
 public class HealthMeasurementListener extends Subject {
     private MeasurementEventModel currentEvent;
 
     public HealthMeasurementListener() {
+        // Initialize web socket client.
         WebSocketClient client = new StandardWebSocketClient();
 
         WebSocketStompClient stompClient = new WebSocketStompClient(client);
@@ -36,7 +42,7 @@ public class HealthMeasurementListener extends Subject {
         return this.currentEvent;
     }
 
-    public void dataReceived(MeasurementEventModel payload) {
+    void dataReceived(MeasurementEventModel payload) {
         this.currentEvent = payload;
         this.notifyObservers();
     }

@@ -6,13 +6,17 @@ import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
 
 import java.util.ArrayList;
 
+/*
+This class is responsible for managing all tracked measurements on a patient. For a given patient, you can monitor
+various measurements such as cholesterol. You can start and stop tracking these health measurements too.
+ */
 public class PatientMonitorModel implements PatientMonitorModelInterface {
     private final PatientModelInterface patient;
     private final ArrayList<HealthMeasurementModel> healthMeasurements;
     private final HealthMeasurementCreator healtMeasurementCreator;
     private HealthMeasurementListener healthMeasurementListener;
 
-    public PatientMonitorModel(PatientModelInterface p, HealthMeasurementListener hl) {
+    PatientMonitorModel(PatientModelInterface p, HealthMeasurementListener hl) {
         this.observeHealthMeasurements(hl);
 
         this.patient = p;
@@ -30,6 +34,7 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
     }
 
     private void cleanUp() {
+        // Make sure to detach from the socket listener and remove all measurements.
         this.healthMeasurementListener.detach(this);
         this.healthMeasurements.forEach(HealthMeasurementModel::cleanUp);
         this.healthMeasurements.clear();
@@ -38,7 +43,7 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
     public void trackMeasurements() {
         this.healthMeasurementListener.attach(this);
 
-        this.trackCholesterol();
+        this.trackCholesterol(); // This is hardcoded because only cholesterol monitoring is supported.
     }
 
     public void removeMeasurements() {
@@ -58,6 +63,7 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
     }
 
     public void update() {
+        // Listen into socket event and update the relevant measurement models.
         MeasurementEventModel me = this.healthMeasurementListener.getDataReceived();
 
         if (me.getPatient().equals(this.patient.getId())) {

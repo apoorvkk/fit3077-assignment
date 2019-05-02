@@ -11,6 +11,10 @@ import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
 import java.lang.reflect.Type;
 import java.util.concurrent.CountDownLatch;
 
+/*
+This class is responsible for listening to low level specific socket events and subscribing to the relevant client topic which
+will receive events from the backend.
+ */
 class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
     private final HealthMeasurementListener healthMeasurementListener;
     private final CountDownLatch latch;
@@ -31,7 +35,7 @@ class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
     @Override
     public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
         logger.info("Connected");
-        session.subscribe("/topic/" + Constant.clientId, this); // get ip
+        session.subscribe("/topic/" + Constant.clientId, this); // Subscribe to the necessary topic to receive events.
         this.latch.countDown();
     }
 
@@ -44,11 +48,12 @@ class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
     public void handleFrame(StompHeaders headers, Object payload) {
         logger.info("Received message");
         MeasurementEventModel me = (MeasurementEventModel) payload;
-        this.healthMeasurementListener.dataReceived(me);
+        this.healthMeasurementListener.dataReceived(me); // notifies listener about the event.
     }
 
     @Override
     public Type getPayloadType(StompHeaders headers) {
+        // Used to convert raw data to a meaningful object that the application can consume.
         return MeasurementEventModel.class;
     }
 }

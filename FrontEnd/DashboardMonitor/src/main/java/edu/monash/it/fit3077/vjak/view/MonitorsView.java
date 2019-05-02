@@ -17,12 +17,20 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
+/*
+This class is responsible for rendering the main dashboard view and updating the monitors whenever selected patient measurment
+data changes.
+ */
 public class MonitorsView implements JavaFXView, Observer {
     private final Node rootNode;
     private final AbstractPatientMonitorCollectionModel model;
     private final VBox patientDetailListVBox;
 
-    public MonitorsView(AbstractPatientMonitorCollectionModel model) {
+    MonitorsView(AbstractPatientMonitorCollectionModel model) {
+        /*
+        Observe the model and setup the view base infrastructure. This class does not need a controller at the moment
+        because it is not receiving any user input.
+         */
         this.model = model;
         this.model.attach(this);
 
@@ -48,11 +56,12 @@ public class MonitorsView implements JavaFXView, Observer {
     }
 
     public void update() {
-        Platform.runLater(() -> {
+        Platform.runLater(() -> { // run on main thread instead of the thread that received the event because that thread cannot update view due to Java FX restrictions.
             ArrayList<PatientMonitorModelInterface> selectedPatientMonitors = this.model.getSelectedPatientMonitors();
 
-            this.patientDetailListVBox.getChildren().clear();
+            this.patientDetailListVBox.getChildren().clear(); // Remove all monitors.
 
+            // Rerender new patients and their relevant monitors.
             selectedPatientMonitors.forEach(patientMonitor -> {
                 GridPane patientDetailsPane = new GridPane();
                 patientDetailsPane.setPrefWidth(0.75 * Constant.guiWindowWidth - 20d);
@@ -64,6 +73,7 @@ public class MonitorsView implements JavaFXView, Observer {
                 patientDetailsPane.add(new Text("Name: "), 0, 1);
                 patientDetailsPane.add(new Text(patientMonitor.getPatient().getName()), 1, 1);
 
+                // Render the monitors for a given patient.
                 int nextRow = 2;
                 for (HealthMeasurementModel healthMeasurement: patientMonitor.getHealthMeasurements()) {
                     healthMeasurement.attach(MonitorsView.this);
@@ -72,6 +82,7 @@ public class MonitorsView implements JavaFXView, Observer {
                     nextRow++;
                 }
 
+                // Attach to the view.
                 this.patientDetailListVBox.getChildren().add(patientDetailsPane);
             });
         });

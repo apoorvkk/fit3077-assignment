@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/*
+This class is responsble for rendering the main overall GUI application. It is composed of two main views which are
+the PatientListView (sidebar that has all available patients) and the MonitorsView (main dashboard).
+ */
 public class DashboardScreenView {
     public DashboardScreenView(Stage primaryStage, AbstractPatientMonitorCollectionModel model) {
         PatientListView plv = new PatientListView(model);

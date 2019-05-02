@@ -6,11 +6,14 @@ import edu.monash.it.fit3077.vjak.view.DashboardScreenView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/*
+Driver class. It is bootstrapped with JavaFx so it can run a GUI application.
+ */
 public class DashboardMonitorApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        HapiPatientLoader h = new HapiPatientLoader("30");
+        HapiPatientLoader h = new HapiPatientLoader("30"); // Hardcoded practitioner id.
         PatientMonitorCollectionModel mps = new PatientMonitorCollectionModel(h);
         new DashboardScreenView(primaryStage, mps);
     }
