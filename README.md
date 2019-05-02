@@ -3,7 +3,7 @@
 Apoorv Kansal (27821455) akan57@student.monash.edu <br>
 Vaibhav Jaideep vjai0002@student.monash.edu
 
-![](Images/application.png)
+![Application](img/application.png)
 
 ## Descripton
 
