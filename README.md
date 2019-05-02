@@ -3,7 +3,7 @@
 Apoorv Kansal (27821455) akan57@student.monash.edu <br>
 Vaibhav Jaideep vjai0002@student.monash.edu
 
-<img src="Images/application.png" />
+![](Images/application.png)
 
 ## Descripton
 
@@ -109,4 +109,4 @@ Vaibhav Jaideep
 - Copied and added an example application from the Internet to the git repository which was not needed and removed.
 
 **Note:** <br>
-I (Apoorv Kansal) completed the whole project on my own due to the other assignment partner not putting in enough effort and initiative. The whole process was very stresful where I stayed up numerous nights to finish the whole project myself.
+I (Apoorv Kansal) completed the whole project on my own due to the other assignment partner not putting in enough effort and initiative. The whole process was very stressful where I stayed up numerous nights to finish the whole project myself.
