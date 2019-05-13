@@ -40,7 +40,7 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
         this.healthMeasurements.clear();
     }
 
-    public void trackMeasurements() {
+    public void trackMeasurements() { // need to specify a status that patient is being monitored.
         this.healthMeasurementListener.attach(this);
 
         this.trackCholesterol(); // This is hardcoded because only cholesterol monitoring is supported.
@@ -52,7 +52,7 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
 
     public boolean isBeingMonitored() {
         return this.healthMeasurements.size() > 0;
-    }
+    } // need to change to a status.
 
     public PatientModelInterface getPatient() {
         return this.patient;
@@ -71,9 +71,7 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
                     .forEach(healthMeasurement -> {
                         String measurementType = me.getType();
                         if (measurementType.equals(healthMeasurement.toString())) {
-                            String value = me.getValue();
-                            String unit = me.getUnit();
-                            healthMeasurement.setHealthMeasurementValue(value, unit);
+                            healthMeasurement.setHealthMeasurementValue(me);
                         }
                     });
         }

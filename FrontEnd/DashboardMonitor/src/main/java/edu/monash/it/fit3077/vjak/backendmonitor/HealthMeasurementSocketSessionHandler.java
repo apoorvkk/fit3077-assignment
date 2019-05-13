@@ -9,6 +9,7 @@ import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
 
 import java.lang.reflect.Type;
+import java.util.LinkedHashMap;
 import java.util.concurrent.CountDownLatch;
 
 /*
@@ -47,13 +48,21 @@ class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
     @Override
     public void handleFrame(StompHeaders headers, Object payload) {
         logger.info("Received message");
-        MeasurementEventModel me = (MeasurementEventModel) payload;
+
+        MeasurementEventModel me;
+        LinkedHashMap<String, String> data = (LinkedHashMap<String, String>) payload;
+
+        if (data.get("type").equals("Cholesterol") || data.get("type").equals("SystolicBloodPressure") || data.get("type").equals("DiastolicBloodPressure")) {
+            me = new QuantityMeasurmentEventModel(data);
+        } else {
+            me = new QualityMeasurementEventModel(data);
+        }
         this.healthMeasurementListener.dataReceived(me); // notifies listener about the event.
     }
 
     @Override
     public Type getPayloadType(StompHeaders headers) {
         // Used to convert raw data to a meaningful object that the application can consume.
-        return MeasurementEventModel.class;
+        return java.util.LinkedHashMap.class;
     }
 }
