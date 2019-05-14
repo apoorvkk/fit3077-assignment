@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>240</y>
+      <w>640</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>api/hapi
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>590</y>
+      <w>920</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>backendmonitor
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>680</x>
+      <y>260</y>
+      <w>380</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>controller
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>940</x>
+      <y>620</y>
+      <w>1000</w>
+      <h>920</h>
+    </coordinates>
+    <panel_attributes>model
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1070</x>
+      <y>0</y>
+      <w>560</w>
+      <h>570</h>
+    </coordinates>
+    <panel_attributes>view
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>520</x>
+      <y>970</y>
+      <w>270</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>observer
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>270</y>
+      <w>620</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>HapiPatientLoader
+--
+- client: IGenericClient
+- currentEncounterPage: Bundle
+- patientIdsCache: HashSet&lt;String&gt;
+- practitionerId: String
+--
+- initializeHapiClient(): void
+- fetchNewPatientIds(): ArrayList&lt;String&gt;
+- downloadNewPatients(patientIds: ArrayList&lt;String&gt;): ArrayList&lt;org.hl7.fhir.dstu3.model.Patient&gt;
+- cachePatientIds(patientIds: ArrayList&lt;String&gt;): void
++ loadPatients(): ArrayList&lt;PatientModelInterface&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>460</y>
+      <w>290</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>HapiPatientModel
+--
+- patient: org.hl7.fhir.dstu3.model.Patient
+--
++ getId(): String
++ getName(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>630</y>
+      <w>380</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>HealthMeasurementListener
+--
+- currentEvent: MeasurementEventModel
+--
+- dataReceived(payload: MeasurementEventModel): void
++ getDataReceived(): MeasurementEventModel
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>760</y>
+      <w>900</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>HealthMeasurementSocketSessionHandler
+--
+- healthMeasurementListener: HealthMeasurementListener
+- latch: CountDownLatch
+- logger: Logger
+--
++ handleException(session: StompSession, command: StompCommand, headers: StompHeaders, payload: byte[], exception: Throwable): void
++ afterConnected(session: StompSession, connectedHeaders: StompHeaders): void
++ handleTransportError(session: StompSession, exception: Throwable): void
++ handleFrame(headers: StompHeaders, payload: Object): void
++ getPayloadType(headers: StompHeaders): Type
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>630</y>
+      <w>280</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>MeasurementEventModel
+--
+- payload: LinkedHashMap&lt;String, String&gt;
+--
++ getPatient(): String
++ getType(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>620</y>
+      <w>220</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>QualityMeasurementEventModel
+--
++ getStatus(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>680</y>
+      <w>220</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>QuantityMeasurementEventModel
+--
++ getUnit(): String
++ getValue(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>300</y>
+      <w>360</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>PatientMonitorCollectionController
+--
+- model: AbstractPatientMonitorCollectionModel
+- view: PatientListView
+--
++ loadMorePatients(): void
++ startMonitoring(p: PatientMonitorModelInterface): void
++ stopMonitoring(p: PatientMonitorModelInterface): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>430</y>
+      <w>360</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+PatientMonitorCollectionControllerInterface
+--
++ loadMorePatients(): void
++ startMonitoring(p: PatientMonitorModelInterface): void
++ stopMonitoring(p: PatientMonitorModelInterface): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>980</x>
+      <y>700</y>
+      <w>250</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>tracker
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>960</x>
+      <y>660</y>
+      <w>470</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>health
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>740</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>MeasurementTracker
+--
+- patientId: String
+- healthMeasurement: String
+--
++ register(): void
++ deregister(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>980</x>
+      <y>870</y>
+      <w>430</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>CholesterolModel
+--
+- value: String
+- unit: String
+--
++ getHealthMeasurementResult(): String
++ setHealthMeasurementValue(me: MeasurementEventModel): void
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>980</x>
+      <y>1010</y>
+      <w>430</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+HealthMeasurementModel
+--
+- measurementTracker: MeasurementTracker
+--
++ cleanUp(): void
++ getHealthMeasurementResult(): String
++ setHealthMeasurementValue(me: MeasurementEventModel): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>660</y>
+      <w>470</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+AbstractPatientMonitorCollectionModel
+--
++ loadMorePatients(): void
++ getPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;
++ startMonitoring(p: PatientMonitorModelInterface): void
++ stopMonitoring(p: PatientMonitorModelInterface): void
++ getSelectedPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>830</y>
+      <w>410</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>HealthMeasurementCreator
+--
++ trackCholesterol(patientId: String): HealthMeasurementModel</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>900</y>
+      <w>330</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+PatientLoaderInterface
+--
++ loadPatients(): ArrayList&lt;PatientModelInterface&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>980</y>
+      <w>330</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+PatientModelInterface
+--
++ getId(): String
++ getName(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>1070</y>
+      <w>480</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>PatientMonitorCollectionModel
+--
+- patientLoader: PatientLoaderInterface
+- patientMonitors: ArrayList&lt;PatientMonitorModelInterface&gt;
+- healthMeasurementListener: HealthMeasurementListener
+--
++ loadMorePatients(): void
++ getPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;
++ startMonitoring(p: PatientMonitorModelInterface): void
++ stopMonitoring(p: PatientMonitorModelInterface): void
++ getSelectedPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>960</x>
+      <y>1200</y>
+      <w>460</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>PatientMonitorModel
+--
+- patient: PatientModelInterface
+- healthMeasurements: ArrayList&lt;HealthMeasurementModel&gt;
+- healthMeasurementCreator: HealthMeasurementCreator
+- healthMeasurementListener: HealthMeasurementListener
+--
+- observerHealthMeasurements(hl: HealthMeasurementListener): void
+- trackCholesterol(): void
+- cleanUp(): void
++ trackMeasurements(): void
++ removeMeasurements(): void
++ isBeingMonitored(): boolean
++ getPatient(): PatientModelInterface
++ getHealthMeasurements(): ArrayList&lt;HealthMeasurementModel&gt;
++ update(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>1280</y>
+      <w>430</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+PatientMonitorModelInterface
+--
++ getPatient(): PatientModelInterface
++ trackMeasurements(): void
++ removeMeasurements(): void
++ isBeingMonitored(): boolean
++ getHealthMeasurements(): ArrayList&lt;HealthMeasurementModel&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>1020</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Observer
+--
++ update(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>1100</y>
+      <w>230</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+Subject
+--
+- observers: ArrayList&lt;Observers&gt;
+--
++ attach(o: Observer): void
++ detach(o: Observer): void
++ notifyObservers(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>40</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>DashboardScreenView
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>120</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+JavaFXView
+--
++ getRootNode(): Node
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>200</y>
+      <w>310</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>MonitorsView
+--
+- rootNode: Node
+- model: AbstractPatientMonitorCollectionModel
+- patientDetailListVBox: VBox
+--
++ getRootNode(): Node
++ update(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>330</y>
+      <w>540</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>PatientListView
+--
+- rootNode: VBox
+- patientListVBox: VBox
+- model: AbstractPatientMonitorCollectionModel
+- controller: PatientMonitorCollectionControllerInterface
+- loadMoreButton: Button
+--
+- updatePatientList(patientMonitors: ArrayList&lt;PatientMonitorModelInterface&gt;): void
+- updateLoadMoreButton(): void
++ initializeLoadMoreButton(): void
++ initializePatientList(): void
++ setViewToFetchingState(): void
++ getRootNode(): Node
++ update(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>140</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Constant
+--
++ clientId: String
++ guiWindowHeight: Double
++ guiWindowWidth: Double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>140</y>
+      <w>230</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>DashboardMonitorApplication
+--
++ start(primaryStage: Stage): void
++ main(args: String[]): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
