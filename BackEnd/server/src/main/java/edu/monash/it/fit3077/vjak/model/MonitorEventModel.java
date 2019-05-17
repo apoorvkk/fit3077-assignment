@@ -6,14 +6,10 @@ This class models the data that will be sent to connected clients via web socket
 public class MonitorEventModel {
     private String patient;
     private String type;
-    private String unit;
-    private String value;
 
     public MonitorEventModel(PatientMonitorModel pm) {
         this.patient = pm.getPatientId();
         this.type = pm.getMeasurementType();
-        this.unit = pm.getMeasurementUnit();
-        this.value = pm.getMeasurementValue();
     }
     public String getPatient() {
         return patient;
@@ -29,21 +25,5 @@ public class MonitorEventModel {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 }

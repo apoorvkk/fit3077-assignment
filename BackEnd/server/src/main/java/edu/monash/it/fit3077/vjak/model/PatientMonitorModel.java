@@ -5,6 +5,7 @@ import edu.monash.it.fit3077.vjak.observer.MonitorControllerObserver;
 import edu.monash.it.fit3077.vjak.observer.PatientMonitorSubject;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 /*
 This class represents a generic patient monitor. Essentially, it will hold all clients (i.e frontend client) who
@@ -15,18 +16,15 @@ This class also caches the observation data so that if a new registered client j
 and leave polling to every hour rather than to every new client registered.
  */
 public abstract class PatientMonitorModel extends PatientMonitorSubject {
-    private final ArrayList<String> clientIds;
-    private final String patientId;
-    private final ObservationLoaderInterface observationLoader;
-    private String measurementUnit;
-    private String measurementValue;
+    protected final ArrayList<String> clientIds;
+    protected final String patientId;
+    protected ObservationLoaderInterface observationLoader;
     private boolean shouldTerminateThread;
 
     PatientMonitorModel(String patientId, String firstClientId) {
         this.patientId = patientId;
         this.clientIds = new ArrayList<>();
         this.clientIds.add(firstClientId);
-        this.observationLoader = new HapiObservationLoader();
         this.poll();
     }
 
@@ -37,26 +35,20 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
         @Override
         public void run() {
             while (!PatientMonitorModel.this.shouldTerminateThread) {
-
-                ObservationModelInterface latestObservation = PatientMonitorModel.this.observationLoader.getLatestObservation(PatientMonitorModel.this.patientId, PatientMonitorModel.this.getMeasurementCode());
-
-                if (latestObservation != null) {
-                    PatientMonitorModel.this.measurementValue = latestObservation.getValue();
-                    PatientMonitorModel.this.measurementUnit = latestObservation.getUnit();
-
-
-                    for (String clientId: PatientMonitorModel.this.clientIds) {
-                        PatientMonitorModel.this.notifyObservers(clientId);
-                    }
-                }
-
+                PatientMonitorModel.this.fetchData();
                 try {
-                    Thread.sleep(3600000); // Polls every hour.
+                    Thread.sleep(PatientMonitorModel.this.getPollingTime()); // Polls every hour.
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
+    }
+
+    abstract void fetchData();
+
+    protected int getPollingTime() {
+        return 3600000;
     }
 
     private void poll() {
@@ -99,14 +91,6 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
         return this.clientIds.size() == 0;
     }
 
-    String getMeasurementUnit() {
-        return this.measurementUnit;
-    }
-
-    String getMeasurementValue() {
-        return this.measurementValue;
-    }
-
     String getPatientId() {
         return this.patientId;
     }
@@ -114,4 +98,6 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
     // These methods are specific to actual patient monitors (eg. cholesterol patient monitor).
     protected abstract String getMeasurementCode();
     public abstract String getMeasurementType();
+
+    public abstract MonitorEventModel serialize();
 }
