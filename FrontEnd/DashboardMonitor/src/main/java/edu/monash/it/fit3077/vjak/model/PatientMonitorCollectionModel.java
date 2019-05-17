@@ -47,13 +47,13 @@ public class PatientMonitorCollectionModel extends AbstractPatientMonitorCollect
 
     public void startMonitoring(PatientMonitorModelInterface p) {
         if (this.patientMonitors.contains(p)) {
-            p.trackMeasurements();
+            p.startMonitoring();
             this.notifyObservers();
         }
     }
 
     public void stopMonitoring(PatientMonitorModelInterface p) {
-        p.removeMeasurements();
+        p.stopMonitoring();
         this.notifyObservers();
     }
 

@@ -15,8 +15,10 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
     private final ArrayList<HealthMeasurementModel> healthMeasurements;
     private final HealthMeasurementCreator healtMeasurementCreator;
     private HealthMeasurementListener healthMeasurementListener;
+    private Boolean isBeingMonitored;
 
     PatientMonitorModel(PatientModelInterface p, HealthMeasurementListener hl) {
+        this.isBeingMonitored = false;
         this.observeHealthMeasurements(hl);
 
         this.patient = p;
@@ -28,31 +30,46 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
         this.healthMeasurementListener = hl;
     }
 
-    private void trackCholesterol() {
-        HealthMeasurementModel hm = this.healtMeasurementCreator.trackCholesterol(this.patient.getId());
-        this.healthMeasurements.add(hm);
-    }
-
     private void cleanUp() {
         // Make sure to detach from the socket listener and remove all measurements.
         this.healthMeasurementListener.detach(this);
         this.healthMeasurements.forEach(HealthMeasurementModel::cleanUp);
         this.healthMeasurements.clear();
+        this.isBeingMonitored = false;
     }
 
-    public void trackMeasurements() { // need to specify a status that patient is being monitored.
+    public void trackCholesterol() {
+        HealthMeasurementModel hm = this.healtMeasurementCreator.trackCholesterol(this.patient.getId());
+        this.healthMeasurements.add(hm);
+    }
+
+    public void trackSystolicBloodPressure() {
+        HealthMeasurementModel hm = this.healtMeasurementCreator.trackSystolicBloodPressure(this.patient.getId());
+        this.healthMeasurements.add(hm);
+    }
+
+    public void trackDiastolicBloodPressure() {
+        HealthMeasurementModel hm = this.healtMeasurementCreator.trackDiastolicBloodPressure(this.patient.getId());
+        this.healthMeasurements.add(hm);
+    }
+
+    public void trackTobaccoUse() {
+        HealthMeasurementModel hm = this.healtMeasurementCreator.trackTobaccoUse(this.patient.getId());
+        this.healthMeasurements.add(hm);
+    }
+
+    public void startMonitoring() {
         this.healthMeasurementListener.attach(this);
-
-        this.trackCholesterol(); // This is hardcoded because only cholesterol monitoring is supported.
+        this.isBeingMonitored = true;
     }
 
-    public void removeMeasurements() {
+    public void stopMonitoring() {
         this.cleanUp();
     }
 
     public boolean isBeingMonitored() {
-        return this.healthMeasurements.size() > 0;
-    } // need to change to a status.
+        return this.isBeingMonitored;
+    }
 
     public PatientModelInterface getPatient() {
         return this.patient;
@@ -68,12 +85,12 @@ public class PatientMonitorModel implements PatientMonitorModelInterface {
 
         if (me.getPatient().equals(this.patient.getId())) {
             this.healthMeasurements
-                    .forEach(healthMeasurement -> {
-                        String measurementType = me.getType();
-                        if (measurementType.equals(healthMeasurement.toString())) {
-                            healthMeasurement.setHealthMeasurementValue(me);
-                        }
-                    });
+                .forEach(healthMeasurement -> {
+                    String measurementType = me.getType();
+                    if (measurementType.equals(healthMeasurement.toString())) {
+                        healthMeasurement.setHealthMeasurementValue(me);
+                    }
+                });
         }
     }
 }
