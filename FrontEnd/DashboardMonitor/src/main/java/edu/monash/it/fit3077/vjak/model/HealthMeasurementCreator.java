@@ -1,9 +1,9 @@
 package edu.monash.it.fit3077.vjak.model;
 
-import edu.monash.it.fit3077.vjak.model.health.BloodPressureModel;
-import edu.monash.it.fit3077.vjak.model.health.CholesterolModel;
+import edu.monash.it.fit3077.vjak.model.health.BloodPressure.BloodPressureModel;
+import edu.monash.it.fit3077.vjak.model.health.Cholesterol.CholesterolModel;
 import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
-import edu.monash.it.fit3077.vjak.model.health.TobaccoUseModel;
+import edu.monash.it.fit3077.vjak.model.health.TobaccoUse.TobaccoUseModel;
 
 /*
 This class focuses on creating specific measurement models (eg. Cholesterol). This class can be extended to

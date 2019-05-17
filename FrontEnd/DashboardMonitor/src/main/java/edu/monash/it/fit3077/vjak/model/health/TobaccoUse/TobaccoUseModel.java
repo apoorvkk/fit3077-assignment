@@ -1,7 +1,8 @@
-package edu.monash.it.fit3077.vjak.model.health;
+package edu.monash.it.fit3077.vjak.model.health.TobaccoUse;
 
 import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEventModel;
 import edu.monash.it.fit3077.vjak.backendmonitor.QualityMeasurementEventModel;
+import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
 
 public class TobaccoUseModel extends HealthMeasurementModel implements TobaccoUseModelInterface{
     private String status;

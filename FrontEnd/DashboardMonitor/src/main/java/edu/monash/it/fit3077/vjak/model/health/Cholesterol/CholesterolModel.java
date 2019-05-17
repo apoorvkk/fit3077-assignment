@@ -1,7 +1,8 @@
-package edu.monash.it.fit3077.vjak.model.health;
+package edu.monash.it.fit3077.vjak.model.health.Cholesterol;
 
 import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEventModel;
 import edu.monash.it.fit3077.vjak.backendmonitor.QuantityMeasurmentEventModel;
+import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
 
 /*
 This class models the cholesterol model.

@@ -1,4 +1,4 @@
-package edu.monash.it.fit3077.vjak.model.health.tracker;
+package edu.monash.it.fit3077.vjak.model.health;
 
 
 import edu.monash.it.fit3077.vjak.Constant;
