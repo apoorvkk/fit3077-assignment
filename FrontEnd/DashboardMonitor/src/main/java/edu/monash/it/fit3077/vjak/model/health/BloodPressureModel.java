@@ -5,7 +5,7 @@ import edu.monash.it.fit3077.vjak.backendmonitor.QuantityMeasurmentEventModel;
 
 import java.util.ArrayList;
 
-public class BloodPressureModel extends HealthMeasurementModel {
+public class BloodPressureModel extends HealthMeasurementModel implements BloodPressureInterface{
     private String type;
     private ArrayList<String> units;
     private ArrayList<String> values;
@@ -15,11 +15,6 @@ public class BloodPressureModel extends HealthMeasurementModel {
         this.type = type;
         this.units = new ArrayList<>();
         this.values = new ArrayList<>();
-    }
-
-    @Override
-    public String getHealthMeasurementResult() {
-        return null;
     }
 
     @Override
@@ -34,5 +29,15 @@ public class BloodPressureModel extends HealthMeasurementModel {
     @Override
     public String getMeasurementType() {
         return this.type;
+    }
+
+    @Override
+    public ArrayList<String> getUnits() {
+        return this.units;
+    }
+
+    @Override
+    public ArrayList<String> getValues() {
+        return this.values;
     }
 }

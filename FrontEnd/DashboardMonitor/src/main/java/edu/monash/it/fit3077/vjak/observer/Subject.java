@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /*
 Apart of the observer design pattern.
  */
-public abstract class Subject {
+public abstract class Subject implements SubjectInterface {
     private final ArrayList<Observer> observers;
 
     protected Subject() {

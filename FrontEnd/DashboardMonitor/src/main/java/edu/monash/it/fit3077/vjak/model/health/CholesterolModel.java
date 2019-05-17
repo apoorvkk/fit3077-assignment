@@ -6,19 +6,11 @@ import edu.monash.it.fit3077.vjak.backendmonitor.QuantityMeasurmentEventModel;
 /*
 This class models the cholesterol model.
  */
-public class CholesterolModel extends HealthMeasurementModel {
+public class CholesterolModel extends HealthMeasurementModel implements CholesterolModelInterface {
     private String value;
     private String unit;
     public CholesterolModel(String patientId) {
         super(patientId);
-    }
-
-    @Override
-    public String getHealthMeasurementResult() {
-        if (this.value != null && this.unit != null){
-            return this.value + " " + this.unit;
-        }
-        return "N/A";
     }
 
     @Override
@@ -38,5 +30,15 @@ public class CholesterolModel extends HealthMeasurementModel {
     @Override
     public String getMeasurementType() {
         return "Cholesterol";
+    }
+
+    @Override
+    public String getValue() {
+        return this.value;
+    }
+
+    @Override
+    public String getUnit() {
+        return this.unit;
     }
 }
