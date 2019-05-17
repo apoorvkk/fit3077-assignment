@@ -7,7 +7,7 @@ import edu.monash.it.fit3077.vjak.observer.Subject;
 /*
 This class represents a generic health measurement model that can register/deregister to receive its values.
  */
-public abstract class HealthMeasurementModel extends Subject implements HealthMeasurementModelInterface { // fix this up Subject and HealthMeasurementModelInterface?
+public abstract class HealthMeasurementModel extends Subject implements HealthMeasurementModelInterface {
     private final MeasurementTracker measurementTracker;
 
     HealthMeasurementModel(String patientId) {
@@ -19,7 +19,6 @@ public abstract class HealthMeasurementModel extends Subject implements HealthMe
         measurementTracker.deregister();
     }
 
-    abstract public String getHealthMeasurementResult(); // create more getters in the subclasses -> interfaces (remove this one here?)
     abstract public void setHealthMeasurementValue(MeasurementEventModel me);
     abstract public String getMeasurementType();
 }

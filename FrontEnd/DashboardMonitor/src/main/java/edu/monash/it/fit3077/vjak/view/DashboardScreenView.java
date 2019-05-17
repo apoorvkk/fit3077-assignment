@@ -29,7 +29,7 @@ public class DashboardScreenView {
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> {
             // Deregister from the server so it does not keep sending more events to a closed application.
-            model.getPatientMonitors().forEach(PatientMonitorModelInterface::removeMeasurements);
+            model.getPatientMonitors().forEach(PatientMonitorModelInterface::stopMonitoring);
         });
     }
 }
