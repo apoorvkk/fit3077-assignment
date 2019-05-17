@@ -27,8 +27,6 @@ public class CholesterolModel extends HealthMeasurementModel {
 
         String value = qme.getValue();
         String unit = qme.getUnit();
-        System.out.println("value: " + value);
-        System.out.println("unit: " + unit);
 
         if (!value.equals(this.value) || !unit.equals(this.unit)) {
             this.value = value;
@@ -38,7 +36,7 @@ public class CholesterolModel extends HealthMeasurementModel {
     }
 
     @Override
-    public String toString() {
+    public String getMeasurementType() {
         return "Cholesterol";
     }
 }

@@ -11,8 +11,12 @@ This provides a nice separation of concerns between the controller and model thr
  */
 public interface PatientMonitorModelInterface extends Observer {
     PatientModelInterface getPatient();
-    void trackMeasurements();
-    void removeMeasurements();
+    void startMonitoring();
+    void trackCholesterol();
+    void trackSystolicBloodPressure();
+    void trackDiastolicBloodPressure();
+    void trackTobaccoUse();
+    void stopMonitoring();
     boolean isBeingMonitored();
     ArrayList<HealthMeasurementModel> getHealthMeasurements();
 }
