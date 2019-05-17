@@ -39,7 +39,7 @@ public class BloodPressurePatientMonitorModel extends PatientMonitorModel {
 
     @Override
     protected int getPollingTime() {
-        return 10;
+        return 10000;
     }
 
     String getMeasurementUnit() {
