@@ -14,6 +14,7 @@ public class TobaccoUsePatientMonitorModel extends PatientMonitorModel {
         super(patientId, firstClientId);
 
         this.observationLoader = new HapiTobaccoUseObservationLoader();
+        this.poll();
     }
 
     @Override

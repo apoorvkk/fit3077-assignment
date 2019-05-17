@@ -19,6 +19,7 @@ public class BloodPressurePatientMonitorModel extends PatientMonitorModel {
         super(patientId, firstClientId);
         this.type = type;
         this.observationLoader = new HapiBloodPressureObservationLoader(type);
+        this.poll();
     }
 
     @Override
