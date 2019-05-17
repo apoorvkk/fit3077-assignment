@@ -15,6 +15,7 @@ public class CholesterolPatientMonitorModel extends PatientMonitorModel {
         super(patientId, firstClientId);
 
         this.observationLoader = new HapiCholesterolObservationLoader();
+        this.poll();
     }
 
     @Override

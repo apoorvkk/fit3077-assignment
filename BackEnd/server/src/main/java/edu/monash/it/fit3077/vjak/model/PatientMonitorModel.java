@@ -1,6 +1,5 @@
 package edu.monash.it.fit3077.vjak.model;
 
-import edu.monash.it.fit3077.vjak.api.hapi.HapiObservationLoader;
 import edu.monash.it.fit3077.vjak.observer.MonitorControllerObserver;
 import edu.monash.it.fit3077.vjak.observer.PatientMonitorSubject;
 
@@ -25,7 +24,6 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
         this.patientId = patientId;
         this.clientIds = new ArrayList<>();
         this.clientIds.add(firstClientId);
-        this.poll();
     }
 
     /*
@@ -51,7 +49,7 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
         return 3600000;
     }
 
-    private void poll() {
+    protected void poll() {
         this.shouldTerminateThread = false;
         Thread pollThread = new Thread(new PollingRunnable());
         pollThread.start();
