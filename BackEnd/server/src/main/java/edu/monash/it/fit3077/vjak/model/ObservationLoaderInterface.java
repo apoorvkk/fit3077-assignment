@@ -6,5 +6,5 @@ caller code which allows us to easily change to a different implementation witho
 logic calling code a lot.
  */
 public interface ObservationLoaderInterface {
-    ObservationModelInterface getLatestObservation(String patientId, String measurementType);
+    <ObservationModelInterface> ObservationModelInterface getLatestObservation(String patientId, String measurementType);
 }

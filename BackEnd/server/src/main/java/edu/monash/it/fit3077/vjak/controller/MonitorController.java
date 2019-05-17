@@ -29,6 +29,7 @@ public class MonitorController implements MonitorControllerObserver {
 
     @RequestMapping(value = "/MonitorRegister", method = RequestMethod.POST) // clients must make a POST request to /MonitorRegister.
     public void register(@RequestBody RequestMonitorInfoModel requestMonitorInfoModel) {
+        System.out.println("register here");
         PatientMonitorModel pm = this.patientMonitorCollectionModel.addMonitor(requestMonitorInfoModel);
         pm.attach(this); // Make sure to observe any updated data for this particular patient monitor.
     }
@@ -41,6 +42,6 @@ public class MonitorController implements MonitorControllerObserver {
 
     public void update(PatientMonitorModel monitor, String clientId) {
         // Send monitor event only to the specified client.
-        this.template.convertAndSend("/topic/" + clientId, new MonitorEventModel(monitor)); // a client should listen into /topic/{their client id}
+        this.template.convertAndSend("/topic/" + clientId, monitor.serialize()); // a client should listen into /topic/{their client id}
     }
 }

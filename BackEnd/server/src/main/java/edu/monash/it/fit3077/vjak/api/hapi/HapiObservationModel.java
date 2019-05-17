@@ -1,6 +1,5 @@
 package edu.monash.it.fit3077.vjak.api.hapi;
 
-import edu.monash.it.fit3077.vjak.model.ObservationModelInterface;
 import org.hl7.fhir.dstu3.model.Observation;
 
 /*
@@ -12,19 +11,14 @@ This class uses the Adapter Pattern where it encapsulates Hapi's specific resour
 that callers will user. We only need to get the value (eg. 194.3343) and unit (eg. mg/dl) of an observation and hence,
 this class will only get those properties from the internal Hapi's Observation object.
 */
-public class HapiObservationModel implements ObservationModelInterface {
-    private final Observation observation;
+public class HapiObservationModel {
+    protected final Observation observation;
 
     HapiObservationModel(Observation resource) {
         this.observation = resource;
     }
 
-    public String getUnit() {
-        return this.observation.getValueQuantity().getUnit();
+    public String getId() {
+        return this.observation.getId();
     }
-
-    public String getValue() {
-        return this.observation.getValueQuantity().getValue().toString();
-    }
-
 }

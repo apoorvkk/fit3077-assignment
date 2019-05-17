@@ -3,7 +3,6 @@ package edu.monash.it.fit3077.vjak.api.hapi;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import edu.monash.it.fit3077.vjak.model.ObservationLoaderInterface;
-import edu.monash.it.fit3077.vjak.model.ObservationModelInterface;
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.Observation;
 
@@ -12,7 +11,7 @@ This class is responsible for loading observations from FHIR. It's a specific co
 of loading observations and hence, tightly coupled with Hapi's Java SDK but does implement a common interface so callers
 can use a common interface and not depend directly on this implementation.
  */
-public class HapiObservationLoader implements ObservationLoaderInterface {
+public abstract class HapiObservationLoader implements ObservationLoaderInterface {
     private final IGenericClient client;
 
     public HapiObservationLoader() {
@@ -24,7 +23,7 @@ public class HapiObservationLoader implements ObservationLoaderInterface {
         this.client = ctx.newRestfulGenericClient(serverBaseUrl);
     }
 
-    public ObservationModelInterface getLatestObservation(String patientId, String measurementCode) {
+    public HapiObservationModel getLatestObservation(String patientId, String measurementCode) {
         /*
             Search observations on patient id and the measurement code (eg. Cholesterol's code is 2093-3).
             The code also sorts by date in descending order so it can retrieve latest observation (most up to date
@@ -40,9 +39,11 @@ public class HapiObservationLoader implements ObservationLoaderInterface {
 
         // Just get the first observation because it's the latest observation.
         try {
-            return new HapiObservationModel((Observation) response.getEntry().get(0).getResource()); //
+            return this.getModel(response);
         } catch (IndexOutOfBoundsException err) {
             return null;
         }
     }
+
+    abstract HapiObservationModel getModel(Bundle response);
 }
