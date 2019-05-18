@@ -14,6 +14,8 @@ class PatientMonitorCreator {
             return new BloodPressurePatientMonitorModel(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getClientId(), requestMonitorInfoModel.getMeasurementType());
         } else if (requestMonitorInfoModel.getMeasurementType().equals("DiastolicBloodPressure")) {
             return new BloodPressurePatientMonitorModel(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getClientId(), requestMonitorInfoModel.getMeasurementType());
+        } else if (requestMonitorInfoModel.getMeasurementType().equals("OralTemperature")) {
+            return new OralTemperaturePatientMonitorModel(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getClientId());
         }
         // SystolicBloodPressure, DiastolicBloodPressure, TobaccoUse
         return null;
