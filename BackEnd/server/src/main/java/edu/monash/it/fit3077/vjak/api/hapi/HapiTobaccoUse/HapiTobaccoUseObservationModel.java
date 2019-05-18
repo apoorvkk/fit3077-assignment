@@ -18,7 +18,7 @@ public class HapiTobaccoUseObservationModel extends HapiObservationModel impleme
     }
 
     /**
-     * Gets the status of the tobacco use measurement from the HAPI oral temperature measurement.
+     * Gets the status of the tobacco use measurement from the HAPI tobacco use measurement.
      * @return the status of the tobacco use measurement.
      */
     public String getStatus() {
