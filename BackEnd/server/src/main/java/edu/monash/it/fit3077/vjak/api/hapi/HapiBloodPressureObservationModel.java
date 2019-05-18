@@ -1,11 +1,12 @@
 package edu.monash.it.fit3077.vjak.api.hapi;
 
+import edu.monash.it.fit3077.vjak.model.BloodPressureObservationModelInterface;
 import org.hl7.fhir.dstu3.model.Observation;
 
 import java.util.List;
 import java.util.function.Function;
 
-public class HapiBloodPressureObservationModel extends HapiObservationModel {
+public class HapiBloodPressureObservationModel extends HapiObservationModel implements BloodPressureObservationModelInterface {
 
     private String type;
 
