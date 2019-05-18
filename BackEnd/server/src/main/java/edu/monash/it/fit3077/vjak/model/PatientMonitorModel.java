@@ -41,7 +41,6 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
                 PatientMonitorModel.this.fetchData();
                 try {
                     Thread.sleep(PatientMonitorModel.this.getPollingTime()); // Polls every hour.
-                    System.out.println("Polled 10 seconds");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

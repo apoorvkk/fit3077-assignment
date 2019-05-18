@@ -36,7 +36,6 @@ public class MonitorController implements MonitorControllerObserver {
      */
     @RequestMapping(value = "/MonitorRegister", method = RequestMethod.POST) // clients must make a POST request to /MonitorRegister.
     public void register(@RequestBody RequestMonitorInfoModel requestMonitorInfoModel) {
-        System.out.println("register here");
         PatientMonitorModel pm = this.patientMonitorCollectionModel.addMonitor(requestMonitorInfoModel);
         pm.attach(this); // Make sure to observe any updated data for this particular patient monitor.
     }
