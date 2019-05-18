@@ -45,5 +45,5 @@ public abstract class HapiObservationLoader implements ObservationLoaderInterfac
         }
     }
 
-    abstract HapiObservationModel getModel(Bundle response);
+    protected abstract HapiObservationModel getModel(Bundle response);
 }

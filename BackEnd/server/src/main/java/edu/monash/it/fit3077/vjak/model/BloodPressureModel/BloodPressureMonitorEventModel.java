@@ -1,4 +1,6 @@
-package edu.monash.it.fit3077.vjak.model;
+package edu.monash.it.fit3077.vjak.model.BloodPressureModel;
+
+import edu.monash.it.fit3077.vjak.model.MonitorEventModel;
 
 public class BloodPressureMonitorEventModel extends MonitorEventModel {
 

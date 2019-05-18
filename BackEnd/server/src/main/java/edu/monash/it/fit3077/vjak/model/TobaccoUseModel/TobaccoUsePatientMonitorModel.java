@@ -1,7 +1,10 @@
-package edu.monash.it.fit3077.vjak.model;
+package edu.monash.it.fit3077.vjak.model.TobaccoUseModel;
 
 
-import edu.monash.it.fit3077.vjak.api.hapi.HapiTobaccoUseObservationLoader;
+import edu.monash.it.fit3077.vjak.api.hapi.HapiTobaccoUse.HapiTobaccoUseObservationLoader;
+import edu.monash.it.fit3077.vjak.model.MonitorEventModel;
+import edu.monash.it.fit3077.vjak.model.PatientMonitorModel;
+
 /*
 This class represents the cholesterol patient monitor type. It is a subtype of PatientMonitorModel and specifies
 the specifics of a cholesterol version of a patient monitor.
@@ -9,7 +12,7 @@ the specifics of a cholesterol version of a patient monitor.
 public class TobaccoUsePatientMonitorModel extends PatientMonitorModel {
     private String measurementStatus;
 
-    TobaccoUsePatientMonitorModel(String patientId, String firstClientId){
+    public TobaccoUsePatientMonitorModel(String patientId, String firstClientId){
 
         super(patientId, firstClientId);
 
@@ -18,7 +21,7 @@ public class TobaccoUsePatientMonitorModel extends PatientMonitorModel {
     }
 
     @Override
-    void fetchData() {
+    protected void fetchData() {
         TobaccoUseObservationModelInterface latestObservation = this.observationLoader.getLatestObservation(this.patientId, TobaccoUsePatientMonitorModel.this.getMeasurementCode());
 
         if (latestObservation != null) {

@@ -1,5 +1,10 @@
 package edu.monash.it.fit3077.vjak.model;
 
+import edu.monash.it.fit3077.vjak.model.BloodPressureModel.BloodPressurePatientMonitorModel;
+import edu.monash.it.fit3077.vjak.model.CholesterolModel.CholesterolPatientMonitorModel;
+import edu.monash.it.fit3077.vjak.model.OralTemperatureModel.OralTemperaturePatientMonitorModel;
+import edu.monash.it.fit3077.vjak.model.TobaccoUseModel.TobaccoUsePatientMonitorModel;
+
 /*
 This class focuses on creating specific monitors (eg. Cholesterol). This class can be extended to
 many other monitors in future.

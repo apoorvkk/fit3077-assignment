@@ -20,7 +20,7 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
     protected ObservationLoaderInterface observationLoader;
     private boolean shouldTerminateThread;
 
-    PatientMonitorModel(String patientId, String firstClientId) {
+    public PatientMonitorModel(String patientId, String firstClientId) {
         this.patientId = patientId;
         this.clientIds = new ArrayList<>();
         this.clientIds.add(firstClientId);
@@ -44,7 +44,7 @@ public abstract class PatientMonitorModel extends PatientMonitorSubject {
         }
     }
 
-    abstract void fetchData();
+    protected abstract void fetchData();
 
     protected int getPollingTime() {
         return 3600000;
