@@ -1,9 +1,9 @@
-package edu.monash.it.fit3077.vjak.model;
+package edu.monash.it.fit3077.vjak.model.BloodPressureModel;
 
 
-import edu.monash.it.fit3077.vjak.api.hapi.HapiBloodPressureObservationLoader;
-
-import java.util.Dictionary;
+import edu.monash.it.fit3077.vjak.api.hapi.HapiBloodPressure.HapiBloodPressureObservationLoader;
+import edu.monash.it.fit3077.vjak.model.MonitorEventModel;
+import edu.monash.it.fit3077.vjak.model.PatientMonitorModel;
 
 /*
 This class represents the cholesterol patient monitor type. It is a subtype of PatientMonitorModel and specifies
@@ -14,7 +14,7 @@ public class BloodPressurePatientMonitorModel extends PatientMonitorModel {
     private String measurementValue;
     private String measurementUnit;
 
-    BloodPressurePatientMonitorModel(String patientId, String firstClientId, String type){
+    public BloodPressurePatientMonitorModel(String patientId, String firstClientId, String type){
 
         super(patientId, firstClientId);
         this.type = type;
@@ -23,7 +23,7 @@ public class BloodPressurePatientMonitorModel extends PatientMonitorModel {
     }
 
     @Override
-    void fetchData() {
+    protected void fetchData() {
         BloodPressureObservationModelInterface latestObservation = this.observationLoader.getLatestObservation(this.patientId, BloodPressurePatientMonitorModel.this.getMeasurementCode());
 
         if (latestObservation != null) {

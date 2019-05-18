@@ -1,6 +1,7 @@
-package edu.monash.it.fit3077.vjak.api.hapi;
+package edu.monash.it.fit3077.vjak.api.hapi.HapiOralTemperature;
 
-import edu.monash.it.fit3077.vjak.model.OralTemperatureObservationModelInterface;
+import edu.monash.it.fit3077.vjak.api.hapi.HapiObservationModel;
+import edu.monash.it.fit3077.vjak.model.OralTemperatureModel.OralTemperatureObservationModelInterface;
 import org.hl7.fhir.dstu3.model.Observation;
 
 public class HapiOralTemperatureObservationModel extends HapiObservationModel implements OralTemperatureObservationModelInterface {

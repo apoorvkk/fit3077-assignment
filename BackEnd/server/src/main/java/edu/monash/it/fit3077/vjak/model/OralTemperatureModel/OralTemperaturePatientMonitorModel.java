@@ -1,7 +1,10 @@
-package edu.monash.it.fit3077.vjak.model;
+package edu.monash.it.fit3077.vjak.model.OralTemperatureModel;
 
 
-import edu.monash.it.fit3077.vjak.api.hapi.HapiOralTemperatureObservationLoader;
+import edu.monash.it.fit3077.vjak.api.hapi.HapiOralTemperature.HapiOralTemperatureObservationLoader;
+import edu.monash.it.fit3077.vjak.model.MonitorEventModel;
+import edu.monash.it.fit3077.vjak.model.PatientMonitorModel;
+
 /*
 This class represents the cholesterol patient monitor type. It is a subtype of PatientMonitorModel and specifies
 the specifics of a cholesterol version of a patient monitor.
@@ -10,7 +13,7 @@ public class OralTemperaturePatientMonitorModel extends PatientMonitorModel {
     private String measurementValue;
     private String measurementUnit;
 
-    OralTemperaturePatientMonitorModel(String patientId, String firstClientId){
+    public OralTemperaturePatientMonitorModel(String patientId, String firstClientId){
 
         super(patientId, firstClientId);
 
@@ -19,7 +22,7 @@ public class OralTemperaturePatientMonitorModel extends PatientMonitorModel {
     }
 
     @Override
-    void fetchData() {
+    protected void fetchData() {
         OralTemperatureObservationModelInterface latestObservation = this.observationLoader.getLatestObservation(this.patientId, OralTemperaturePatientMonitorModel.this.getMeasurementCode());
 
         if (latestObservation != null) {

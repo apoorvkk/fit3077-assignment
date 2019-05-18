@@ -1,6 +1,7 @@
-package edu.monash.it.fit3077.vjak.api.hapi;
+package edu.monash.it.fit3077.vjak.api.hapi.HapiBloodPressure;
 
-import edu.monash.it.fit3077.vjak.model.BloodPressureObservationModelInterface;
+import edu.monash.it.fit3077.vjak.api.hapi.HapiObservationModel;
+import edu.monash.it.fit3077.vjak.model.BloodPressureModel.BloodPressureObservationModelInterface;
 import org.hl7.fhir.dstu3.model.Observation;
 
 import java.util.List;

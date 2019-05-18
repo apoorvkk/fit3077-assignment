@@ -1,11 +1,13 @@
-package edu.monash.it.fit3077.vjak.model;
+package edu.monash.it.fit3077.vjak.model.CholesterolModel;
 
-public class OralTemperatureMonitorEventModel extends MonitorEventModel {
+import edu.monash.it.fit3077.vjak.model.MonitorEventModel;
+
+public class CholesterolMonitorEventModel extends MonitorEventModel {
 
     private String unit;
     private String value;
 
-    OralTemperatureMonitorEventModel(OralTemperaturePatientMonitorModel pm) {
+    CholesterolMonitorEventModel(CholesterolPatientMonitorModel pm) {
         super(pm);
         this.unit = pm.getMeasurementUnit();
         this.value = pm.getMeasurementValue();

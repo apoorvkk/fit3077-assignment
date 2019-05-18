@@ -1,4 +1,6 @@
-package edu.monash.it.fit3077.vjak.model;
+package edu.monash.it.fit3077.vjak.model.TobaccoUseModel;
+
+import edu.monash.it.fit3077.vjak.model.MonitorEventModel;
 
 public class TobaccoUseMonitorEventModel extends MonitorEventModel {
 

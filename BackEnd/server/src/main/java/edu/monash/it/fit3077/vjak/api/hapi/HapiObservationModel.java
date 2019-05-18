@@ -14,7 +14,7 @@ this class will only get those properties from the internal Hapi's Observation o
 public class HapiObservationModel {
     protected final Observation observation;
 
-    HapiObservationModel(Observation resource) {
+    public HapiObservationModel(Observation resource) {
         this.observation = resource;
     }
 
