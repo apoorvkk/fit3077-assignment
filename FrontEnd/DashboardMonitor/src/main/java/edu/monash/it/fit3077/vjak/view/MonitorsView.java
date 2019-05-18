@@ -3,20 +3,18 @@ package edu.monash.it.fit3077.vjak.view;
 import edu.monash.it.fit3077.vjak.Constant;
 import edu.monash.it.fit3077.vjak.model.AbstractPatientMonitorCollectionModel;
 import edu.monash.it.fit3077.vjak.model.PatientMonitorModelInterface;
-import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
-import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModelInterface;
 import edu.monash.it.fit3077.vjak.observer.Observer;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /*
 This class is responsible for rendering the main dashboard view and updating the monitors whenever selected patient measurment
@@ -26,12 +24,14 @@ public class MonitorsView implements JavaFXView, Observer {
     private final Node rootNode;
     private final AbstractPatientMonitorCollectionModel model;
     private final VBox patientDetailListVBox;
+    private LinkedHashMap<PatientMonitorModelInterface, PatientMonitorView> currentList;
 
     MonitorsView(AbstractPatientMonitorCollectionModel model) {
         /*
         Observe the model and setup the view base infrastructure. This class does not need a controller at the moment
         because it is not receiving any user input.
          */
+        this.currentList = new LinkedHashMap<>();
         this.model = model;
         this.model.attach(this);
 
@@ -58,34 +58,28 @@ public class MonitorsView implements JavaFXView, Observer {
 
     public void update() {
         Platform.runLater(() -> { // run on main thread instead of the thread that received the event because that thread cannot update view due to Java FX restrictions.
-            ArrayList<PatientMonitorModelInterface> selectedPatientMonitors = this.model.getSelectedPatientMonitors();
+            ArrayList<PatientMonitorModelInterface> latestSelectedPatientMonitors = this.model.getSelectedPatientMonitors();
 
-            this.patientDetailListVBox.getChildren().clear(); // Remove all monitors.
+            LinkedHashMap<PatientMonitorModelInterface, PatientMonitorView> updatedList = new LinkedHashMap<>();
+            latestSelectedPatientMonitors.forEach(pm -> {
+                PatientMonitorView view;
 
-            // Rerender new patients and their relevant monitors.
-            selectedPatientMonitors.forEach(patientMonitor -> {
-                GridPane patientDetailsPane = new GridPane();
-                patientDetailsPane.setPrefWidth(0.75 * Constant.guiWindowWidth - 20d);
-                patientDetailsPane.setBorder(new Border(new BorderStroke(Color.BLACK,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
-                patientDetailsPane.add(new Text("Id:"), 0, 0);
-                patientDetailsPane.add(new Text(patientMonitor.getPatient().getId()), 1, 0);
-                patientDetailsPane.add(new Text("Name: "), 0, 1);
-                patientDetailsPane.add(new Text(patientMonitor.getPatient().getName()), 1, 1);
-
-                // Render the monitors for a given patient.
-                int nextRow = 2;
-                for (HealthMeasurementModelInterface healthMeasurement: patientMonitor.getHealthMeasurements()) {
-                    healthMeasurement.attach(MonitorsView.this);
-                    patientDetailsPane.add(new Text(healthMeasurement.getMeasurementType() + ": "), 0, nextRow);
-                    patientDetailsPane.add(new Text(healthMeasurement.getHealthMeasurementResult()), 1, nextRow);
-                    nextRow++;
+                if (this.currentList.containsKey(pm)) {
+                    view = this.currentList.get(pm);
+                } else {
+                    view = new PatientMonitorView(pm);
                 }
-
-                // Attach to the view.
-                this.patientDetailListVBox.getChildren().add(patientDetailsPane);
+                updatedList.put(pm, view);
             });
+            this.currentList = updatedList;
+
+            ArrayList<Node> nodes = new ArrayList<>();
+            for (PatientMonitorModelInterface pm : this.currentList.keySet()) {
+                PatientMonitorView view = this.currentList.get(pm);
+                nodes.add(view.getRootNode());
+            }
+            this.patientDetailListVBox.getChildren().clear();
+            this.patientDetailListVBox.getChildren().addAll(nodes);
         });
     }
 }
