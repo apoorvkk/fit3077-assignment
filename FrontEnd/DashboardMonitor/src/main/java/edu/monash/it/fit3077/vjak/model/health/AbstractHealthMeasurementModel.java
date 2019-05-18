@@ -6,10 +6,10 @@ import edu.monash.it.fit3077.vjak.observer.Subject;
 /*
 This class represents a generic health measurement model that can register/deregister to receive its values.
  */
-public abstract class HealthMeasurementModel extends Subject implements HealthMeasurementModelInterface {
-    private final MeasurementTracker measurementTracker;
+public abstract class AbstractHealthMeasurementModel extends Subject {
+    private MeasurementTracker measurementTracker;
 
-    public HealthMeasurementModel(String patientId) {
+    public void track(String patientId) {
         this.measurementTracker = new MeasurementTracker(patientId, this.getMeasurementType());
         this.measurementTracker.register();
     }
@@ -18,6 +18,7 @@ public abstract class HealthMeasurementModel extends Subject implements HealthMe
         measurementTracker.deregister();
     }
 
+    abstract public String getDescription();
     abstract public void setHealthMeasurementValue(MeasurementEventModel me);
     abstract public String getMeasurementType();
 }
