@@ -3,6 +3,7 @@ package edu.monash.it.fit3077.vjak.model.health;
 import edu.monash.it.fit3077.vjak.Constant;
 import edu.monash.it.fit3077.vjak.model.health.BloodPressure.BloodPressureModel;
 import edu.monash.it.fit3077.vjak.model.health.Cholesterol.CholesterolModel;
+import edu.monash.it.fit3077.vjak.model.health.OralTemperature.OralTemperatureModel;
 import edu.monash.it.fit3077.vjak.model.health.TobaccoUse.TobaccoUseModel;
 
 /*
@@ -24,6 +25,9 @@ public class HealthMeasurementCreator {
                 break;
             case Constant.systolicBloodPressure:
                 hm = new BloodPressureModel(patientId, Constant.systolic);
+                break;
+            case Constant.oralTemperature:
+                hm = new OralTemperatureModel(patientId);
                 break;
             default:
                 return null;

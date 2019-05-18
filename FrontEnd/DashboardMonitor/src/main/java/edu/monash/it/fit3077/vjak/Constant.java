@@ -11,6 +11,7 @@ public class Constant {
     public static final String clientId = UUID.randomUUID().toString() + System.currentTimeMillis(); // Represents the frontend id and the server will use this as identification.
     public static final Double guiWindowHeight = 400d;
     public static final Double guiWindowWidth = 800d;
+    public static final String oralTemperature = "OralTemperature";
     public static final String cholesterol = "Cholesterol";
     public static final String tobaccoUse = "TobaccoUse";
     public static final String systolic = "Systolic";
@@ -21,6 +22,7 @@ public class Constant {
     public static final ArrayList<String> monitorOrder = new ArrayList<String>(){{
         add(Constant.cholesterol);
         add(Constant.tobaccoUse);
+        add(Constant.oralTemperature);
         add(Constant.systolicBloodPressure);
         add(Constant.diastolicBloodPressure);
     }};

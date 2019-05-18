@@ -3,12 +3,12 @@ package edu.monash.it.fit3077.vjak.model.health.BloodPressure;
 import edu.monash.it.fit3077.vjak.Constant;
 import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEventModel;
 import edu.monash.it.fit3077.vjak.backendmonitor.QuantityMeasurmentEventModel;
-import edu.monash.it.fit3077.vjak.model.health.AbstractHealthMeasurementModel;
+import edu.monash.it.fit3077.vjak.model.health.AbstractQuantityModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BloodPressureModel extends AbstractHealthMeasurementModel implements BloodPressureInterface {
+public class BloodPressureModel extends AbstractQuantityModel implements BloodPressureInterface {
     private String bloodType;
     private String unit;
     private ArrayList<String> values;
@@ -39,11 +39,6 @@ public class BloodPressureModel extends AbstractHealthMeasurementModel implement
     @Override
     public String getMeasurementType() {
         return this.bloodType + "BloodPressure";
-    }
-
-    @Override
-    public String getUnit() {
-        return this.unit;
     }
 
     @Override

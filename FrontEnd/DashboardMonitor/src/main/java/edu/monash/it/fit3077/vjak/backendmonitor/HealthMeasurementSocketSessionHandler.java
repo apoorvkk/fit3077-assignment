@@ -51,8 +51,7 @@ class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
 
         MeasurementEventModel me;
         LinkedHashMap<String, String> data = (LinkedHashMap<String, String>) payload;
-
-        if (data.get("type").equals("Cholesterol") || data.get("type").equals("SystolicBloodPressure") || data.get("type").equals("DiastolicBloodPressure")) {
+        if (data.get("type").equals(Constant.cholesterol) || data.get("type").equals(Constant.oralTemperature) || data.get("type").equals(Constant.systolicBloodPressure) || data.get("type").equals(Constant.diastolicBloodPressure)) {
             me = new QuantityMeasurmentEventModel(data);
         } else {
             me = new QualityMeasurementEventModel(data);
