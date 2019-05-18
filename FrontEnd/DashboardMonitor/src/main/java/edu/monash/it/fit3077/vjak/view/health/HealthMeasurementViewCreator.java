@@ -20,6 +20,9 @@ public class HealthMeasurementViewCreator {
             case Constant.systolicBloodPressure:
                 hmv = new BloodPressureView(hm);
                 break;
+            case Constant.oralTemperature:
+                hmv = new OralTemperatureView(hm);
+                break;
             default:
                 return null;
         }

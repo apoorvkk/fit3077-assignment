@@ -63,6 +63,14 @@ public class PatientMonitorView implements JavaFXView, Observer {
                 this.controller.removeHealthMeasurement(Constant.cholesterol);
             }
         });
+        CheckBox oralTemperatureOptionCheckbox = new CheckBox("Oral Temperature");
+        oralTemperatureOptionCheckbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
+            if (oralTemperatureOptionCheckbox.isSelected()) {
+                this.controller.trackMeasurement(Constant.oralTemperature);
+            } else {
+                this.controller.removeHealthMeasurement(Constant.oralTemperature);
+            }
+        });
         CheckBox tobaccoUseOptionCheckbox = new CheckBox("Tobacco Use");
         tobaccoUseOptionCheckbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
             if (tobaccoUseOptionCheckbox.isSelected()) {
@@ -90,6 +98,7 @@ public class PatientMonitorView implements JavaFXView, Observer {
 
         monitorOptionsVBox.getChildren().add(cholesterolOptionCheckbox);
         monitorOptionsVBox.getChildren().add(tobaccoUseOptionCheckbox);
+        monitorOptionsVBox.getChildren().add(oralTemperatureOptionCheckbox);
         monitorOptionsVBox.getChildren().add(systolicBloodPressureOptionCheckbox);
         monitorOptionsVBox.getChildren().add(diastolicBloodPressureOptionCheckbox);
 

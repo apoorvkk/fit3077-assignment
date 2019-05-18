@@ -46,7 +46,7 @@ public class OralTemperaturePatientMonitorModel extends PatientMonitorModel {
     }
 
     public String getMeasurementType() {
-        return "Oral Temperature";
+        return "OralTemperature";
     }
 
     protected String getMeasurementCode() {
