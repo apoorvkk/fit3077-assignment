@@ -5,12 +5,19 @@ import edu.monash.it.fit3077.vjak.model.CholesterolModel.CholesterolPatientMonit
 import edu.monash.it.fit3077.vjak.model.OralTemperatureModel.OralTemperaturePatientMonitorModel;
 import edu.monash.it.fit3077.vjak.model.TobaccoUseModel.TobaccoUsePatientMonitorModel;
 
-/*
-This class focuses on creating specific monitors (eg. Cholesterol). This class can be extended to
-many other monitors in future.
+/**
+ * This class focuses on creating specific monitors (eg. Cholesterol). This class can be extended to
+ * many other monitors in future.
  */
 class PatientMonitorCreator {
+
+    /**
+     * Creates different types of patient monitors based on the monitor request information.
+     * @param requestMonitorInfoModel: the monitor request information.
+     * @return the patient monitor as requested in the monitor request information.
+     */
     public static PatientMonitorModel createMonitor(RequestMonitorInfoModel requestMonitorInfoModel) {
+
         if (requestMonitorInfoModel.getMeasurementType().equals("Cholesterol")) {
             return new CholesterolPatientMonitorModel(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getClientId());
         } else if (requestMonitorInfoModel.getMeasurementType().equals("TobaccoUse")) {
@@ -22,7 +29,7 @@ class PatientMonitorCreator {
         } else if (requestMonitorInfoModel.getMeasurementType().equals("OralTemperature")) {
             return new OralTemperaturePatientMonitorModel(requestMonitorInfoModel.getPatientId(), requestMonitorInfoModel.getClientId());
         }
-        // SystolicBloodPressure, DiastolicBloodPressure, TobaccoUse
+
         return null;
     }
 }
