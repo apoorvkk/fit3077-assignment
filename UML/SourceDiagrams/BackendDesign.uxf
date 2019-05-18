@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.3">
+<diagram program="umlet" version="14.3.0">
   <zoom_level>6</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
       <x>0</x>
-      <y>114</y>
+      <y>198</y>
       <w>810</w>
-      <h>396</h>
+      <h>498</h>
     </coordinates>
     <panel_attributes>hapi
 --
@@ -18,7 +18,7 @@
     <id>UMLPackage</id>
     <coordinates>
       <x>1734</x>
-      <y>774</y>
+      <y>960</y>
       <w>288</w>
       <h>108</h>
     </coordinates>
@@ -31,9 +31,9 @@
     <id>UMLPackage</id>
     <coordinates>
       <x>816</x>
-      <y>0</y>
+      <y>78</y>
       <w>1086</w>
-      <h>732</h>
+      <h>840</h>
     </coordinates>
     <panel_attributes>model
 --
@@ -44,7 +44,7 @@
     <id>UMLPackage</id>
     <coordinates>
       <x>1374</x>
-      <y>774</y>
+      <y>960</y>
       <w>348</w>
       <h>156</h>
     </coordinates>
@@ -57,7 +57,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1386</x>
-      <y>882</y>
+      <y>1068</y>
       <w>246</w>
       <h>42</h>
     </coordinates>
@@ -71,7 +71,7 @@ MonitorControllerObserver
     <id>UMLClass</id>
     <coordinates>
       <x>1386</x>
-      <y>798</y>
+      <y>984</y>
       <w>246</w>
       <h>78</h>
     </coordinates>
@@ -89,7 +89,7 @@ PatientMonitorSubject
     <id>UMLClass</id>
     <coordinates>
       <x>132</x>
-      <y>414</y>
+      <y>600</y>
       <w>366</w>
       <h>66</h>
     </coordinates>
@@ -106,7 +106,7 @@ HapiObservationLoader
     <id>UMLClass</id>
     <coordinates>
       <x>582</x>
-      <y>414</y>
+      <y>600</y>
       <w>180</w>
       <h>54</h>
     </coordinates>
@@ -122,7 +122,7 @@ HapiObservationModel
     <id>UMLClass</id>
     <coordinates>
       <x>1740</x>
-      <y>798</y>
+      <y>984</y>
       <w>276</w>
       <h>72</h>
     </coordinates>
@@ -141,7 +141,7 @@ HapiObservationModel
     <id>UMLClass</id>
     <coordinates>
       <x>996</x>
-      <y>486</y>
+      <y>672</y>
       <w>312</w>
       <h>198</h>
     </coordinates>
@@ -171,7 +171,7 @@ PatientMonitorModel
     <id>UMLClass</id>
     <coordinates>
       <x>1122</x>
-      <y>126</y>
+      <y>312</y>
       <w>186</w>
       <h>90</h>
     </coordinates>
@@ -191,7 +191,7 @@ PatientMonitorModel
     <id>UMLClass</id>
     <coordinates>
       <x>1632</x>
-      <y>438</y>
+      <y>624</y>
       <w>174</w>
       <h>96</h>
     </coordinates>
@@ -210,8 +210,8 @@ PatientMonitorModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>828</x>
-      <y>30</y>
+      <x>834</x>
+      <y>114</y>
       <w>366</w>
       <h>48</h>
     </coordinates>
@@ -225,9 +225,9 @@ ObservationLoaderInterface
     <id>UMLClass</id>
     <coordinates>
       <x>828</x>
-      <y>132</y>
+      <y>318</y>
       <w>240</w>
-      <h>48</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 CholesterolObservationModelInterface
@@ -240,7 +240,7 @@ CholesterolObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>1374</x>
-      <y>612</y>
+      <y>798</y>
       <w>336</w>
       <h>60</h>
     </coordinates>
@@ -257,7 +257,7 @@ CholesterolObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>1374</x>
-      <y>546</y>
+      <y>732</y>
       <w>348</w>
       <h>42</h>
     </coordinates>
@@ -270,7 +270,7 @@ CholesterolObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>1632</x>
-      <y>318</y>
+      <y>504</y>
       <w>264</w>
       <h>114</h>
     </coordinates>
@@ -292,7 +292,7 @@ CholesterolObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>828</x>
-      <y>246</y>
+      <y>432</y>
       <w>240</w>
       <h>60</h>
     </coordinates>
@@ -307,7 +307,7 @@ BloodPressureObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>834</x>
-      <y>390</y>
+      <y>576</y>
       <w>240</w>
       <h>48</h>
     </coordinates>
@@ -321,7 +321,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>582</x>
-      <y>156</y>
+      <y>342</y>
       <w>180</w>
       <h>48</h>
     </coordinates>
@@ -335,7 +335,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>582</x>
-      <y>246</y>
+      <y>432</y>
       <w>180</w>
       <h>60</h>
     </coordinates>
@@ -352,7 +352,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>582</x>
-      <y>336</y>
+      <y>522</y>
       <w>180</w>
       <h>48</h>
     </coordinates>
@@ -365,18 +365,18 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>756</x>
-      <y>144</y>
+      <y>354</y>
       <w>84</w>
-      <h>42</h>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>756</x>
-      <y>372</y>
+      <y>558</y>
       <w>90</w>
       <h>42</h>
     </coordinates>
@@ -387,7 +387,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>1122</x>
-      <y>246</y>
+      <y>432</y>
       <w>186</w>
       <h>90</h>
     </coordinates>
@@ -407,7 +407,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>1122</x>
-      <y>378</y>
+      <y>564</y>
       <w>186</w>
       <h>78</h>
     </coordinates>
@@ -425,7 +425,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1062</x>
-      <y>144</y>
+      <y>348</y>
       <w>72</w>
       <h>18</h>
     </coordinates>
@@ -436,7 +436,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1062</x>
-      <y>264</y>
+      <y>450</y>
       <w>72</w>
       <h>18</h>
     </coordinates>
@@ -447,7 +447,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1068</x>
-      <y>408</y>
+      <y>594</y>
       <w>66</w>
       <h>18</h>
     </coordinates>
@@ -458,7 +458,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>630</y>
+      <y>816</y>
       <w>84</w>
       <h>18</h>
     </coordinates>
@@ -469,7 +469,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1518</x>
-      <y>666</y>
+      <y>852</y>
       <w>18</w>
       <h>144</h>
     </coordinates>
@@ -480,7 +480,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1626</x>
-      <y>864</y>
+      <y>1050</y>
       <w>270</w>
       <h>54</h>
     </coordinates>
@@ -491,7 +491,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>564</y>
+      <y>750</y>
       <w>84</w>
       <h>18</h>
     </coordinates>
@@ -502,7 +502,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>1518</x>
-      <y>582</y>
+      <y>768</y>
       <w>18</w>
       <h>42</h>
     </coordinates>
@@ -513,7 +513,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>756</x>
-      <y>264</y>
+      <y>450</y>
       <w>84</w>
       <h>18</h>
     </coordinates>
@@ -524,7 +524,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>156</y>
+      <y>342</y>
       <w>366</w>
       <h>36</h>
     </coordinates>
@@ -538,7 +538,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>132</x>
-      <y>252</y>
+      <y>438</y>
       <w>366</w>
       <h>48</h>
     </coordinates>
@@ -554,7 +554,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>132</x>
-      <y>336</y>
+      <y>522</y>
       <w>366</w>
       <h>36</h>
     </coordinates>
@@ -568,7 +568,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>84</x>
-      <y>162</y>
+      <y>348</y>
       <w>60</w>
       <h>306</h>
     </coordinates>
@@ -579,7 +579,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>84</x>
-      <y>270</y>
+      <y>456</y>
       <w>60</w>
       <h>198</h>
     </coordinates>
@@ -590,7 +590,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>84</x>
-      <y>348</y>
+      <y>534</y>
       <w>60</w>
       <h>120</h>
     </coordinates>
@@ -601,7 +601,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>534</x>
-      <y>168</y>
+      <y>354</y>
       <w>60</w>
       <h>300</h>
     </coordinates>
@@ -612,7 +612,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>534</x>
-      <y>276</y>
+      <y>462</y>
       <w>60</w>
       <h>192</h>
     </coordinates>
@@ -623,7 +623,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>534</x>
-      <y>348</y>
+      <y>534</y>
       <w>60</w>
       <h>120</h>
     </coordinates>
@@ -634,7 +634,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>480</x>
-      <y>156</y>
+      <y>342</y>
       <w>114</w>
       <h>18</h>
     </coordinates>
@@ -645,7 +645,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>492</x>
-      <y>264</y>
+      <y>450</y>
       <w>102</w>
       <h>18</h>
     </coordinates>
@@ -656,7 +656,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>492</x>
-      <y>342</y>
+      <y>528</y>
       <w>102</w>
       <h>18</h>
     </coordinates>
@@ -667,7 +667,7 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>492</x>
-      <y>432</y>
+      <y>618</y>
       <w>102</w>
       <h>18</h>
     </coordinates>
@@ -678,18 +678,18 @@ TobbacoUseObservationModelInterface
     <id>Relation</id>
     <coordinates>
       <x>24</x>
-      <y>36</y>
-      <w>816</w>
-      <h>468</h>
+      <y>120</y>
+      <w>822</w>
+      <h>570</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>1340.0;10.0;10.0;10.0;10.0;760.0;480.0;760.0;480.0;750.0</additional_attributes>
+    <additional_attributes>1350.0;10.0;20.0;10.0;10.0;930.0;480.0;930.0;480.0;920.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1386</x>
-      <y>126</y>
+      <y>312</y>
       <w>174</w>
       <h>90</h>
     </coordinates>
@@ -709,7 +709,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>1386</x>
-      <y>252</y>
+      <y>438</y>
       <w>174</w>
       <h>90</h>
     </coordinates>
@@ -729,7 +729,7 @@ TobbacoUseObservationModelInterface
     <id>UMLClass</id>
     <coordinates>
       <x>1386</x>
-      <y>378</y>
+      <y>564</y>
       <w>174</w>
       <h>66</h>
     </coordinates>
@@ -747,7 +747,7 @@ TobbacoUseObservationModelInterface
     <id>UMLPackage</id>
     <coordinates>
       <x>72</x>
-      <y>138</y>
+      <y>324</y>
       <w>726</w>
       <h>72</h>
     </coordinates>
@@ -760,7 +760,7 @@ bg=white</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>72</x>
-      <y>228</y>
+      <y>414</y>
       <w>726</w>
       <h>84</h>
     </coordinates>
@@ -773,7 +773,7 @@ bg=white</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>72</x>
-      <y>318</y>
+      <y>504</y>
       <w>726</w>
       <h>72</h>
     </coordinates>
@@ -786,7 +786,7 @@ bg=white</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>822</x>
-      <y>108</y>
+      <y>294</y>
       <w>744</w>
       <h>114</h>
     </coordinates>
@@ -799,7 +799,7 @@ bg=white</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>822</x>
-      <y>228</y>
+      <y>414</y>
       <w>744</w>
       <h>120</h>
     </coordinates>
@@ -812,7 +812,7 @@ bg=white</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>822</x>
-      <y>354</y>
+      <y>540</y>
       <w>744</w>
       <h>108</h>
     </coordinates>
@@ -825,7 +825,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>162</y>
+      <y>348</y>
       <w>60</w>
       <h>396</h>
     </coordinates>
@@ -836,7 +836,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>276</y>
+      <y>462</y>
       <w>60</w>
       <h>282</h>
     </coordinates>
@@ -847,7 +847,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>408</y>
+      <y>594</y>
       <w>60</w>
       <h>150</h>
     </coordinates>
@@ -858,7 +858,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>144</y>
+      <y>330</y>
       <w>96</w>
       <h>18</h>
     </coordinates>
@@ -869,7 +869,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>264</y>
+      <y>450</y>
       <w>96</w>
       <h>18</h>
     </coordinates>
@@ -880,7 +880,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>402</y>
+      <y>588</y>
       <w>96</w>
       <h>18</h>
     </coordinates>
@@ -891,7 +891,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1140</x>
-      <y>678</y>
+      <y>864</y>
       <w>774</w>
       <h>276</h>
     </coordinates>
@@ -902,7 +902,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>510</y>
+      <y>696</y>
       <w>342</w>
       <h>18</h>
     </coordinates>
@@ -913,7 +913,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1872</x>
-      <y>426</y>
+      <y>612</y>
       <w>18</w>
       <h>372</h>
     </coordinates>
@@ -924,7 +924,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>180</y>
+      <y>366</y>
       <w>84</w>
       <h>390</h>
     </coordinates>
@@ -935,7 +935,7 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>288</y>
+      <y>474</y>
       <w>84</w>
       <h>282</h>
     </coordinates>
@@ -946,11 +946,208 @@ bg=white</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1302</x>
-      <y>426</y>
+      <y>612</y>
       <w>84</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;110.0;10.0;110.0;220.0;120.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>258</y>
+      <w>366</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>HapiOralTemperatureObservationLoader
+--
+- fetchData(response: Bundle): HapiOralTemperatureObservationModel
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>252</y>
+      <w>180</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>HapiOralTemperatureObservationModel
+--
++ getUnit(): String
++ getValue(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>72</x>
+      <y>228</y>
+      <w>726</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>HapiOralTemperature
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>84</x>
+      <y>270</y>
+      <w>60</w>
+      <h>384</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;620.0;10.0;620.0;10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>264</y>
+      <w>114</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>534</x>
+      <y>276</y>
+      <w>60</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;610.0;10.0;610.0;10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>198</y>
+      <w>240</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+OralTemperatureObservationModelInterface
+--
++ getUnit(): String
++ getValue(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1116</x>
+      <y>186</y>
+      <w>192</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>OralTemperaturePatientMonitorModel
+--
+- measurementUnit: String
+- measurementValue: String
+--
+- getMeasurementCode(): String
++ getMeasurementType(): String
++ getMeasurementUnit(): String
++ getMeasurementValue(): String
++ serialize(): OralTemperatureMonitorEventModel</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1386</x>
+      <y>186</y>
+      <w>174</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>OralTemperatureMonitorEventModel
+--
+- unit: String
+- value: String
+--
++ getUnit(): String
++ getValue(): String
++ setUnit(unit: String): void
++ setValue(value: String): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>822</x>
+      <y>168</y>
+      <w>744</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>OralTemperatureModel
+--
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1062</x>
+      <y>222</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1302</x>
+      <y>210</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>234</y>
+      <w>84</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1302</x>
+      <y>228</y>
+      <w>60</w>
+      <h>516</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;840.0;80.0;840.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1302</x>
+      <y>246</y>
+      <w>84</w>
+      <h>510</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0;110.0;830.0;120.0;830.0</additional_attributes>
   </element>
 </diagram>
