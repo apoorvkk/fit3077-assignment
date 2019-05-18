@@ -7,18 +7,35 @@ import org.hl7.fhir.dstu3.model.Observation;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * Represents HAPI's version of the blood pressure measurement.
+ */
 public class HapiBloodPressureObservationModel extends HapiObservationModel implements BloodPressureObservationModelInterface {
 
     private String type;
 
+    /**
+     * Instantiates the blood pressure measurement presentation model.
+     * @param resource: HAPI's blood pressure measurement.
+     * @param type: the blood pressure type (systolic or diastolic).
+     */
     HapiBloodPressureObservationModel(Observation resource, String type) {
 
         super(resource);
         this.type = type;
     }
 
+    /**
+     * Gets the type of blood pressure this model holds.
+     * @return
+     */
     public String getType() { return this.type; }
 
+    /**
+     * Performs an operation on a blood pressure measurement of this model's type.
+     * @param getDesiredProperty: the operation to perform on the blood pressure measurement.
+     * @return
+     */
     private String selectBloodPressure(Function<Observation.ObservationComponentComponent, String> getDesiredProperty) {
 
         List<Observation.ObservationComponentComponent> bloodPressureObservations = this.observation.getComponent();
@@ -31,16 +48,18 @@ public class HapiBloodPressureObservationModel extends HapiObservationModel impl
         return null;
     }
 
-//    private String retrieveHapiUnit(Observation.ObservationComponentComponent bloodPressureComponent) {
-//        return bloodPressureComponent.getValueQuantity().getUnit();
-//    }
-//    private String retrieveHapiValue(Observation.ObservationComponentComponent bloodPressureComponent) {
-//        return bloodPressureComponent.getValueQuantity().getValue().toString();
-//    }
+    /**
+     * Gets the unit of the blood pressure measurement from the HAPI blood pressure measurement.
+     * @return the unit of the blood pressure measurement.
+     */
     public String getUnit() {
         return this.selectBloodPressure(bloodPressureObservation -> bloodPressureObservation.getValueQuantity().getUnit());
     }
 
+    /**
+     * Gets the value of the blood pressure measurement from the HAPI blood pressure measurement.
+     * @return the value of the blood pressure measurement.
+     */
     public String getValue() {
         return this.selectBloodPressure(bloodPressureObservation -> bloodPressureObservation.getValueQuantity().getValue().toString());
     }
