@@ -27,7 +27,7 @@ public class HapiBloodPressureObservationModel extends HapiObservationModel impl
 
     /**
      * Gets the type of blood pressure this model holds.
-     * @return
+     * @return the type of the blood pressure measurement.
      */
     public String getType() { return this.type; }
 
