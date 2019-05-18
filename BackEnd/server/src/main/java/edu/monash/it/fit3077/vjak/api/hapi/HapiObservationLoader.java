@@ -6,14 +6,17 @@ import edu.monash.it.fit3077.vjak.model.ObservationLoaderInterface;
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.Observation;
 
-/*
-This class is responsible for loading observations from FHIR. It's a specific concrete implementation
-of loading observations and hence, tightly coupled with Hapi's Java SDK but does implement a common interface so callers
-can use a common interface and not depend directly on this implementation.
+/**
+ * This class is responsible for loading observations from FHIR. It's a specific concrete implementation
+ * of loading observations and hence, tightly coupled with Hapi's Java SDK but does implement a common interface so callers
+ * can use a common interface and not depend directly on this implementation.
  */
 public abstract class HapiObservationLoader implements ObservationLoaderInterface {
     private final IGenericClient client;
 
+    /**
+     * Initialize the loader
+     */
     public HapiObservationLoader() {
         /* Initialize fhir client */
         FhirContext ctx = FhirContext.forDstu3();
@@ -23,6 +26,12 @@ public abstract class HapiObservationLoader implements ObservationLoaderInterfac
         this.client = ctx.newRestfulGenericClient(serverBaseUrl);
     }
 
+    /**
+     * Gets the latest health measurement of a specified health measurement of a specified patient.
+     * @param patientId: the id of the patient whose measurement we want to retrieve.
+     * @param measurementCode: the code of the health measurement of the HAPI server.
+     * @return HAPI version of the health measurement model.
+     */
     public HapiObservationModel getLatestObservation(String patientId, String measurementCode) {
         /*
             Search observations on patient id and the measurement code (eg. Cholesterol's code is 2093-3).
@@ -45,5 +54,10 @@ public abstract class HapiObservationLoader implements ObservationLoaderInterfac
         }
     }
 
+    /**
+     * Interprets the response of a health measurement request from the HAPI API.
+     * @param response: the response from the HAPI API.
+     * @return the latest health measurement.
+     */
     protected abstract HapiObservationModel getModel(Bundle response);
 }
