@@ -1,13 +1,21 @@
 package edu.monash.it.fit3077.vjak.model.health.TobaccoUse;
 
+import edu.monash.it.fit3077.vjak.Constant;
 import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEventModel;
 import edu.monash.it.fit3077.vjak.backendmonitor.QualityMeasurementEventModel;
-import edu.monash.it.fit3077.vjak.model.health.HealthMeasurementModel;
+import edu.monash.it.fit3077.vjak.model.health.AbstractHealthMeasurementModel;
 
-public class TobaccoUseModel extends HealthMeasurementModel implements TobaccoUseModelInterface{
+public class TobaccoUseModel extends AbstractHealthMeasurementModel implements TobaccoUseModelInterface{
     private String status;
 
-    public TobaccoUseModel(String patientId) { super(patientId); }
+    public TobaccoUseModel(String patientId) {
+        this.track(patientId);
+    }
+
+    @Override
+    public String getDescription() {
+        return "Tobacco Use";
+    }
 
     @Override
     public void setHealthMeasurementValue(MeasurementEventModel me) {
@@ -23,7 +31,7 @@ public class TobaccoUseModel extends HealthMeasurementModel implements TobaccoUs
 
     @Override
     public String getMeasurementType() {
-        return "TobaccoUse";
+        return Constant.tobaccoUse;
     }
 
     @Override
