@@ -11,7 +11,7 @@ public class OralTemperatureMonitorEventModel extends MonitorEventModel {
     private String value;
 
     /**
-     * Initializes the cholesterol data to be sent via web sockets.
+     * Initializes the oral temperature data to be sent via web sockets.
      * @param pm: the patient whose oral temperature data is to be sent.
      */
     OralTemperatureMonitorEventModel(OralTemperaturePatientMonitorModel pm) {
