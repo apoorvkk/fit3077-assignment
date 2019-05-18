@@ -6,9 +6,9 @@ import org.springframework.web.socket.config.annotation.AbstractWebSocketMessage
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
-/*
-This class is responsible for defining the web socket configuration. It defines the necessary endpoints that clients
-must connect to establish a connection and also topics to subscribe to listen for events.
+/**
+ * This class is responsible for defining the web socket configuration. It defines the necessary endpoints that clients
+ * must connect to establish a connection and also topics to subscribe to listen for events.
  */
 @Configuration
 @EnableWebSocketMessageBroker

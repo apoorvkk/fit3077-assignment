@@ -1,7 +1,7 @@
 package edu.monash.it.fit3077.vjak.model;
 
-/*
-This class models the data that will be sent to connected clients via web sockets.
+/**
+ * This class models the data that will be sent to connected clients via web sockets.
  */
 public class MonitorEventModel {
     private String patient;
