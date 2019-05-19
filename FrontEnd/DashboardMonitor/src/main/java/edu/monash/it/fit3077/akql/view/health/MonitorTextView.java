@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 /*
 This class is responsible to render a text based version of a given monitor.
  */
-public abstract class MonitorTextView extends HealthMeasurementView {
+public abstract class MonitorTextView extends AbstractHealthMeasurementView {
     private Text currentTextNode;
 
     /**

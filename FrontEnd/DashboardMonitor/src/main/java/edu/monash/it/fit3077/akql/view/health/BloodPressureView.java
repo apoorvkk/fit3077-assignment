@@ -16,7 +16,7 @@ import java.util.Date;
 /*
 This class is responsible to render a graph for the blood pressure monitor.
  */
-public class BloodPressureView extends HealthMeasurementView {
+public class BloodPressureView extends AbstractHealthMeasurementView {
     private XYChart.Series<String, Number> series;
     private final int windowSize = 10;
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");

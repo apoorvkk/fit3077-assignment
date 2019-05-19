@@ -6,7 +6,7 @@ import edu.monash.it.fit3077.akql.controller.PatientMonitorController;
 import edu.monash.it.fit3077.akql.model.PatientMonitorModelInterface;
 import edu.monash.it.fit3077.akql.model.health.AbstractHealthMeasurementModel;
 import edu.monash.it.fit3077.akql.observer.Observer;
-import edu.monash.it.fit3077.akql.view.health.HealthMeasurementView;
+import edu.monash.it.fit3077.akql.view.health.AbstractHealthMeasurementView;
 import edu.monash.it.fit3077.akql.view.health.HealthMeasurementViewCreator;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -26,7 +26,7 @@ selected patient.
 public class PatientMonitorView implements JavaFXView, Observer {
     private final PatientMonitorModelInterface model;
     private final PatientMonitorControllerInterface controller;
-    private LinkedHashMap<String, HealthMeasurementView> healthMeasurementViews;
+    private LinkedHashMap<String, AbstractHealthMeasurementView> healthMeasurementViews;
     private VBox monitorsVBox;
     private Node rootNode;
 
@@ -37,7 +37,7 @@ public class PatientMonitorView implements JavaFXView, Observer {
     PatientMonitorView(PatientMonitorModelInterface pm) {
         this.model = pm;
         this.model.attach(this);
-        this.healthMeasurementViews = new LinkedHashMap<String, HealthMeasurementView>();
+        this.healthMeasurementViews = new LinkedHashMap<String, AbstractHealthMeasurementView>();
         this.controller = new PatientMonitorController(this.model, this);
     }
 
@@ -139,10 +139,10 @@ public class PatientMonitorView implements JavaFXView, Observer {
     @Override
     public void update() {
         ArrayList<AbstractHealthMeasurementModel> latestHealthMeasurements = this.model.getHealthMeasurements();
-        LinkedHashMap<String, HealthMeasurementView> updatedHealthMeasurementViews = new LinkedHashMap<>();
+        LinkedHashMap<String, AbstractHealthMeasurementView> updatedHealthMeasurementViews = new LinkedHashMap<>();
 
         latestHealthMeasurements.forEach(healthMeasurementModel -> {
-            HealthMeasurementView view;
+            AbstractHealthMeasurementView view;
 
             if (!this.healthMeasurementViews.containsKey(healthMeasurementModel.getMeasurementType())) { // health measurement view does not exist so create it.
                 view = HealthMeasurementViewCreator.create(healthMeasurementModel);
