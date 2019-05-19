@@ -23,7 +23,9 @@ As an extension for stage 2, we not only created additional monitors for blood p
 
 Practitioners will use a frontend GUI application (see image above) to monitor their patients. The GUI application will fetch the practitioner's patients from the FHIR service and connect to a backend service we created to receive updated events about the monitored patients (eg. cholesterol level, tobacco use etc.). The backend service polls FHIR every hour to get the relevant monitor data and then send the data back to connected clients (the GUI application). As mentioned above, the backend service polls FHIR every 10 seconds for the blood presure health measurements.
 
-Having a backend service poll instead of all clients minimizes the number of requests made to the FHIR service. For example, if 1 million clients wanted to observe patient A's cholesterol level, instead of making 1 million requests to get the same data per hour, there is a backend service that will make just 1 request every hour to FHIR to get the necessary health measurement (eg. cholesterol level) and then send events back to all clients via web sockets. Furthermore, the backend service will only poll for patients that are being monitored on specific measurements (eg. cholesterol). This also minimizes the requests to FHIR.
+## Design Rationale
+
+Please see the `DesignRationale.pdf` in the root folder.
 
 ## UML
 
@@ -103,8 +105,8 @@ mvn exec:java -Dexec.mainClass=edu.monash.it.fit3077.vjak.DashboardMonitorApplic
 - We are polling every 10 seconds for blood pressure just for interview purposes.
 - We do not support changing timeframes in the application as it is out of scope. The system can be extended to support this feature in future.
 - The unit will always be the same for either blood pressure type.
-- We kept a separate interface for blood that holds a list of values even though we don’t access the full list. We only retrieve the latest value but in future, we might want to access the whole list so we kept it for the duration of the model's life (i.e until practitioner turns off the monitor).
+- In the frontend, we kept a separate interface for blood pressure that holds a list of values even though we don’t access the full list. We only retrieve the latest value but in future, we might want to access the whole list so we kept it for the duration of the model's life (i.e until practitioner turns off the monitor).
 - Alerts will show if systolic > 180 OR diastolic > 120. It just needs to be one of them. We show the alert message below each graph.
-- Due to complexity of frontend class diagram, we have decided to simplify it for readability purposes. For instance, we have omitted external packages from the diagram but have references in the application code.
+- Due to complexity of the class diagrams, we have decided to simplify it for readability purposes. For instance, we have omitted external packages from the diagram but have references in the application code.
 - "-" means private or protected in our class diagram whereas "+" means public.
 - We have omitted majority of classes from external packages (eg. JavaFX, SpringMVC and apache http) from the class diagrams for readability purposes.
