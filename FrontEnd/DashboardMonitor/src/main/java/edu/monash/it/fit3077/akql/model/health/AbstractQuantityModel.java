@@ -23,10 +23,18 @@ public abstract class AbstractQuantityModel extends AbstractHealthMeasurementMod
         String unit = qme.getUnit();
 
         if (!value.equals(this.value) || !unit.equals(this.unit)) {
-            this.value = value;
+            this.setValue(value);
             this.unit = unit;
             this.notifyObservers(); // Measurement update so make sure to notify all observers (should generally be the views).
         }
+    }
+
+    /**
+     * Stores the value. Subclasses should override this method if they have different implementations.
+     * @param value: value form the event
+     */
+    protected void setValue(String value) {
+        this.value = value;
     }
 
     /**

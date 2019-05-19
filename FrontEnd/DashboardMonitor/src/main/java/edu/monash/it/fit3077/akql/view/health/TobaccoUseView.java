@@ -23,9 +23,9 @@ public class TobaccoUseView extends MonitorTextView {
     protected String renderResult() {
         TobaccoUseModelInterface cm = (TobaccoUseModelInterface) this.model;
         if (cm.getStatus() != null) {
-            return "Tobacco Use" + cm.getStatus();
+            return "Tobacco Use: " + cm.getStatus();
         }
-        return "Tobacco Use" + "N/A";
+        return "Tobacco Use: " + "N/A";
     }
 }
 

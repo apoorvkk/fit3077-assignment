@@ -1,8 +1,6 @@
 package edu.monash.it.fit3077.akql.model.health.BloodPressure;
 
 import edu.monash.it.fit3077.akql.Constant;
-import edu.monash.it.fit3077.akql.backendmonitor.MeasurementEventModel;
-import edu.monash.it.fit3077.akql.backendmonitor.QuantityMeasurementEventModel;
 import edu.monash.it.fit3077.akql.model.health.AbstractQuantityModel;
 
 import java.util.ArrayList;
@@ -41,19 +39,9 @@ public class BloodPressureModel extends AbstractQuantityModel implements BloodPr
         return this.bloodType + " Blood Pressure";
     }
 
-    /**
-     * This is used to take the measurement event that came from web sockets and store event payload data into
-     * the blood pressure class appropriately. Here, we maintain the a history of blood pressure values and assume that
-     * the unit is always the same.
-     * @param me: The raw payload wrapped in a business adaptor model.
-     */
     @Override
-    public void setHealthMeasurementValue(MeasurementEventModel me) {
-        QuantityMeasurementEventModel qme = (QuantityMeasurementEventModel) me; // Cast downwards so we can access the payload's quantitative properties.
-
-        this.unit = qme.getUnit();
-        this.values.add(qme.getValue());
-        this.notifyObservers(); // broadcast data change to all observers (mainly views).
+    protected void setValue(String value) {
+        this.values.add(value);
     }
 
     /**
