@@ -2,7 +2,7 @@ package edu.monash.it.fit3077.vjak.api.hapi;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
-import edu.monash.it.fit3077.vjak.model.ObservationLoaderInterface;
+import edu.monash.it.fit3077.vjak.api.ObservationLoaderInterface;
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.Observation;
 

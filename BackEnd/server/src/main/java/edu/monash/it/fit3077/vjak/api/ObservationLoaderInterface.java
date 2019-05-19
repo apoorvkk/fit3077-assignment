@@ -1,4 +1,4 @@
-package edu.monash.it.fit3077.vjak.model;
+package edu.monash.it.fit3077.vjak.api;
 
 /**
  * This interface is used to form an API contract to load observations. This helps in decoupling raw implementation and
