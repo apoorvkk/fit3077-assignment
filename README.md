@@ -1,21 +1,29 @@
-# FIT3077 Assignment 1
+# FIT3077 Assignment 2 (Both Stages Included)
+
+Note: **Assignment 2 Stage 1** was completed by Apoorv Kansal alone due to a previous partner not contributing at all. As a result, Quang Ly joined the team and replaced the old partner for **Assignment 2 Stage 2**. This work extends on Apoorv Kansal's **Assignment 2 Stage 1**. For **Assignment 2 Stage 2**, both Apoorv Kansal and Quang Ly contributed evenly.
 
 Apoorv Kansal (27821455) akan57@student.monash.edu <br>
-Vaibhav Jaideep vjai0002@student.monash.edu
+Quang Ly (28688856) qlyy0001@student.monash.edu
+
+## Stage 1 Application
 
 ![Application](img/application.png)
 
+## Stage 2 Application
+
+![Application](img/application_stage_2.gif)
+
 ## Descripton
 
-This application allows practitioners to monitor cholesterol levels of their patients who they might think are at risk of a heart attack. They can select multiple patients to monitor simultaneously and their patients' cholesterol levels will update periodically on the main dashboard view (per hour). Practitioners can also load more of their patients they see in the sidebar.
+This application allows practitioners to monitor various health measurements (cholesterol, tobacco use, systolic blood pressure, diastolic blood pressure and **oral temperature**) of their patients who they might think are at risk of a heart attack. They can select multiple patients to monitor simultaneously and their patients' health statuses will update periodically on the main dashboard view. All health measurements update per hour except for systolic blood pressure and diastolic blood pressure which update every 10 seconds. We force update every 10 seconds for blood pressure for demonstration purposes that the graph does update (otherwise, we would have to wait at least 1 hour for the graph to update with a new data point and this is not feasible for the interview). Practitioners can also load more of their patients they see in the sidebar.
 
-Note: this application will eventually support multiple types of monitors for a patient (other than cholesterol). This will happen in assignment 2.
+As an extension for stage 2, we not only created additional monitors for blood pressure (systolic and diastolic) and tobacco use, we also added oral temperature as another monitor. This bonus monitor is very similar to cholesterol and tobacco use monitors. Oral temperatures update every hour.
 
 ## Architecture
 
-Practitioners will use a frontend GUI application (see image above) to monitor their patients. The GUI application will fetch the practitioner's patients from the FHIR service and connect to a backend service I created to receive updated events about the monitored patients (eg. their cholesterol level). The backend service polls FHIR every hour to get the relevant monitor data and then send back to connected clients (the GUI application).
+Practitioners will use a frontend GUI application (see image above) to monitor their patients. The GUI application will fetch the practitioner's patients from the FHIR service and connect to a backend service we created to receive updated events about the monitored patients (eg. cholesterol level, tobacco use etc.). The backend service polls FHIR every hour to get the relevant monitor data and then send the data back to connected clients (the GUI application). As mentioned above, the backend service polls FHIR every 10 seconds for the blood presure health measurements.
 
-Having a backend service poll instead all clients minimizes the number of requests made to the FHIR service. For example, if 1 million clients wanted to observe patient A's cholesterol level, instead of making 1 million requests to get the same data per hour, there is backend service that will make just 1 request every hour to FHIR to get the cholesterol level and then send events back to all clients via web sockets. Furthermore, the backend service will only poll for patients that are being monitored on specific measurements (eg. cholesterol). This also minimizes the requests to FHIR.
+Having a backend service poll instead of all clients minimizes the number of requests made to the FHIR service. For example, if 1 million clients wanted to observe patient A's cholesterol level, instead of making 1 million requests to get the same data per hour, there is a backend service that will make just 1 request every hour to FHIR to get the necessary health measurement (eg. cholesterol level) and then send events back to all clients via web sockets. Furthermore, the backend service will only poll for patients that are being monitored on specific measurements (eg. cholesterol). This also minimizes the requests to FHIR.
 
 ## UML
 
@@ -23,8 +31,8 @@ Please see the `UML` folder for class diagrams and sequence diagrams.
 
 ## Tools and Frameworks
 
-The frontend is written in Java using [JavaFx](https://openjfx.io/).
-The backend is written in Java using SpringMVC with SpringBoot.
+The frontend uses Java and [JavaFx](https://openjfx.io/).
+The backend uses Java and SpringMVC with SpringBoot.
 The websocket connection uses the [STOMP protocol](https://stomp.github.io/) which has been implemented by default in [Spring MVC](https://spring.io/guides/gs/serving-web-content/).
 
 ## Setup
@@ -90,23 +98,12 @@ mvn exec:java -Dexec.mainClass=edu.monash.it.fit3077.vjak.DashboardMonitorApplic
 - The cholesterol property is defined as "Total Cholesterol" and has the measurement code "2093-3".
 - Error handling (especially fail gracefully steps) is out of scope for this project. The majority of cases will simply log the error and shut the application down. However, the design can easily cater for error handling in future.
 
-## Contributions
-
-Apoorv Kansal
-
-- Architected the whole system.
-- Designed and developed the frontend GUI application.
-- Designed and developed the backend service.
-- Documented code.
-- Review code and architecture.
-- Documented readme file.
-- Made project plan.
-- Reviewed criteria.
-- Defined a list of assumptions.
-
-Vaibhav Jaideep
-
-- Copied and added an example application from the Internet to the git repository which was not needed and removed.
-
-**Note:** <br>
-I (Apoorv Kansal) completed the whole project on my own due to the other assignment partner not putting in enough effort and initiative. The whole process was very stressful where I stayed up numerous nights to finish the whole project myself.
+- To manage blood pressure data, the application will simply fetch the latest observation value for a particular blood pressure type every 10 seconds. The GUI app will receive these values every 10 seconds and add a new data point to the relevant graph. If the practitioner decides to stop monitoring this health measurement for a particular patient, we discard the history of blood pressure values shown on the graph. The next time the practioner decides to monitor the same measurement for the same patient, the GUI app will show a new graph and not restore the previously discarded blood pressure values. It will show blood pressure values polled from the time the practioner starts monitoring again.
+- To avoid cluttered points on a graph over time, we show only the 10 last polled events for the blood pressure graphs. This can be adjusted in the future or even removed.
+- We are polling every 10 seconds for blood pressure just for interview purposes.
+- We do not support changing timeframes in the application as it is out of scope. The system can be extended to support this feature in future.
+- The unit will always be the same for either blood pressure type.
+- We kept a separate interface for blood that holds a list of values even though we don’t access the full list. We only retrieve the latest value but in future, we might want to access the whole list so we kept it for the duration of the model's life (i.e until practitioner turns off the monitor).
+- Alerts will show if systolic > 180 OR diastolic > 120. It just needs to be one of them. We show the alert message below each graph.
+- Due to complexity of frontend class diagram, We have decided to simplify it for readability purposes.
+- We have omitted majority of external classes from the class diagrams for readability purposes.
