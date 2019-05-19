@@ -89,7 +89,7 @@ mvn compile
 7. Run the GUI app.
 
 ```
-mvn exec:java -Dexec.mainClass=edu.monash.it.fit3077.vjak.DashboardMonitorApplication
+mvn exec:java -Dexec.mainClass=edu.monash.it.fit3077.akql.DashboardMonitorApplication
 ```
 
 ## Assumptions
