@@ -1,6 +1,6 @@
 # FIT3077 Assignment 2 (Both Stages Included)
 
-Note: **Assignment 2 Stage 1** was completed by Apoorv Kansal alone due to a previous partner not contributing at all. As a result, Quang Ly joined the team and replaced the old partner for **Assignment 2 Stage 2**. This work extends on Apoorv Kansal's **Assignment 2 Stage 1**. For **Assignment 2 Stage 2**, both Apoorv Kansal and Quang Ly contributed evenly.
+Note: **Assignment 2 Stage 1** was completed by Apoorv Kansal alone due to a previous partner not contributing at all. As a result, Quang Ly joined the team and replaced the old partner for **Assignment 2 Stage 2**. This work extends on Apoorv Kansal's **Assignment 2 Stage 1**.
 
 Apoorv Kansal (27821455) akan57@student.monash.edu <br>
 Quang Ly (28688856) qlyy0001@student.monash.edu
@@ -105,5 +105,6 @@ mvn exec:java -Dexec.mainClass=edu.monash.it.fit3077.vjak.DashboardMonitorApplic
 - The unit will always be the same for either blood pressure type.
 - We kept a separate interface for blood that holds a list of values even though we don’t access the full list. We only retrieve the latest value but in future, we might want to access the whole list so we kept it for the duration of the model's life (i.e until practitioner turns off the monitor).
 - Alerts will show if systolic > 180 OR diastolic > 120. It just needs to be one of them. We show the alert message below each graph.
-- Due to complexity of frontend class diagram, We have decided to simplify it for readability purposes.
-- We have omitted majority of external classes from the class diagrams for readability purposes.
+- Due to complexity of frontend class diagram, we have decided to simplify it for readability purposes. For instance, we have omitted external packages from the diagram but have references in the application code.
+- "-" means private or protected in our class diagram whereas "+" means public.
+- We have omitted majority of classes from external packages (eg. JavaFX, SpringMVC and apache http) from the class diagrams for readability purposes.

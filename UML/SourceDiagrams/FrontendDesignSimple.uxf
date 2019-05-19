@@ -1,67 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>3</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
-      <y>240</y>
-      <w>640</w>
-      <h>320</h>
+      <x>1047</x>
+      <y>681</y>
+      <w>294</w>
+      <h>144</h>
     </coordinates>
-    <panel_attributes>api/hapi
+    <panel_attributes>api.hapi
 --
-bg=white</panel_attributes>
+layer=-1
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
-      <y>590</y>
-      <w>920</w>
-      <h>360</h>
+      <x>126</x>
+      <y>366</y>
+      <w>339</w>
+      <h>183</h>
     </coordinates>
     <panel_attributes>backendmonitor
 --
-bg=white</panel_attributes>
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>680</x>
-      <y>260</y>
-      <w>380</w>
-      <h>290</h>
+      <x>495</x>
+      <y>204</y>
+      <w>318</w>
+      <h>129</h>
     </coordinates>
     <panel_attributes>controller
 --
-bg=white</panel_attributes>
+layer=-1
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>940</x>
-      <y>620</y>
-      <w>1000</w>
-      <h>920</h>
+      <x>51</x>
+      <y>570</y>
+      <w>972</w>
+      <h>351</h>
     </coordinates>
     <panel_attributes>model
 --
-bg=white</panel_attributes>
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1070</x>
-      <y>0</y>
-      <w>560</w>
-      <h>570</h>
+      <x>1215</x>
+      <y>159</y>
+      <w>429</w>
+      <h>216</h>
     </coordinates>
-    <panel_attributes>view
+    <panel_attributes>health
 --
 bg=white</panel_attributes>
     <additional_attributes/>
@@ -69,23 +71,24 @@ bg=white</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>520</x>
-      <y>970</y>
-      <w>270</w>
-      <h>310</h>
+      <x>633</x>
+      <y>462</y>
+      <w>342</w>
+      <h>57</h>
     </coordinates>
     <panel_attributes>observer
 --
-bg=white</panel_attributes>
+bg=white
+layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>270</y>
-      <w>620</w>
-      <h>180</h>
+      <x>1128</x>
+      <y>693</y>
+      <w>207</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>HapiPatientLoader
 --
@@ -98,32 +101,34 @@ bg=white</panel_attributes>
 - fetchNewPatientIds(): ArrayList&lt;String&gt;
 - downloadNewPatients(patientIds: ArrayList&lt;String&gt;): ArrayList&lt;org.hl7.fhir.dstu3.model.Patient&gt;
 - cachePatientIds(patientIds: ArrayList&lt;String&gt;): void
-+ loadPatients(): ArrayList&lt;PatientModelInterface&gt;</panel_attributes>
++ loadPatients(): ArrayList&lt;PatientModelInterface&gt;
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>460</y>
-      <w>290</w>
-      <h>90</h>
+      <x>1158</x>
+      <y>786</y>
+      <w>87</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>HapiPatientModel
 --
 - patient: org.hl7.fhir.dstu3.model.Patient
 --
 + getId(): String
-+ getName(): String</panel_attributes>
++ getName(): String
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>630</y>
-      <w>380</w>
-      <h>90</h>
+      <x>138</x>
+      <y>504</y>
+      <w>132</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>HealthMeasurementListener
 --
@@ -131,16 +136,18 @@ bg=white</panel_attributes>
 --
 - dataReceived(payload: MeasurementEventModel): void
 + getDataReceived(): MeasurementEventModel
-</panel_attributes>
+
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>760</y>
-      <w>900</w>
-      <h>170</h>
+      <x>147</x>
+      <y>384</y>
+      <w>294</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>HealthMeasurementSocketSessionHandler
 --
@@ -153,119 +160,128 @@ bg=white</panel_attributes>
 + handleTransportError(session: StompSession, exception: Throwable): void
 + handleFrame(headers: StompHeaders, payload: Object): void
 + getPayloadType(headers: StompHeaders): Type
-</panel_attributes>
+
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>400</x>
-      <y>630</y>
-      <w>280</w>
-      <h>90</h>
+      <x>327</x>
+      <y>456</y>
+      <w>96</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>MeasurementEventModel
 --
 - payload: LinkedHashMap&lt;String, String&gt;
 --
 + getPatient(): String
-+ getType(): String</panel_attributes>
++ getType(): String
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>620</y>
-      <w>220</w>
-      <h>50</h>
+      <x>381</x>
+      <y>519</y>
+      <w>78</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>QualityMeasurementEventModel
 --
-+ getStatus(): String</panel_attributes>
++ getStatus(): String
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>680</y>
-      <w>220</w>
-      <h>70</h>
+      <x>276</x>
+      <y>516</y>
+      <w>84</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>QuantityMeasurementEventModel
 --
 + getUnit(): String
-+ getValue(): String</panel_attributes>
++ getValue(): String
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>300</y>
-      <w>360</w>
-      <h>120</h>
+      <x>663</x>
+      <y>297</y>
+      <w>135</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>PatientMonitorCollectionController
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+PatientMonitorControllerInterface
 --
-- model: AbstractPatientMonitorCollectionModel
-- view: PatientListView
---
-+ loadMorePatients(): void
-+ startMonitoring(p: PatientMonitorModelInterface): void
-+ stopMonitoring(p: PatientMonitorModelInterface): void</panel_attributes>
++ trackMeasurement(String): void
++ removeHealthMeasurement(String): void
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>430</y>
-      <w>360</w>
-      <h>100</h>
+      <x>519</x>
+      <y>297</y>
+      <w>123</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 PatientMonitorCollectionControllerInterface
 --
 + loadMorePatients(): void
 + startMonitoring(p: PatientMonitorModelInterface): void
-+ stopMonitoring(p: PatientMonitorModelInterface): void</panel_attributes>
++ stopMonitoring(p: PatientMonitorModelInterface): void
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>980</x>
-      <y>700</y>
-      <w>250</w>
-      <h>160</h>
+      <x>501</x>
+      <y>597</y>
+      <w>75</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>tracker
 --
-bg=white</panel_attributes>
+bg=white
+layer=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>960</x>
-      <y>660</y>
-      <w>470</w>
-      <h>520</h>
+      <x>60</x>
+      <y>585</y>
+      <w>579</w>
+      <h>249</h>
     </coordinates>
     <panel_attributes>health
 --
-bg=white</panel_attributes>
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>990</x>
-      <y>740</y>
-      <w>230</w>
-      <h>110</h>
+      <x>504</x>
+      <y>609</y>
+      <w>69</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>MeasurementTracker
 --
@@ -273,112 +289,109 @@ bg=white</panel_attributes>
 - healthMeasurement: String
 --
 + register(): void
-+ deregister(): void</panel_attributes>
++ deregister(): void
+layer=3
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>980</x>
-      <y>870</y>
-      <w>430</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>CholesterolModel
---
-- value: String
-- unit: String
---
-+ getHealthMeasurementResult(): String
-+ setHealthMeasurementValue(me: MeasurementEventModel): void
-+ toString(): String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>980</x>
-      <y>1010</y>
-      <w>430</w>
-      <h>130</h>
+      <x>345</x>
+      <y>639</y>
+      <w>147</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
-HealthMeasurementModel
+AbstractHealthMeasurementModel
 --
 - measurementTracker: MeasurementTracker
 --
+- track(patientId: String): void
 + cleanUp(): void
-+ getHealthMeasurementResult(): String
-+ setHealthMeasurementValue(me: MeasurementEventModel): void</panel_attributes>
++ abstract getDescription(): String
++ abstract setHealthMeasurementValue(me: MeasurementEventModel)
++ abstract getMeasurementType(): String
+
+layer=2
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>660</y>
-      <w>470</w>
-      <h>150</h>
+      <x>642</x>
+      <y>585</y>
+      <w>174</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 AbstractPatientMonitorCollectionModel
 --
-+ loadMorePatients(): void
-+ getPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;
-+ startMonitoring(p: PatientMonitorModelInterface): void
-+ stopMonitoring(p: PatientMonitorModelInterface): void
-+ getSelectedPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;</panel_attributes>
++ abstract loadMorePatients(): void
++ abstract getPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;
++ abstract startMonitoring(p: PatientMonitorModelInterface): void
++ abstract stopMonitoring(p: PatientMonitorModelInterface): void
++ abstract getSelectedPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>830</y>
-      <w>410</w>
-      <h>60</h>
+      <x>342</x>
+      <y>897</y>
+      <w>225</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>HealthMeasurementCreator
 --
-+ trackCholesterol(patientId: String): HealthMeasurementModel</panel_attributes>
++ trackHealthMeasurement(patientId: String, measurementType: String): AbstractHealthMeasurementModel
+layer=2
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>900</y>
-      <w>330</w>
-      <h>70</h>
+      <x>768</x>
+      <y>780</y>
+      <w>117</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 PatientLoaderInterface
 --
-+ loadPatients(): ArrayList&lt;PatientModelInterface&gt;</panel_attributes>
++ loadPatients(): ArrayList&lt;PatientModelInterface&gt;
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>980</y>
-      <w>330</w>
-      <h>80</h>
+      <x>771</x>
+      <y>810</y>
+      <w>99</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 PatientModelInterface
 --
 + getId(): String
-+ getName(): String</panel_attributes>
++ getName(): String
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>1070</y>
-      <w>480</w>
-      <h>180</h>
+      <x>645</x>
+      <y>720</y>
+      <w>159</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>PatientMonitorCollectionModel
 --
@@ -390,138 +403,156 @@ PatientModelInterface
 + getPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;
 + startMonitoring(p: PatientMonitorModelInterface): void
 + stopMonitoring(p: PatientMonitorModelInterface): void
-+ getSelectedPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;</panel_attributes>
++ getSelectedPatientMonitors(): ArrayList&lt;PatientMonitorModelInterface&gt;
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>1200</y>
-      <w>460</w>
-      <h>250</h>
+      <x>822</x>
+      <y>690</y>
+      <w>180</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>PatientMonitorModel
 --
-- patient: PatientModelInterface
-- healthMeasurements: ArrayList&lt;HealthMeasurementModel&gt;
-- healthMeasurementCreator: HealthMeasurementCreator
+- healthMeasurements: ArrayList&lt;AbstractHealthMeasurementModel&gt;
 - healthMeasurementListener: HealthMeasurementListener
 --
-- observerHealthMeasurements(hl: HealthMeasurementListener): void
-- trackCholesterol(): void
 - cleanUp(): void
-+ trackMeasurements(): void
-+ removeMeasurements(): void
+- registerHealthMeasurement(hm: AbstractHealthMeasurementModel): void
+- getByMeasurementType(measurementType: String): AbstractHealthMeasurementModel
++ removeHealthMeasurement(measurementType: String): void
++ trackMeasurement(measurementType: String): void
++ startMonitoring(): void
++ stopMonitoring(): void
 + isBeingMonitored(): boolean
 + getPatient(): PatientModelInterface
-+ getHealthMeasurements(): ArrayList&lt;HealthMeasurementModel&gt;
-+ update(): void</panel_attributes>
++ getHealthMeasurements(): ArrayList&lt;AbstractHealthMeasurementModel&gt;
++ update(): void
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>1280</y>
-      <w>430</w>
-      <h>130</h>
+      <x>822</x>
+      <y>585</y>
+      <w>159</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 PatientMonitorModelInterface
 --
 + getPatient(): PatientModelInterface
-+ trackMeasurements(): void
-+ removeMeasurements(): void
++ trackMeasurement(measurementType: String): void
++ removeHealthMeasurement(measurementType: String): void
 + isBeingMonitored(): boolean
-+ getHealthMeasurements(): ArrayList&lt;HealthMeasurementModel&gt;</panel_attributes>
++ getHealthMeasurements(): ArrayList&lt;AbstractHealthMeasurementModel&gt;
++ startMonitoring(): void
++ stopMonitoring(): void
+layer=1
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>1020</y>
-      <w>210</w>
-      <h>70</h>
+      <x>885</x>
+      <y>480</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Observer
 --
-+ update(): void</panel_attributes>
++ update(): void
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>1100</y>
-      <w>230</w>
-      <h>120</h>
+      <x>759</x>
+      <y>477</y>
+      <w>84</w>
+      <h>24</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;abstract&gt;&gt;
-Subject
---
-- observers: ArrayList&lt;Observers&gt;
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+SubjectInterface
 --
 + attach(o: Observer): void
 + detach(o: Observer): void
-+ notifyObservers(): void</panel_attributes>
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1080</x>
-      <y>40</y>
-      <w>210</w>
-      <h>70</h>
+      <x>1116</x>
+      <y>150</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>DashboardScreenView
-</panel_attributes>
+
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1080</x>
-      <y>120</y>
-      <w>210</w>
-      <h>70</h>
+      <x>1128</x>
+      <y>267</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 JavaFXView
 --
 + getRootNode(): Node
-</panel_attributes>
+
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1080</x>
-      <y>200</y>
-      <w>310</w>
-      <h>120</h>
+      <x>900</x>
+      <y>327</y>
+      <w>204</w>
+      <h>75</h>
     </coordinates>
-    <panel_attributes>MonitorsView
+    <panel_attributes>PatientMonitorView
 --
 - rootNode: Node
-- model: AbstractPatientMonitorCollectionModel
-- patientDetailListVBox: VBox
+- model: PatientMonitorModelInterface
+- controller: PatientMonitorControllerInterface
+- healthMeasurementViews: LinkedHashMap&lt;String, HealthMeasurementView&gt;
+- monitorsVBox: VBox
 --
 + getRootNode(): Node
 + update(): void
-</panel_attributes>
++ initialize(): void
++ update(): void
+- initializePatientDetailsPane(patientDetailsPane: GridPane): void
+- initializePatientMonitorVBox(patientMonitorVBox: VBox): void
+- initializeMonitorCheckbox(measurementName: String, measurementType: String): Checkbox
+- initializeMonitorOptionsVBox(monitorOptionsVBox: VBox): void
+
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1080</x>
-      <y>330</y>
-      <w>540</w>
-      <h>230</h>
+      <x>909</x>
+      <y>174</y>
+      <w>162</w>
+      <h>69</h>
     </coordinates>
     <panel_attributes>PatientListView
 --
@@ -537,36 +568,1829 @@ JavaFXView
 + initializePatientList(): void
 + setViewToFetchingState(): void
 + getRootNode(): Node
-+ update(): void</panel_attributes>
++ update(): void
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>560</x>
-      <y>140</y>
-      <w>210</w>
-      <h>90</h>
+      <x>609</x>
+      <y>342</y>
+      <w>99</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>Constant
 --
 + clientId: String
 + guiWindowHeight: Double
-+ guiWindowWidth: Double</panel_attributes>
++ guiWindowWidth: Double
++ oralTemperature: String
++ cholesterol: String
++ tobaccoUse: String
++ systolic: String
++ diastolic: String
+- bloodPressure: String
++ systolicBloodPressure: String
++ diastolicBloodPressure: String
++ monitorOrder: ArrayList&lt;String&gt;
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>140</y>
-      <w>230</w>
-      <h>90</h>
+      <x>1134</x>
+      <y>552</y>
+      <w>108</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>DashboardMonitorApplication
 --
 + start(primaryStage: Stage): void
-+ main(args: String[]): void</panel_attributes>
++ main(args: String[]): void
+bg=green</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>651</x>
+      <y>474</y>
+      <w>84</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+Subject
+--
+- observers: ArrayList&lt;Observer&gt;
+--
++ attach(o: Observer): void
++ detach(o: Observer): void
++ notifyObservers(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>732</x>
+      <y>483</y>
+      <w>33</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>273</y>
+      <w>9</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>507</x>
+      <y>225</y>
+      <w>135</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>PatientMonitorCollectionController
+--
+- model: AbstractPatientMonitorCollectionModel
+- view: PatientListView
+--
++ loadMorePatients(): void
++ startMonitoring(p: PatientMonitorModelInterface): void
++ stopMonitoring(p: PatientMonitorModelInterface): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>222</y>
+      <w>135</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>PatientMonitorController
+--
+- model: PatientMonitorModelInterface
+- view: PatientMonitorView
+--
++ loadMorePatients(): void
++ trackMeasurement(String): void
++ removeHealthMeasurement(String): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>723</x>
+      <y>261</y>
+      <w>9</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>375</x>
+      <y>480</y>
+      <w>9</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>309</x>
+      <y>495</y>
+      <w>117</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>309</x>
+      <y>495</y>
+      <w>9</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>417</x>
+      <y>495</y>
+      <w>9</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>897</x>
+      <y>135</y>
+      <w>765</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>view
+--
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>909</x>
+      <y>252</y>
+      <w>174</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>MonitorsView
+--
+- rootNode: Node
+- model: AbstractPatientMonitorCollectionModel
+- patientDetailListVBox: VBox
+- currentList: LinkedHashMap&lt;PatientMonitorModelInterface, PatientMonitorView&gt;
+--
++ getRootNode(): Node
++ update(): void
+
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>276</y>
+      <w>12</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1116</x>
+      <y>201</y>
+      <w>9</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1068</x>
+      <y>201</y>
+      <w>51</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>276</y>
+      <w>51</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1101</x>
+      <y>354</y>
+      <w>24</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1218</x>
+      <y>240</y>
+      <w>99</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>BloodPressureView
+--
+- series: Series&lt;String, Number&gt;
+- windowSize: int
+- simpleDateFormat: SimpleDateFormat
+- yAxis: NumberAxis
+- crisisWarningNode: Text
+--
+- setupView(): void
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1284</x>
+      <y>174</y>
+      <w>99</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+AbstractHealthMeasurementView
+--
+- model: AbstractHealthMeasurementModel
+--
+- abstract setupView(): void
++ getRootNode(): Node
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1332</x>
+      <y>240</y>
+      <w>99</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+MonitorTextView
+--
+- currentTextNode: Text
+--
+- abstract renderResult(): void
+- setupView(): void
++ update(): void
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1329</x>
+      <y>207</y>
+      <w>9</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1266</x>
+      <y>219</y>
+      <w>120</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1377</x>
+      <y>219</y>
+      <w>9</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1266</x>
+      <y>219</y>
+      <w>9</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1272</x>
+      <y>324</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>OralTemperatureView
+--
+- renderResult(): void
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1347</x>
+      <y>324</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>CholesterolView
+--
+- renderResult(): void
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1419</x>
+      <y>324</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>TobaccoUseView
+--
+- renderResult(): void
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1374</x>
+      <y>276</y>
+      <w>9</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1305</x>
+      <y>306</y>
+      <w>150</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>480.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1446</x>
+      <y>306</y>
+      <w>9</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1374</x>
+      <y>303</y>
+      <w>9</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1305</x>
+      <y>306</y>
+      <w>9</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1452</x>
+      <y>183</y>
+      <w>183</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>HealthMeasurementViewCreator
+--
+static create(hm: AbstractHealthMeasurementModel): AbstractHealthMeasurementView
+layer=1
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>627</y>
+      <w>9</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>633</y>
+      <w>9</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>81</x>
+      <y>618</y>
+      <w>60</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;inteface&gt;&gt;
+QuantityModelInterface
+--
++ getValue(): Double
++ getUnit(): String
+layer=2
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>171</x>
+      <y>603</y>
+      <w>144</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+AbstractQuantityModel
+--
+- value: String
+- unit: String
+--
++ getValue(): Double
++ getUnit(): String
++ setHealthMeasurementValue(me: MeasurementEventModel): void
+- setValue(value: String): void
+layer=2
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>138</x>
+      <y>630</y>
+      <w>39</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>621</y>
+      <w>51</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>150.0;60.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>399</x>
+      <y>792</y>
+      <w>84</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>CholesterolModel
+--
++ getMeasurementType(): String
++ getDescription(): String
+layer=2
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>288</x>
+      <y>780</y>
+      <w>96</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>OralTemperature
+--
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>657</y>
+      <w>102</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0;320.0;180.0;322.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>393</x>
+      <y>780</y>
+      <w>96</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Cholesterol
+--
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>792</y>
+      <w>84</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>OralTemperatureModel
+--
++ getMeasurementType(): String
++ getDescription(): String
+layer=3
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>498</x>
+      <y>729</y>
+      <w>129</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>TobaccoUseModel
+--
+- status: String
+--
++ getDescription(): String
++ setHealthMeasurementValue(me: MeasurementEventModel): void
++ getMeasurementType(): String
++ getStatus(): String
+layer=2
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>495</x>
+      <y>711</y>
+      <w>138</w>
+      <h>111</h>
+    </coordinates>
+    <panel_attributes>TobaccoUse
+--
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>522</x>
+      <y>792</y>
+      <w>84</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>TobaccoUseModelInterface
+--
++ getStatus(): String
+layer=3
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>765</y>
+      <w>9</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=3</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>489</x>
+      <y>696</y>
+      <w>57</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0;170.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>162</x>
+      <y>717</y>
+      <w>78</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;inteface&gt;&gt;
+BloodPressureInterface
+--
++ inHypertensiveCrisis(): boolean
+layer=2
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>99</x>
+      <y>642</y>
+      <w>69</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0;210.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>132</x>
+      <y>762</y>
+      <w>141</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>BloodPressureModel
+--
+- bloodType: String
+- unit: Stirng
+- values: ArrayList&lt;String&gt;
+- crisisThresholds: HashMap&lt;String, Integer&gt;
+--
++ getMeasurementType(): String
++ getDescription(): String
++ getValue(): Double
++ isInHypertensiveCrisis(): Boolean
+- setValue(value: String): void
+layer=3
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>126</x>
+      <y>705</y>
+      <w>153</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>BloodPressure
+--
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>195</x>
+      <y>735</y>
+      <w>9</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>762</y>
+      <w>111</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;350.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>438</x>
+      <y>762</y>
+      <w>9</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>762</y>
+      <w>9</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>477</x>
+      <y>255</y>
+      <w>36</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+interacts v
+m1=1
+m2=1
+layer=5</panel_attributes>
+    <additional_attributes>10.0;1280.0;20.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>627</x>
+      <y>177</y>
+      <w>288</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+manages &gt;
+m1=1
+m2=1
+layer=5</panel_attributes>
+    <additional_attributes>940.0;20.0;10.0;20.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>789</x>
+      <y>237</y>
+      <w>108</w>
+      <h>354</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+interacts v
+m1=1
+m2=1
+layer=5</panel_attributes>
+    <additional_attributes>270.0;1160.0;260.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>255</y>
+      <w>114</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+manages &gt;
+m1=1
+m2=1
+layer=5</panel_attributes>
+    <additional_attributes>360.0;450.0;150.0;450.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>867</x>
+      <y>810</y>
+      <w>345</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;1130.0;80.0;1130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1197</x>
+      <y>741</y>
+      <w>9</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>708</y>
+      <w>252</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;280.0;630.0;280.0;630.0;10.0;820.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1179</x>
+      <y>576</y>
+      <w>12</w>
+      <h>123</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>20.0;390.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>561</y>
+      <w>663</w>
+      <h>309</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;710.0;10.0;1010.0;2190.0;1010.0;2180.0;10.0;1760.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1176</x>
+      <y>153</y>
+      <w>36</w>
+      <h>405</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;100.0;1330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>435</x>
+      <y>408</y>
+      <w>180</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>580.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>171</x>
+      <y>432</y>
+      <w>45</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+communicates v</panel_attributes>
+    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>366</x>
+      <y>429</y>
+      <w>9</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>429</x>
+      <y>432</y>
+      <w>9</w>
+      <h>93</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;290.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>291</x>
+      <y>432</y>
+      <w>9</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>195</x>
+      <y>507</y>
+      <w>498</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1640.0;10.0;1640.0;180.0;10.0;180.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>243</x>
+      <y>465</y>
+      <w>90</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+holds &gt;
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>432</y>
+      <w>9</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>408</y>
+      <w>9</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>lt=.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;670.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>558</y>
+      <w>9</w>
+      <h>87</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>489</x>
+      <y>639</y>
+      <w>90</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=5
+m1=1
+m2=1
+register ^</panel_attributes>
+    <additional_attributes>210.0;10.0;210.0;90.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>363</x>
+      <y>480</y>
+      <w>9</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;540.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>36</x>
+      <y>348</y>
+      <w>579</w>
+      <h>516</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>1910.0;30.0;10.0;10.0;10.0;1700.0;1360.0;1700.0;1360.0;1560.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>327</x>
+      <y>813</y>
+      <w>9</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>lt=.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>369</x>
+      <y>855</y>
+      <w>9</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>765</y>
+      <w>9</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>459</x>
+      <y>813</y>
+      <w>9</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>357</x>
+      <y>813</y>
+      <w>9</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>204</x>
+      <y>816</y>
+      <w>144</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;300.0;460.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>309</x>
+      <y>612</y>
+      <w>63</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=.
+layer=5</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>537</y>
+      <w>30</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;230.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>249</x>
+      <y>657</y>
+      <w>9</w>
+      <h>111</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>525</y>
+      <w>135</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;430.0;10.0;430.0;680.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>471</y>
+      <w>87</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;270.0;10.0;270.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>507</y>
+      <w>9</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>825</x>
+      <y>498</y>
+      <w>9</w>
+      <h>93</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>933</x>
+      <y>498</y>
+      <w>9</w>
+      <h>93</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>489</x>
+      <y>633</y>
+      <w>381</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;140.0;1250.0;130.0;1250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>867</x>
+      <y>606</y>
+      <w>153</w>
+      <h>213</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;690.0;480.0;690.0;490.0;10.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>738</x>
+      <y>771</y>
+      <w>36</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+runs &gt;
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>100.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>789</x>
+      <y>633</y>
+      <w>57</w>
+      <h>93</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+consists &gt;
+m1=0..*
+m2=1</panel_attributes>
+    <additional_attributes>150.0;10.0;150.0;60.0;10.0;60.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>21</x>
+      <y>516</y>
+      <w>663</w>
+      <h>426</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+initiate ^</panel_attributes>
+    <additional_attributes>390.0;10.0;20.0;10.0;10.0;1400.0;2180.0;1400.0;2180.0;860.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>765</y>
+      <w>357</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;470.0;1170.0;470.0;1170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>705</x>
+      <y>414</y>
+      <w>294</w>
+      <h>282</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;950.0;10.0;960.0;920.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>498</x>
+      <y>471</y>
+      <w>348</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;10.0;350.0;650.0;1140.0;650.0;1140.0;730.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>489</x>
+      <y>687</y>
+      <w>339</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=5
+m1=0..*
+m2=1
+&lt; consists</panel_attributes>
+    <additional_attributes>10.0;20.0;1110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>867</x>
+      <y>765</y>
+      <w>78</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+&lt; stores</panel_attributes>
+    <additional_attributes>10.0;190.0;230.0;190.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>765</y>
+      <w>288</w>
+      <h>177</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;570.0;930.0;570.0;930.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1155</x>
+      <y>189</y>
+      <w>135</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;10.0;430.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>945</x>
+      <y>195</y>
+      <w>345</w>
+      <h>306</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;1000.0;850.0;1000.0;840.0;10.0;1130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>591</x>
+      <y>339</y>
+      <w>891</w>
+      <h>636</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;1570.0;10.0;2100.0;2950.0;2100.0;2920.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>339</y>
+      <w>1422</w>
+      <h>669</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>270.0;980.0;10.0;980.0;10.0;2210.0;4720.0;2200.0;4680.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1305</x>
+      <y>336</y>
+      <w>105</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0;330.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>705</x>
+      <y>429</y>
+      <w>609</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;2010.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1380</x>
+      <y>192</y>
+      <w>78</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>126</y>
+      <w>828</w>
+      <h>222</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;720.0;10.0;20.0;2740.0;10.0;2740.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1482</x>
+      <y>201</y>
+      <w>51</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;430.0;150.0;430.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1389</x>
+      <y>294</y>
+      <w>141</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0;450.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1290</x>
+      <y>294</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0;340.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1251</x>
+      <y>279</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;140.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>78</x>
+      <y>276</y>
+      <w>1476</w>
+      <h>777</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>280.0;1520.0;10.0;1520.0;10.0;2570.0;4900.0;2570.0;4870.0;740.0;3880.0;740.0;3880.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>411</x>
+      <y>111</y>
+      <w>1302</w>
+      <h>990</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=5
+m1=1
+m2=1
+updates ^</panel_attributes>
+    <additional_attributes>20.0;1970.0;10.0;3280.0;4270.0;3280.0;4220.0;10.0;3200.0;10.0;3200.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>471</x>
+      <y>198</y>
+      <w>1143</w>
+      <h>936</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;1690.0;10.0;3090.0;3790.0;3100.0;3720.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>993</x>
+      <y>153</y>
+      <w>129</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0;410.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>153</y>
+      <w>18</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;370.0;40.0;370.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>765</x>
+      <y>165</y>
+      <w>381</w>
+      <h>426</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;1400.0;10.0;1270.0;1250.0;1270.0;1230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>726</x>
+      <y>219</y>
+      <w>189</w>
+      <h>372</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+updates &gt;</panel_attributes>
+    <additional_attributes>10.0;1220.0;10.0;1050.0;440.0;1050.0;430.0;10.0;610.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>195</y>
+      <w>459</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+send events v
+</panel_attributes>
+    <additional_attributes>210.0;410.0;10.0;410.0;10.0;10.0;1510.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>873</x>
+      <y>228</y>
+      <w>42</w>
+      <h>363</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>30.0;1190.0;10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>753</x>
+      <y>558</y>
+      <w>132</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;540.0;10.0;10.0;420.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>930</x>
+      <y>237</y>
+      <w>12</w>
+      <h>249</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>20.0;810.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>303</y>
+      <w>12</w>
+      <h>183</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>20.0;590.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>927</x>
+      <y>399</y>
+      <w>9</w>
+      <h>87</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;270.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>180</y>
+      <w>192</w>
+      <h>219</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+has ^</panel_attributes>
+    <additional_attributes>620.0;10.0;30.0;10.0;40.0;700.0;10.0;700.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>324</y>
+      <w>156</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+send event ^</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;500.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>843</x>
+      <y>369</y>
+      <w>60</w>
+      <h>222</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+^ updates</panel_attributes>
+    <additional_attributes>20.0;720.0;10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>465</x>
+      <y>360</y>
+      <w>441</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+layer=5</panel_attributes>
+    <additional_attributes>10.0;930.0;20.0;10.0;1450.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>705</x>
+      <y>378</y>
+      <w>201</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;650.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>297</y>
+      <w>27</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+consist v
+m1=0..*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>738</x>
+      <y>282</y>
+      <w>177</w>
+      <h>309</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+^ updates</panel_attributes>
+    <additional_attributes>20.0;1010.0;10.0;10.0;570.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>297</y>
+      <w>78</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..*
+m2=1
+&lt; consist</panel_attributes>
+    <additional_attributes>10.0;1010.0;240.0;1010.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>264</y>
+      <w>267</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;20.0;870.0;10.0</additional_attributes>
   </element>
 </diagram>
