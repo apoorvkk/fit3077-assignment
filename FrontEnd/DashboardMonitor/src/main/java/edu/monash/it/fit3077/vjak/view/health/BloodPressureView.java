@@ -2,13 +2,11 @@ package edu.monash.it.fit3077.vjak.view.health;
 
 import edu.monash.it.fit3077.vjak.model.health.AbstractHealthMeasurementModel;
 import edu.monash.it.fit3077.vjak.model.health.BloodPressure.BloodPressureInterface;
-import edu.monash.it.fit3077.vjak.model.health.QuantityModelInterface;
 import javafx.application.Platform;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -27,22 +25,23 @@ public class BloodPressureView extends HealthMeasurementView {
     }
 
     @Override
-    void setUpView() {
+    protected void setUpView() {
         VBox bloodPressureSection = new VBox();
 
         CategoryAxis xAxis = new CategoryAxis();
-        this.yAxis = new NumberAxis();
-
         xAxis.setLabel("Time/s");
         xAxis.setAnimated(false); // axis animations are removed
+        this.yAxis = new NumberAxis();
         this.yAxis.setAnimated(false); // axis animations are removed
 
-        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        LineChart<String, Number> lineChart = new LineChart<>(xAxis, this.yAxis);
         lineChart.setTitle(this.model.getDescription());
         lineChart.setAnimated(false); // disable animations
+
         this.series = new XYChart.Series<>();
         series.setName(this.model.getDescription());
         lineChart.getData().add(series);
+
         bloodPressureSection.getChildren().add(lineChart);
 
         this.crisisWarningNode = new Text();

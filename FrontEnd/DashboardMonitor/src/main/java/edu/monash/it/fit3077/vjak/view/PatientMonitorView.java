@@ -15,9 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class PatientMonitorView implements JavaFXView, Observer {
@@ -34,79 +32,59 @@ public class PatientMonitorView implements JavaFXView, Observer {
         this.controller = new PatientMonitorController(this.model, this);
     }
 
-    public void initialize() {
-        VBox patientMonitorVBox = new VBox();
-        patientMonitorVBox.setPadding(new Insets(5, 5, 5, 5));
-        patientMonitorVBox.setPrefWidth(0.75 * Constant.guiWindowWidth - 20d);
-        patientMonitorVBox.setBorder(new Border(new BorderStroke(Color.BLACK,
-                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
-        GridPane patientDetailsPane = new GridPane();
+    private void initializePatientDetailsPane(GridPane patientDetailsPane) {
         patientDetailsPane.add(new Text("Id:"), 0, 0);
         patientDetailsPane.add(new Text(this.model.getPatient().getId()), 1, 0);
         patientDetailsPane.add(new Text("Name: "), 0, 1);
         patientDetailsPane.add(new Text(this.model.getPatient().getName()), 1, 1);
-        patientMonitorVBox.getChildren().add(patientDetailsPane);
+    }
 
-        HBox monitorSectionHBox = new HBox();
+    private void initializePatientMonitorVBox(VBox patientMonitorVBox) {
+        patientMonitorVBox.setPadding(new Insets(5, 5, 5, 5));
+        patientMonitorVBox.setPrefWidth(0.75 * Constant.guiWindowWidth - 20d);
+        patientMonitorVBox.setBorder(new Border(new BorderStroke(Color.BLACK,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+    }
 
-        VBox monitorOptionsVBox = new VBox();
+    private CheckBox initializeMonitorCheckbox(String measurementName, String measurementType) {
+        CheckBox checkbox = new CheckBox(measurementName);
+        checkbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
+            if (checkbox.isSelected()) {
+                this.controller.trackMeasurement(measurementType);
+            } else {
+                this.controller.removeHealthMeasurement(measurementType);
+            }
+        });
+
+        return checkbox;
+    }
+
+    private void initializeMonitorOptionsVBox(VBox monitorOptionsVBox) {
         monitorOptionsVBox.setPadding(new Insets(5, 5, 5, 5));
         monitorOptionsVBox.setPrefWidth(200d);
         monitorOptionsVBox.setPrefHeight(20d);
 
-        CheckBox cholesterolOptionCheckbox = new CheckBox(Constant.cholesterol);
-        cholesterolOptionCheckbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
-            if (cholesterolOptionCheckbox.isSelected()) {
-                this.controller.trackMeasurement(Constant.cholesterol);
-            } else {
-                this.controller.removeHealthMeasurement(Constant.cholesterol);
-            }
-        });
-        CheckBox oralTemperatureOptionCheckbox = new CheckBox("Oral Temperature");
-        oralTemperatureOptionCheckbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
-            if (oralTemperatureOptionCheckbox.isSelected()) {
-                this.controller.trackMeasurement(Constant.oralTemperature);
-            } else {
-                this.controller.removeHealthMeasurement(Constant.oralTemperature);
-            }
-        });
-        CheckBox tobaccoUseOptionCheckbox = new CheckBox("Tobacco Use");
-        tobaccoUseOptionCheckbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
-            if (tobaccoUseOptionCheckbox.isSelected()) {
-                this.controller.trackMeasurement(Constant.tobaccoUse);
-            } else {
-                this.controller.removeHealthMeasurement(Constant.tobaccoUse);
-            }
-        });
-        CheckBox systolicBloodPressureOptionCheckbox = new CheckBox("Systolic Blood Pressure");
-        systolicBloodPressureOptionCheckbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
-            if (systolicBloodPressureOptionCheckbox.isSelected()) {
-                this.controller.trackMeasurement(Constant.systolicBloodPressure);
-            } else {
-                this.controller.removeHealthMeasurement(Constant.systolicBloodPressure);
-            }
-        });
-        CheckBox diastolicBloodPressureOptionCheckbox = new CheckBox("Diastolic Blood Pressure");
-        diastolicBloodPressureOptionCheckbox.setOnAction(event -> { // Add event handlers to select and deselect patients to start/stop monitors respectively.
-            if (diastolicBloodPressureOptionCheckbox.isSelected()) {
-                this.controller.trackMeasurement(Constant.diastolicBloodPressure);
-            } else {
-                this.controller.removeHealthMeasurement(Constant.diastolicBloodPressure);
-            }
-        });
+        monitorOptionsVBox.getChildren().add(this.initializeMonitorCheckbox(Constant.cholesterol, Constant.cholesterol));
+        monitorOptionsVBox.getChildren().add(this.initializeMonitorCheckbox("Tobacco Use", Constant.tobaccoUse));
+        monitorOptionsVBox.getChildren().add(this.initializeMonitorCheckbox("Oral Temperature", Constant.oralTemperature));
+        monitorOptionsVBox.getChildren().add(this.initializeMonitorCheckbox("Systolic Blood Pressure", Constant.systolicBloodPressure));
+        monitorOptionsVBox.getChildren().add(this.initializeMonitorCheckbox("Diastolic Blood Pressure", Constant.diastolicBloodPressure));
+    }
 
-        monitorOptionsVBox.getChildren().add(cholesterolOptionCheckbox);
-        monitorOptionsVBox.getChildren().add(tobaccoUseOptionCheckbox);
-        monitorOptionsVBox.getChildren().add(oralTemperatureOptionCheckbox);
-        monitorOptionsVBox.getChildren().add(systolicBloodPressureOptionCheckbox);
-        monitorOptionsVBox.getChildren().add(diastolicBloodPressureOptionCheckbox);
+    public void initialize() {
+        VBox patientMonitorVBox = new VBox();
+        this.initializePatientMonitorVBox(patientMonitorVBox);
 
-        monitorSectionHBox.getChildren().add(monitorOptionsVBox);
+        GridPane patientDetailsPane = new GridPane();
+        this.initializePatientDetailsPane(patientDetailsPane);
 
-        patientMonitorVBox.getChildren().add(monitorSectionHBox);
+        VBox monitorOptionsVBox = new VBox();
+        this.initializeMonitorOptionsVBox(monitorOptionsVBox);
 
         this.monitorsVBox = new VBox();
+
+        patientMonitorVBox.getChildren().add(patientDetailsPane);
+        patientMonitorVBox.getChildren().add(monitorOptionsVBox);
         patientMonitorVBox.getChildren().add(this.monitorsVBox);
 
         this.rootNode = patientMonitorVBox;

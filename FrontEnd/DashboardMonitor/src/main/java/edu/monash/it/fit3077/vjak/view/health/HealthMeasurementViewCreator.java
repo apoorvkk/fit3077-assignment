@@ -15,8 +15,6 @@ public class HealthMeasurementViewCreator {
                 hmv = new TobaccoUseView(hm);
                 break;
             case Constant.diastolicBloodPressure:
-                hmv = new BloodPressureView(hm);
-                break;
             case Constant.systolicBloodPressure:
                 hmv = new BloodPressureView(hm);
                 break;
