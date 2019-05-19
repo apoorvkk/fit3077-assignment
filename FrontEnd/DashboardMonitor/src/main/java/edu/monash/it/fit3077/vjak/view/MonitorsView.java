@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 /*
-This class is responsible for rendering the main dashboard view and updating the monitors whenever selected patient measurment
+This class is responsible for rendering the main dashboard view and updating the monitors whenever selected patient measurement
 data changes.
  */
 public class MonitorsView implements JavaFXView, Observer {
@@ -58,6 +58,10 @@ public class MonitorsView implements JavaFXView, Observer {
 
     public void update() {
         Platform.runLater(() -> { // run on main thread instead of the thread that received the event because that thread cannot update view due to Java FX restrictions.
+            /*
+            Since we do not want to recreate all the subviews, we synchronize the new list of patient monitors with the
+            existing subviews and simply create new subviews when needed (eg. new patient monitor selected but there is no view).
+             */
             ArrayList<PatientMonitorModelInterface> latestSelectedPatientMonitors = this.model.getSelectedPatientMonitors();
 
             LinkedHashMap<PatientMonitorModelInterface, PatientMonitorView> updatedList = new LinkedHashMap<>();
@@ -73,6 +77,7 @@ public class MonitorsView implements JavaFXView, Observer {
             });
             this.currentList = updatedList;
 
+            // Render the new list of view nodes.
             ArrayList<Node> nodes = new ArrayList<>();
             for (PatientMonitorModelInterface pm : this.currentList.keySet()) {
                 PatientMonitorView view = this.currentList.get(pm);
