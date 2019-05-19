@@ -17,6 +17,8 @@ Quang Ly (28688856) qlyy0001@student.monash.edu
 
 This application allows practitioners to monitor various health measurements (cholesterol, tobacco use, systolic blood pressure, diastolic blood pressure and **oral temperature**) of their patients who they might think are at risk of a heart attack. They can select multiple patients to monitor simultaneously and their patients' health statuses will update periodically on the main dashboard view. All health measurements update per hour except for systolic blood pressure and diastolic blood pressure which update every 10 seconds. We force update every 10 seconds for blood pressure for demonstration purposes that the graph does update (otherwise, we would have to wait at least 1 hour for the graph to update with a new data point and this is not feasible for the interview). Practitioners can also load more of their patients they see in the sidebar.
 
+### Bonus
+
 As an extension for stage 2, we not only created additional monitors for blood pressure (systolic and diastolic) and tobacco use, we also added oral temperature as another monitor. This bonus monitor is very similar to cholesterol and tobacco use monitors. Oral temperatures update every hour.
 
 ## Architecture
