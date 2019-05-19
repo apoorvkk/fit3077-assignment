@@ -16,7 +16,7 @@ public abstract class AbstractQuantityModel extends AbstractHealthMeasurementMod
 
         String value = qme.getValue();
         String unit = qme.getUnit();
-        System.out.println(unit + " " + value);
+
         if (!value.equals(this.value) || !unit.equals(this.unit)) {
             this.value = value;
             this.unit = unit;
