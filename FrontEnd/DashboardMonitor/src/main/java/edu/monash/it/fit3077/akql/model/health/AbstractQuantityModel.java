@@ -1,7 +1,7 @@
 package edu.monash.it.fit3077.akql.model.health;
 
 import edu.monash.it.fit3077.akql.backendmonitor.MeasurementEventModel;
-import edu.monash.it.fit3077.akql.backendmonitor.QuantityMeasurmentEventModel;
+import edu.monash.it.fit3077.akql.backendmonitor.QuantityMeasurementEventModel;
 
 /*
 This class is responsible for health measurements that need quantity values.
@@ -17,7 +17,7 @@ public abstract class AbstractQuantityModel extends AbstractHealthMeasurementMod
      */
     @Override
     public void setHealthMeasurementValue(MeasurementEventModel me) {
-        QuantityMeasurmentEventModel qme = (QuantityMeasurmentEventModel) me; // Cast event to Quantity version so we can access methods related to quantity properties.
+        QuantityMeasurementEventModel qme = (QuantityMeasurementEventModel) me; // Cast event to Quantity version so we can access methods related to quantity properties.
 
         String value = qme.getValue();
         String unit = qme.getUnit();

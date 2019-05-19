@@ -9,6 +9,7 @@ public interface QuantityModelInterface {
      * Return the value.
      * @return the value.
      */
+
     Double getValue();
     /**
      * Return the unit.

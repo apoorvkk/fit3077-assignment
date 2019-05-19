@@ -2,7 +2,7 @@ package edu.monash.it.fit3077.akql.model.health.BloodPressure;
 
 import edu.monash.it.fit3077.akql.Constant;
 import edu.monash.it.fit3077.akql.backendmonitor.MeasurementEventModel;
-import edu.monash.it.fit3077.akql.backendmonitor.QuantityMeasurmentEventModel;
+import edu.monash.it.fit3077.akql.backendmonitor.QuantityMeasurementEventModel;
 import edu.monash.it.fit3077.akql.model.health.AbstractQuantityModel;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class BloodPressureModel extends AbstractQuantityModel implements BloodPr
      */
     @Override
     public void setHealthMeasurementValue(MeasurementEventModel me) {
-        QuantityMeasurmentEventModel qme = (QuantityMeasurmentEventModel) me; // Cast downwards so we can access the payload's quantitative properties.
+        QuantityMeasurementEventModel qme = (QuantityMeasurementEventModel) me; // Cast downwards so we can access the payload's quantitative properties.
 
         this.unit = qme.getUnit();
         this.values.add(qme.getValue());
