@@ -7,15 +7,15 @@ import javafx.scene.Node;
 
 public abstract class HealthMeasurementView implements JavaFXView, Observer {
     protected AbstractHealthMeasurementModel model;
-    protected Node rootNode;
+    Node rootNode;
 
-    public HealthMeasurementView(AbstractHealthMeasurementModel hm) {
+    HealthMeasurementView(AbstractHealthMeasurementModel hm) {
         this.model = hm;
         this.model.attach(this);
         this.setUpView();
     }
 
-    abstract void setUpView();
+    protected abstract void setUpView();
 
     @Override
     public Node getRootNode() {
