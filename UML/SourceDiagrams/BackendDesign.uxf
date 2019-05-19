@@ -521,7 +521,7 @@ m2=0..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>892</x>
-      <y>532</y>
+      <y>520</y>
       <w>56</w>
       <h>12</h>
     </coordinates>
@@ -1362,10 +1362,11 @@ bg=light_gray</panel_attributes>
     <coordinates>
       <x>928</x>
       <y>180</y>
-      <w>12</w>
+      <w>36</w>
       <h>352</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+&lt; creates</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;860.0</additional_attributes>
   </element>
   <element>
@@ -1405,7 +1406,7 @@ bg=light_gray</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>892</x>
-      <y>508</y>
+      <y>416</y>
       <w>48</w>
       <h>12</h>
     </coordinates>
