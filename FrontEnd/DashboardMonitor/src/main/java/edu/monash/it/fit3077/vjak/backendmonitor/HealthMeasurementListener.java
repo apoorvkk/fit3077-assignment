@@ -17,6 +17,9 @@ observers using the Observer design pattern.
 public class HealthMeasurementListener extends Subject {
     private MeasurementEventModel currentEvent;
 
+    /**
+     * Initializes the web socket communication and connects to backend.
+     */
     public HealthMeasurementListener() {
         // Initialize web socket client.
         WebSocketClient client = new StandardWebSocketClient();
@@ -31,17 +34,25 @@ public class HealthMeasurementListener extends Subject {
         stompClient.start();
 
         try {
-            latch.await();
+            latch.await(); // wait until web socket communication resolved.
         } catch (InterruptedException e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
 
+    /**
+     * Public facing method that returns the latest event received via web sockets.
+     * @return the measurement event.
+     */
     public MeasurementEventModel getDataReceived() {
         return this.currentEvent;
     }
 
+    /**
+     * Stores the event received via web sockets.
+     * @param payload: Raw payload (wrapped in defined event model) data received via web sockets.
+     */
     void dataReceived(MeasurementEventModel payload) {
         this.currentEvent = payload;
         this.notifyObservers();

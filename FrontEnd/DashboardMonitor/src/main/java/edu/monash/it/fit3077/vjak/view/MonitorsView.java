@@ -26,15 +26,17 @@ public class MonitorsView implements JavaFXView, Observer {
     private final VBox patientDetailListVBox;
     private LinkedHashMap<PatientMonitorModelInterface, PatientMonitorView> currentList;
 
+    /**
+     * Observe the model and setup the view base infrastructure. This class does not need a controller at the moment
+     * because it is not receiving any user input.
+     * @param model: the patient monitor collection model to observe.
+     */
     MonitorsView(AbstractPatientMonitorCollectionModel model) {
-        /*
-        Observe the model and setup the view base infrastructure. This class does not need a controller at the moment
-        because it is not receiving any user input.
-         */
         this.currentList = new LinkedHashMap<>();
         this.model = model;
         this.model.attach(this);
 
+        // Initialize the view by creating the JavaFx components.
         ScrollPane sp = new ScrollPane();
         sp.setPrefWidth(0.75 * Constant.guiWindowWidth);
         sp.setPrefHeight(Constant.guiWindowHeight - 23d);
@@ -52,25 +54,30 @@ public class MonitorsView implements JavaFXView, Observer {
         this.rootNode = sp;
     }
 
+    /**
+     * Used so parent views can attach nodes of child views to itself.
+     * @return JavaFX node
+     */
     public Node getRootNode() {
         return this.rootNode;
     }
 
+    /**
+     * This method is called when the model is updated. Here, we update the list of selected monitors for a patient.
+     * Since we do not want to recreate all the subviews, we synchronize the new list of patient monitors with the existing
+     * subviews and simply create new subviews when needed (eg. new patient monitor selected but there is no view).
+     */
     public void update() {
         Platform.runLater(() -> { // run on main thread instead of the thread that received the event because that thread cannot update view due to Java FX restrictions.
-            /*
-            Since we do not want to recreate all the subviews, we synchronize the new list of patient monitors with the
-            existing subviews and simply create new subviews when needed (eg. new patient monitor selected but there is no view).
-             */
             ArrayList<PatientMonitorModelInterface> latestSelectedPatientMonitors = this.model.getSelectedPatientMonitors();
 
             LinkedHashMap<PatientMonitorModelInterface, PatientMonitorView> updatedList = new LinkedHashMap<>();
             latestSelectedPatientMonitors.forEach(pm -> {
                 PatientMonitorView view;
 
-                if (this.currentList.containsKey(pm)) {
+                if (this.currentList.containsKey(pm)) { // view already exists so don't create it again and just reuse the old one.
                     view = this.currentList.get(pm);
-                } else {
+                } else { // view does not exist so create a view.
                     view = new PatientMonitorView(pm);
                 }
                 updatedList.put(pm, view);

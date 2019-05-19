@@ -7,10 +7,15 @@ import edu.monash.it.fit3077.vjak.model.health.OralTemperature.OralTemperatureMo
 import edu.monash.it.fit3077.vjak.model.health.TobaccoUse.TobaccoUseModel;
 
 /*
-This class focuses on creating specific measurement models (eg. Cholesterol). This class can be extended to
-many other measurements in future.
+This class focuses on creating specific measurement models (eg. Cholesterol). It uses the factory pattern design.
  */
 public class HealthMeasurementCreator {
+    /**
+     * This method is responsible for creating the necessary health measurement models.
+     * @param patientId: the patient id.
+     * @param measurementType: measurement type of interest (eg. SystolicBloodPressure).
+     * @return a health measurement model.
+     */
     public static AbstractHealthMeasurementModel trackHealthMeasurement(String patientId, String measurementType) {
         AbstractHealthMeasurementModel hm;
         switch (measurementType) {
