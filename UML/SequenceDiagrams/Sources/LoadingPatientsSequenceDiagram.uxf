@@ -60,17 +60,6 @@ layer=100
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>160</x>
-      <y>140</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>User</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>200</x>
@@ -228,5 +217,16 @@ layer=100
     <panel_attributes>lt=&lt;&lt;&lt;-
 Show new patients in UI</panel_attributes>
     <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>180</x>
+      <y>70</y>
+      <w>60</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>User</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
