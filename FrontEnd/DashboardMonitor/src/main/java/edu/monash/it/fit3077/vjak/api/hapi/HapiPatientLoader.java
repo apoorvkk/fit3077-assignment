@@ -21,14 +21,20 @@ public class HapiPatientLoader implements PatientLoaderInterface {
     private final HashSet<String> patientIdsCache;
     private final String practionerId;
 
+    /**
+     * Initializes the loader and setups the necessary variables needed.
+     * @param practitionerId: Used to get the practitioner's patients only.
+     */
     public HapiPatientLoader(String practitionerId) {
         this.practionerId = practitionerId;
         this.patientIdsCache = new HashSet<>();
         this.initializeHapiClient();
     }
 
+    /**
+     * Set up the FHIR sdk code to make requests.
+     */
     private void initializeHapiClient() {
-        // Used to initialize the FHIR client to make requests.
         FhirContext ctx = FhirContext.forDstu3();
         String serverBaseUrl = "http://hapi-fhir.erc.monash.edu:8080/baseDstu3";
         ctx.getRestfulClientFactory().setConnectTimeout(120 * 1000);
@@ -36,12 +42,13 @@ public class HapiPatientLoader implements PatientLoaderInterface {
         this.client = ctx.newRestfulGenericClient(serverBaseUrl);
     }
 
+    /**
+     * This method will fetch a new batch of patient ids. It will get up to a 15 patient ids or until it has exhausted its search.
+     * The search happens on the Encounter resource where we search for encounters related to the given practitioner.
+     * We also track the current page so that we can easily iterate to the next page when needing more patient ids.
+     * @return the next list of unique new patient ids.
+     */
     private ArrayList<String> fetchNewPatientIds() {
-        /*
-        This method will fetch a new batch of patient ids. It will get up to a 15 patient ids or until it has exhausted its search.
-        The search happens on the Encounter resource where we search for encounters related to the given practitioner.
-        We also track the current page so that we can easily iterate to the next page when needing more patient ids.
-         */
         ArrayList<String> patientIds = new ArrayList<>();
 
         while (patientIds.size() < 15 && (this.currentEncounterPage == null || this.currentEncounterPage.getLink(Bundle.LINK_NEXT) != null)) {
@@ -71,10 +78,12 @@ public class HapiPatientLoader implements PatientLoaderInterface {
         return patientIds;
     }
 
+    /**
+     * This method is responsible for taking a list of patient ids and download their full resources.
+     * @param patientIds
+     * @return the next list of unique FHIR patients.
+     */
     private ArrayList<org.hl7.fhir.dstu3.model.Patient> downloadNewPatients(ArrayList<String> patientIds) {
-        /*
-        This method is responsible for taking a list of patient ids and download their full resources.
-         */
         if (patientIds.size() == 0) return new ArrayList<>();
 
         ArrayList<org.hl7.fhir.dstu3.model.Patient> patients = new ArrayList<>();
@@ -103,16 +112,20 @@ public class HapiPatientLoader implements PatientLoaderInterface {
         return patients;
     }
 
+    /**
+     * Helper function easily cache patient ids into an instance variable.
+     * @param patientIds A list of unique patient ids.
+     */
     private void cachePatientIds(ArrayList<String> patientIds) {
         this.patientIdsCache.addAll(patientIds);
     }
 
+    /**
+     * First fetch next batch of new patient ids. Then download all patients resources that belong to that batch.
+     * Finally, cache the batch of patient ids so that we do not load the same patients again in any future patient load requests.
+     * @return the latest batch of patient resources.
+     */
     public ArrayList<PatientModelInterface> loadPatients() {
-        /*
-        First fetch next batch of new patient ids. Then download all patients resources that belong to that batch.
-        Finally, cache the batch of patient ids so that we do not load the same patients again in any future patient load requests.
-        This method will return the latest batch of patient resources.
-         */
         ArrayList<String> patientIds = this.fetchNewPatientIds();
         ArrayList<org.hl7.fhir.dstu3.model.Patient> rawHapiPatients = this.downloadNewPatients(patientIds);
         this.cachePatientIds(patientIds);

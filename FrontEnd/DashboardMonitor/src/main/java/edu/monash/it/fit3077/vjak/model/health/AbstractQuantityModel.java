@@ -3,20 +3,25 @@ package edu.monash.it.fit3077.vjak.model.health;
 import edu.monash.it.fit3077.vjak.backendmonitor.MeasurementEventModel;
 import edu.monash.it.fit3077.vjak.backendmonitor.QuantityMeasurmentEventModel;
 
+/*
+This class is responsible for health measurements that need quantity values.
+ */
 public abstract class AbstractQuantityModel extends AbstractHealthMeasurementModel implements QuantityModelInterface {
     private String value;
     private String unit;
 
-    @Override
-    public abstract String getDescription();
-
+    /**
+     * This is used to take the measurement event that came from web sockets and store event payload data into
+     * the class appropriately. Here, we store data into quantitative properties like value.
+     * @param me: The raw payload wrapped in a business adaptor model.
+     */
     @Override
     public void setHealthMeasurementValue(MeasurementEventModel me) {
-        QuantityMeasurmentEventModel qme = (QuantityMeasurmentEventModel) me;
+        QuantityMeasurmentEventModel qme = (QuantityMeasurmentEventModel) me; // Cast event to Quantity version so we can access methods related to quantity properties.
 
         String value = qme.getValue();
         String unit = qme.getUnit();
-        System.out.println(unit + " " + value);
+
         if (!value.equals(this.value) || !unit.equals(this.unit)) {
             this.value = value;
             this.unit = unit;
@@ -24,15 +29,20 @@ public abstract class AbstractQuantityModel extends AbstractHealthMeasurementMod
         }
     }
 
-    @Override
-    public abstract String getMeasurementType();
-
+    /**
+     * Return the value of the event.
+     * @return the value of the event.
+     */
     @Override
     public Double getValue() {
         if (this.value == null) return null;
         return Double.parseDouble(this.value);
     }
 
+    /**
+     * Return the unit of the event.
+     * @return the unit of the event.
+     */
     @Override
     public String getUnit() {
         return this.unit;

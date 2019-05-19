@@ -14,14 +14,26 @@ this class will only get those properties from the internal Hapi's Patient objec
 public class HapiPatientModel implements PatientModelInterface {
     private final org.hl7.fhir.dstu3.model.Patient patient;
 
-    public HapiPatientModel(org.hl7.fhir.dstu3.model.Patient p) {
+    /**
+     * Constructor to store the FHIR Patient.
+     * @param p: FHIR Patient.
+     */
+    HapiPatientModel(org.hl7.fhir.dstu3.model.Patient p) {
         this.patient = p;
     }
 
+    /**
+     * Accesses the FHIR patient to get its id and return back to caller code.
+     * @return the patient id.
+     */
     public String getId() {
         return this.patient.getIdElement().getIdPart();
     }
 
+    /**
+     * Accesses the FHIR patient to get its name and return back to caller code.
+     * @return the patient name.
+     */
     public String getName() {
         return this.patient.getName().get(0).getFamily();
     }

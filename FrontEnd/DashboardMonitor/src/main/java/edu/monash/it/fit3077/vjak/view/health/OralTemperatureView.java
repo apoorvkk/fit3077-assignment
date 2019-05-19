@@ -1,14 +1,32 @@
 package edu.monash.it.fit3077.vjak.view.health;
 
 import edu.monash.it.fit3077.vjak.model.health.AbstractHealthMeasurementModel;
+import edu.monash.it.fit3077.vjak.model.health.QuantityModelInterface;
 
+/*
+This class is responsible to show the oral temperature status of a patient.
+ */
 public class OralTemperatureView extends MonitorTextView {
+    /**
+     * Initialization.
+     * @param hm the health measurement model that holds the status value.
+     */
     OralTemperatureView(AbstractHealthMeasurementModel hm) {
         super(hm);
     }
 
+    /**
+     * Used to get the result from the model.
+     * @return the result string.
+     */
     @Override
-    public String getMeasurementName() {
-        return "Oral Temperature";
+    protected String renderResult() {
+        {
+            QuantityModelInterface cm = (QuantityModelInterface) this.model;
+            if (cm.getValue() != null) {
+                return "Oral Temperature" + ": " + cm.getValue() + " " + cm.getUnit();
+            }
+            return "Oral Temperature" + ": " + "N/A";
+        }
     }
 }

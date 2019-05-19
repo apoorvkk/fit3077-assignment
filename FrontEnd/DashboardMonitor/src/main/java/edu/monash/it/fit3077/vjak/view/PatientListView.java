@@ -25,18 +25,21 @@ public class PatientListView implements JavaFXView, Observer {
     private final PatientMonitorCollectionControllerInterface controller;
     private Button loadMoreButton;
 
+    /**
+     * Observe the model and initialize the controller.
+     * @param model: the patient montor conllection model to observe.
+     */
     PatientListView(AbstractPatientMonitorCollectionModel model) {
-        /*
-        Observe the model and initialize the controller.
-         */
         this.model = model;
         this.model.attach(this);
         this.rootNode = new VBox();
         this.controller = new PatientMonitorCollectionController(model, this);
     }
 
+    /**
+     * Setup JavaFx components to create a load more button and attach it to the host node.
+     */
     public void initializeLoadMoreButton() {
-        // Setup the load more button and attach it to the host node.
         Button button = new Button();
         button.setPrefWidth(0.25 * Constant.guiWindowWidth);
         button.setOnAction(event -> this.controller.loadMorePatients());
@@ -45,8 +48,10 @@ public class PatientListView implements JavaFXView, Observer {
         this.rootNode.getChildren().add(this.loadMoreButton);
     }
 
+    /**
+     * Setup the patient list sidebar and attach it to the host node.
+     */
     public void initializePatientList() {
-        // Setup the patient list sidebar and attach it to the host node.
         this.patientListVBox = new VBox();
 
         ScrollPane patientListScrollPane = new ScrollPane();
@@ -57,22 +62,30 @@ public class PatientListView implements JavaFXView, Observer {
         this.rootNode.getChildren().add(patientListScrollPane);
     }
 
+    /**
+     * Ensure that load more button is disabled when patients are being loaded.
+     */
     public void setViewToFetchingState() {
-        // Ensure that load more button is disabled when patients are being loaded.
         this.loadMoreButton.setText("Loading patients ...");
         this.loadMoreButton.setDisable(true);
     }
 
+    /**
+     * Used so parent views can attach nodes of child views to itself.
+     * @return JavaFX node.
+     */
+    @Override
     public Node getRootNode() {
         return this.rootNode;
     }
 
+    /**
+     * This method is responsible for rendering the latest version of the patient list
+     * into the side bar as selectable items.
+     * @param patientMonitors: the patient monitors to attach to the sidebar.
+     */
     private void updatePatientList(ArrayList<PatientMonitorModelInterface> patientMonitors) {
-        /*
-        This method is responsible for fetching the latest version of the patient list and simply rendering
-        them into the side bar as selectable items.
-         */
-        this.patientListVBox.getChildren().clear();
+        this.patientListVBox.getChildren().clear(); // Reset the sidebar and add the newly updated list of patient monitors.
         if (patientMonitors.size() == 0) {
             this.patientListVBox.getChildren().add(new Text("Unable to find patients."));
         } else {
@@ -97,13 +110,18 @@ public class PatientListView implements JavaFXView, Observer {
         }
     }
 
+    /**
+     * Reset the load more button.
+     */
     private void updateLoadMoreButton() {
-        // Reset the load more button.
         String loadMoreButtonText = "Load more patients";
         this.loadMoreButton.setText(loadMoreButtonText);
         this.loadMoreButton.setDisable(false);
     }
 
+    /**
+     * This method is called whenever the model updates. Here we update the load more button and the patient list in the sidebar.
+     */
     public void update() {
         Platform.runLater(() -> { // run on main thread instead of the thread that received the event because that thread cannot update view due to Java FX restrictions.
             this.updatePatientList(this.model.getPatientMonitors());

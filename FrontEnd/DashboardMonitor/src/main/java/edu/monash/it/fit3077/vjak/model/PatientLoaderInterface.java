@@ -8,5 +8,9 @@ loading patients implementation from the application through the dependency inve
 not implementations.
  */
 public interface PatientLoaderInterface {
+    /**
+     * Fetch new patients.
+     * @return List of new patients.
+     */
     ArrayList<PatientModelInterface> loadPatients();
 }

@@ -21,18 +21,29 @@ class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
     private final CountDownLatch latch;
     private final Logger logger;
 
-    public HealthMeasurementSocketSessionHandler(HealthMeasurementListener hl, CountDownLatch latch) {
+    /**
+     * Initialize important variabels needed for web socket communication.
+     * @param hl: health measurement listener used to send web socket data into the application codebase.
+     * @param latch: used to notify caller code that the frontend has connected successfully with the backend via websockets.
+     */
+    HealthMeasurementSocketSessionHandler(HealthMeasurementListener hl, CountDownLatch latch) {
         super();
         this.logger = LogManager.getLogger(HealthMeasurementSocketSessionHandler.class);
         this.healthMeasurementListener = hl;
         this.latch = latch;
     }
 
+    /**
+     * Logs any websocket errors.
+     */
     @Override
     public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
         logger.error("Error: ", exception);
     }
 
+    /**
+     * Event handler once system has connected to backend.
+     */
     @Override
     public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
         logger.info("Connected");
@@ -40,11 +51,20 @@ class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
         this.latch.countDown();
     }
 
+    /**
+     * Logs any transport related websocket errors.
+     */
     @Override
     public void handleTransportError(StompSession session, Throwable exception) {
         logger.error("Transport error: ", exception);
     }
 
+    /**
+     * This is where websocket events come first. Here, we take the raw payload and wrap it in the relevent business model.
+     * Then, we send the event to the health measurement listener which will broadcast the event to all of its observers.
+     * @param headers: websocket headers.
+     * @param payload: the actual event data sent from the backend.
+     */
     @Override
     public void handleFrame(StompHeaders headers, Object payload) {
         logger.info("Received message");
@@ -59,9 +79,13 @@ class HealthMeasurementSocketSessionHandler extends StompSessionHandlerAdapter {
         this.healthMeasurementListener.dataReceived(me); // notifies listener about the event.
     }
 
+    /**
+     * Used to convert raw data to a meaningful object that the application can consume.
+     * @param headers: websocket headers.
+     * @return LinkedHashMap class.
+     */
     @Override
     public Type getPayloadType(StompHeaders headers) {
-        // Used to convert raw data to a meaningful object that the application can consume.
         return java.util.LinkedHashMap.class;
     }
 }

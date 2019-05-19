@@ -11,6 +11,11 @@ Driver class. It is bootstrapped with JavaFx so it can run a GUI application.
  */
 public class DashboardMonitorApplication extends Application {
 
+    /**
+     * This is a JavaFX wrapped application. We are specifying how to start up the JavaFX application
+     * and intialize the necessary models, patient loader and views.
+     * @param primaryStage: JavaFX class used as the basis of the GUI app.
+     */
     @Override
     public void start(Stage primaryStage) {
         HapiPatientLoader h = new HapiPatientLoader("30"); // Hardcoded practitioner id.

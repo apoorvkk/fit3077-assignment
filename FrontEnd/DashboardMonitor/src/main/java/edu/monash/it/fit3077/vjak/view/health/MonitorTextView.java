@@ -1,27 +1,33 @@
 package edu.monash.it.fit3077.vjak.view.health;
 
 import edu.monash.it.fit3077.vjak.model.health.AbstractHealthMeasurementModel;
-import edu.monash.it.fit3077.vjak.model.health.QuantityModelInterface;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
+/*
+This class is responsible to render a text based version of a given monitor.
+ */
 public abstract class MonitorTextView extends HealthMeasurementView {
     private Text currentTextNode;
 
+    /**
+     * Initialization.
+     * @param hm: the health measurement model.
+     */
     MonitorTextView(AbstractHealthMeasurementModel hm) {
         super(hm);
     }
 
-    protected String renderResult() {
-        QuantityModelInterface cm = (QuantityModelInterface) this.model;
-        if (cm.getValue() != null) {
-            return this.getMeasurementName() + ": " + cm.getValue() + " " + cm.getUnit();
-        }
-        return this.getMeasurementName() + ": " + "N/A";
-    }
+    /**
+     * Used to get the result from the model.
+     * @return the text string to render.
+     */
+    abstract protected String renderResult();
 
-    public abstract String getMeasurementName();
-
+    /**
+     * Method to initialize the view. Here we create a simple HBox and render a text node into it.
+     * We keep a reference to the text node so that we can set its text whenever the model updates.
+     */
     @Override
     protected void setUpView() {
         HBox hbox = new HBox();
@@ -30,6 +36,9 @@ public abstract class MonitorTextView extends HealthMeasurementView {
         this.rootNode = hbox;
     }
 
+    /*
+    This method is called whenever the model updates. Here, we just rerender the result into the existing text node.
+     */
     @Override
     public void update() {
         this.currentTextNode.setText(this.renderResult());

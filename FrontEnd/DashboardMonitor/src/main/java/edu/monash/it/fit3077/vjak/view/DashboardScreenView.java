@@ -12,6 +12,11 @@ This class is responsble for rendering the main overall GUI application. It is c
 the PatientListView (sidebar that has all available patients) and the MonitorsView (main dashboard).
  */
 public class DashboardScreenView {
+    /**
+     * Initializes the frame of the application the relevent children views.
+     * @param primaryStage: JavaFX class used as the basis of the GUI app.
+     * @param model: collection of patient monitors.
+     */
     public DashboardScreenView(Stage primaryStage, AbstractPatientMonitorCollectionModel model) {
         PatientListView plv = new PatientListView(model);
         MonitorsView mv = new MonitorsView(model);

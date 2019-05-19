@@ -15,17 +15,22 @@ import java.io.IOException;
 This class is responsible for registering and deregistering the current client to the backend server
 so it can receive monitor events via sockets. The registration/deregistration uses REST endpoint defined in the backend.
  */
-public class MeasurementTracker {
+class MeasurementTracker {
     private final String patientId;
     private final String healthMeasurement;
 
-    public MeasurementTracker(String patientId, String healthMeasurement) {
+    /**
+     * Setup the instance variables needed for registration and deregistration of monitors.
+     * @param patientId: the patient id.
+     * @param healthMeasurement: the health measurement of interest (eg. Cholesterol).
+     */
+    MeasurementTracker(String patientId, String healthMeasurement) {
         this.patientId = patientId;
         this.healthMeasurement = healthMeasurement;
     }
 
     /*
-    This class is responsbile to make the necessary registration/deregistration requests. We use a separate thread
+    This class is responsible to make the necessary registration/deregistration requests. We use a separate thread
     so we do not hog the main thread and freeze up the GUI application.
      */
     class RegistrationRunnable implements Runnable {
@@ -43,6 +48,7 @@ public class MeasurementTracker {
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost(this.url);
 
+            // Setup body payload.
             JSONObject payload = new JSONObject();
             payload.put("patientId", MeasurementTracker.this.patientId);
             payload.put("measurementType", MeasurementTracker.this.healthMeasurement);
@@ -50,19 +56,26 @@ public class MeasurementTracker {
             httppost.setEntity(new StringEntity(payload.toString(), ContentType.APPLICATION_JSON));
 
             try {
-                httpclient.execute(httppost);
+                httpclient.execute(httppost); // Make request.
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void register() {
+    /**
+     * Used to tell backend service to register a health measurement monitor for a particular patient so that it will send events
+     * about it.
+     */
+    void register() {
         Thread patientLoaderThread = new Thread(new RegistrationRunnable(true));
         patientLoaderThread.start();
     }
 
-    public void deregister() {
+    /**
+     * Used to tell backend service to stop sending events about a particular patient for particular health measurement.
+     */
+    void deregister() {
         Thread patientLoaderThread = new Thread(new RegistrationRunnable(false));
         patientLoaderThread.start();
     }
