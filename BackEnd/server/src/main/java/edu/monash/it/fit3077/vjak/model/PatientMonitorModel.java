@@ -1,10 +1,10 @@
 package edu.monash.it.fit3077.vjak.model;
 
+import edu.monash.it.fit3077.vjak.api.ObservationLoaderInterface;
 import edu.monash.it.fit3077.vjak.observer.MonitorControllerObserver;
 import edu.monash.it.fit3077.vjak.observer.PatientMonitorSubject;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 
 /**
  * This class represents a generic patient monitor. Essentially, it will hold all clients (i.e frontend client) who
