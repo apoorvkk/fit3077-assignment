@@ -1,3 +1,5 @@
+Result: 100% for both stages
+
 # FIT3077 Assignment 2 (Both Stages Included)
 
 Note: **Assignment 2 Stage 1** was completed by Apoorv Kansal alone due to a previous partner not contributing at all. As a result, Quang Ly joined the team and replaced the old partner for **Assignment 2 Stage 2**. This work extends on Apoorv Kansal's **Assignment 2 Stage 1**.
